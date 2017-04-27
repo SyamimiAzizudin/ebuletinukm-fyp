@@ -47,16 +47,16 @@ class User extends Authenticatable
         return $this->hasMany(Berita::class, 'user_id');
     }
 
-    public function pembaca()
-    {
-        return $this->hasOne(Pembaca::class, 'user_id');
-    }
+    // public function pembaca()
+    // {
+    //     return $this->hasOne(Pembaca::class, 'user_id');
+    // }
 
-    public function pengarang()
-    {
+    // public function pengarang()
+    // {
 
-        return $this->hasOne(Pengarang::class, 'user_id');
-    }
+    //     return $this->hasOne(Pengarang::class, 'user_id');
+    // }
 
     /**
      * Get profile

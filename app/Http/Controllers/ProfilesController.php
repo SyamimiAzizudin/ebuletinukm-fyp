@@ -22,8 +22,8 @@ class ProfilesController extends Controller
     public function index()
     {
         $users = User::with('profile')->where('id', auth()->id())->get();
-        // dd($user = auth()->user()->profile)
-        return view ('profile.profile', compact('users'));
+        // dd($users);
+            return view ('profile.profile', compact('users'));
     }
 
     public function edit()
@@ -70,7 +70,7 @@ class ProfilesController extends Controller
                 'persatuan'   => $request->persatuan,
                 'gambar'      => $image,
             ]);
-        }
+        } 
         return redirect()->back()->withMessage('Profil anda telah berjaya dikemaskini!');
 
     }
