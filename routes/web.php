@@ -48,6 +48,9 @@ Route::group(['before' => 'pengarang|pembaca'], function() {
     Route::get('/papar', 'BeritasController@papar');
     Route::get('/papar/{berita}', 'BeritasController@show');
 
+    Route::get('/home', 'BeritasController@first');
+    Route::get('/home/{berita}', 'BeritasController@show');
+
     /**
      * Paparan Acara
      */

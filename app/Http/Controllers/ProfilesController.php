@@ -23,7 +23,7 @@ class ProfilesController extends Controller
     {
         $users = User::with('profile')->where('id', auth()->id())->get();
         // dd($users);
-            return view ('profile.profile', compact('users'));
+        return view ('profile.profile', compact('users'));
     }
 
     public function edit()

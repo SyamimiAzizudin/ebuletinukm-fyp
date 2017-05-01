@@ -106,24 +106,25 @@
       <div class="main_content floatleft">
         <div class="left_coloum floatleft">
           <div class="single_left_coloum_wrapper">
+
             <h2 class="title">Buletin UKM</h2>
             <a class="more" href="#">more</a>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
-                dolor eu mattis.</p>
+
+            <?php $i = 0 ?>
+            @forelse($beritas as $berita)
+
+            <div class="single_left_coloum floatleft"> <img src="{{ asset($berita->gambar) }}" alt="" />
+              <h3>{{ $berita->tajuk }}</h3>
+              <p>Diterbitkan pada {{ $berita->created_at }}</p>
+                                <p> {{ $berita->lokasi }}</p>
               <a class="readmore" href="#">read more</a> </div>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
+            
+              <?php $i++ ?>         
+              @empty
+              @endforelse
+
           </div>
+
           <div class="single_left_coloum_wrapper">
             <h2 class="title">Program UKM</h2>
             <a class="more" href="#">more</a>

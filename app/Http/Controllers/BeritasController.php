@@ -29,10 +29,17 @@ class BeritasController extends Controller
 
     public function papar()
     {
-
         $searchResults =Input::get('search');
         $beritas = Berita::where('tajuk','like',"%$searchResults%")->paginate(5);
         return view('berita.papar', compact('beritas'));
+    }
+
+    public function first()
+    {
+
+        $searchResults =Input::get('search');
+        $beritas = Berita::where('tajuk','like',"%$searchResults%");
+        return view('/home', compact('beritas'));
     }
 
     /**
