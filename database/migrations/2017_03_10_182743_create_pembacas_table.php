@@ -21,7 +21,7 @@ class CreatePembacasTable extends Migration
             $table->string('fakulti')->nullable();
             $table->string('jabatan')->nullable();
             $table->string('persatuan')->nullable();
-            $table->string('gambar')->nullable();
+            $table->string('gambar')->default('img/image-placeholder2.jpg');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
