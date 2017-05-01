@@ -47,16 +47,21 @@ class User extends Authenticatable
         return $this->hasMany(Berita::class, 'user_id');
     }
 
-    // public function pembaca()
-    // {
-    //     return $this->hasOne(Pembaca::class, 'user_id');
-    // }
+    /**
+     *
+     */
+    public function pembaca()
+    {
+        return $this->hasOne(Pembaca::class, 'user_id');
+    }
 
-    // public function pengarang()
-    // {
-
-    //     return $this->hasOne(Pengarang::class, 'user_id');
-    // }
+    /**
+     *
+     */
+    public function pengarang()
+    {
+        return $this->hasOne(Pengarang::class, 'user_id');
+    }
 
     /**
      * Get profile
@@ -64,9 +69,9 @@ class User extends Authenticatable
     public function profile()
     {
         if ($this->userRole == 'pembaca') {
-            return $this->hasOne(Pembaca::class, 'user_id');
+            return $this->pembaca();
         } else {
-            return $this->hasOne(Pengarang::class, 'user_id');
+            return $this->pengarang();
         }
     }
 

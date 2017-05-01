@@ -75,24 +75,22 @@ class RegisterController extends Controller
 
         if ($data['role'] == 'author') {
             $user->pengarang()->create([
-              'user_id' => $user->id,
-              'nama' => null,
-              'telefon' => null,
-              'fakulti' => null,
-              'persatuan' => null,
-              'jawatan' => null,
-              'gambar' => null,
+              'user_id'     => $user->id,
+              'nama'        => null,
+              'telefon'     => null,
+              'fakulti'     => null,
+              'persatuan'   => null,
+              'jawatan'     => null,
             ]);
 
         } else {
             $user->pembaca()->create([
-              'user_id' => $user->id,
-              'nama' => null,
-              'telefon' => null,
-              'fakulti' => null,
-              'jabatan' => null,
-              'persatuan' => null,
-              'gambar' => null,
+              'user_id'     => $user->id,
+              'nama'        => null,
+              'telefon'     => null,
+              'fakulti'     => null,
+              'jabatan'     => null,
+              'persatuan'   => null,
             ]);
         }
 
