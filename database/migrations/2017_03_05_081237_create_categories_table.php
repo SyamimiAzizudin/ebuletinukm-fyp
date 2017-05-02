@@ -15,11 +15,9 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
+            $table->morphs('categorizable');
             $table->text('name');
-            $table->integer('categorizable_id');
-            $table->string('categorizable_type'); // category is for event and news
-            // $table->timestamps();
-
+            $table->timestamps();
         });
     }
 
