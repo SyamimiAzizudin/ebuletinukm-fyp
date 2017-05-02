@@ -18,17 +18,24 @@ class ProfilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        $users = User::with('profile')->where('id', auth()->id())->get();
-        // dd($users);
-        return view ('profile.profile', compact('users'));
+
+        // $users = User::with('profile')->where('id', auth()->id())->get();
+        $user = auth()->user()->load('profile');
+
+        return view ('profile.profile', compact('user'));
     }
 
+    /**
+     *
+     */
     public function edit()
     {
-        $user = User::with('profile')->where('id', auth()->id())->firstOrFail();
+        // User::with('profile')->where('id', auth()->user()->id)->firstOrFail();
+        // User::with('profile')->where('id', auth()->id())->firstOrFail();
+        // User::with('profile')->whereId(auth()->id())->firstOrFail();
+        $user = auth()->user()->load('profile');
 
         return view('profile.edit', compact('user'));
     }
@@ -70,7 +77,7 @@ class ProfilesController extends Controller
                 'persatuan'   => $request->persatuan,
                 'gambar'      => $image,
             ]);
-        } 
+        }
         return redirect()->back()->withMessage('Profil anda telah berjaya dikemaskini!');
 
     }

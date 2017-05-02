@@ -15,7 +15,28 @@
                     {{ method_field('PATCH') }}
 
                     <div class="form-group">
-                        <label for="nama" class="col-md-4 control-label">Nama</label>
+                        <label for="no_matrik" class="col-md-4 control-label">Nombor Matrik</label>
+                        <div class="col-md-6">
+                            <td>{{Auth::user()->no_matrik}}</td>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="no_matrik" class="col-md-4 control-label">Username</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="username" placeholder="" value="{{ old('username', $user->username) }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="no_matrik" class="col-md-4 control-label">Email</label>
+                        <div class="col-md-6">
+                                <input type="text" class="form-control" name="email" placeholder="" value="{{ old('email', $user->email) }}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nama" class="col-md-4 control-label">Nama Penuh</label>
                         <div class="col-md-6">
                             <input id="nama" type="text" class="form-control" name="nama" value="{{ old('nama', $user->profile->nama) }}" required autofocus>
                         </div>
@@ -65,7 +86,6 @@
                         </div>
                     </div> --}}
 
-                
                     <div class="form-group">
                         <label for="gambar" class="col-md-4 control-label">Gambar Profil</label>
                             <div class="col-md-6">

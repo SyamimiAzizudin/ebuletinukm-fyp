@@ -18,7 +18,7 @@
       <div class="logo floatleft"><a href="#"><img src="images/ukm.png" alt="" /></a>
       <img src="images/kpt.png" alt="" /></div>
 
-      <div class="top_menu floatleft">
+      {{-- <div class="top_menu floatleft">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="#">About</a></li>
@@ -26,7 +26,7 @@
           <li><a href="#">Subscribe</a></li>
           <li><a href="#">Login</a></li>
         </ul>
-      </div>
+      </div> --}}
       <div class="social_plus_search floatright">
         <div class="social">
           <ul>
@@ -44,6 +44,7 @@
         </div>
       </div>
     </div>
+    <br>
     <div class="main_menu_area">
     <ul id="nav">
         @if(Auth::check())
@@ -91,7 +92,6 @@
             </li>
         @endif
         </ul>
-          
     </div>
     <div class="slider_area">
       <div class="slider">
