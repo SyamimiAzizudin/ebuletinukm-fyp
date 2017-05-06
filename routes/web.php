@@ -14,7 +14,9 @@ Auth::routes();
 /**
  * Homepage
  */
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');
+Route::get('/home', 'BeritasController@home');
+
 
 Route::group(['middleware' => ['auth', 'pengarang']], function() {
 
@@ -28,6 +30,11 @@ Route::group(['middleware' => ['auth', 'pengarang']], function() {
      * Berita
      */
     Route::resource('/berita', 'BeritasController');
+
+    /**
+     * Laporan Berita
+     */
+    Route::get('/berita_details', 'BeritasController@laporan');
 
 });
 
@@ -48,8 +55,8 @@ Route::group(['before' => 'pengarang|pembaca'], function() {
     Route::get('/papar', 'BeritasController@papar');
     Route::get('/papar/{berita}', 'BeritasController@show');
 
-    Route::get('/home', 'BeritasController@first');
-    Route::get('/home/{berita}', 'BeritasController@show');
+    // Route::get('/home', 'BeritasController@first');
+    // Route::get('/home/{berita}', 'BeritasController@show');
 
     /**
      * Paparan Acara
@@ -62,7 +69,7 @@ Route::group(['before' => 'pengarang|pembaca'], function() {
      */
     Route::get('/profile', 'ProfilesController@index');
     Route::get('/profile/edit', 'ProfilesController@edit')->name('edit');
-    Route::patch('/profile', 'ProfilesController@update')->name('profile.update');
+    Route::patch('/profile', 'ProfilesController@update');
    // Route::resource('profile', 'ProfilesController');
 
 

@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>eBuletin UKM</title>
+        <title >eBuletin UKM</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -82,13 +82,13 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    eBuletin UKM
+                <div class="title m-b-md" >
+                    <a href="{{ url('/home') }}">eBuletin UKM</a>
                 </div>
 
                 <div class="links">
                     <a href="{{ url('/login') }}">Log Masuk</a>
-                    <a  href="{{ url('/register') }}">Pendaftaran Baru</a>
+                    <a href="{{ url('/register') }}">Pendaftaran Baru</a>
 
                 </div>
             </div>

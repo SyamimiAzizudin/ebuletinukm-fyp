@@ -14,7 +14,7 @@ class CreatePembacasTable extends Migration
     public function up()
     {
         Schema::create('pembacas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id');                                       
             $table->integer('user_id')->index()->unsigned();
             $table->string('nama')->nullable();
             $table->string('telefon')->nullable();

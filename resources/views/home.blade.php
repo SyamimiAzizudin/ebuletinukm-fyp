@@ -11,6 +11,13 @@
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css" media="screen" />
 </head>
+<style>
+.img {
+  display: block;
+  width: 150px;
+  height: 90px;
+}
+</style>
 <body>
 <div class="body_wrapper">
   <div class="center">
@@ -104,48 +111,49 @@
     </div>
     <div class="content_area">
       <div class="main_content floatleft">
-        <div class="left_coloum floatleft">
+        {{-- <div class="left_coloum floatleft"> --}}
           <div class="single_left_coloum_wrapper">
 
             <h2 class="title">Buletin UKM</h2>
-            <a class="more" href="#">more</a>
+            <a class="more" href="{{ url('papar') }}">more</a>
 
             <?php $i = 0 ?>
-            @forelse($beritas as $berita)
+            @foreach($beritas as $berita)
 
-            <div class="single_left_coloum floatleft"> <img src="{{ asset($berita->gambar) }}" alt="" />
-              <h3>{{ $berita->tajuk }}</h3>
-              <p>Diterbitkan pada {{ $berita->created_at }}</p>
-                                <p> {{ $berita->lokasi }}</p>
-              <a class="readmore" href="#">read more</a> </div>
-            
-              <?php $i++ ?>         
-              @empty
-              @endforelse
-
+            <div class="single_left_coloum floatleft">
+              <div class="thumbnail">
+                <p><img src="{{ asset($berita->gambar) }}" class="img" /></p>
+                <h3>{{ $berita->tajuk }}</h3>
+                <p>{{ $berita->created_at->format('d/m/Y')}}</p>
+                                  <p><strong> {{ $berita->lokasi }}</strong></p>
+                <a class="readmore" href="{{ url('papar', $berita->id) }}">huraian berita</a> 
+              </div>
+            </div>
+              @endforeach
+              {{-- <div style="clear: both;"></div> --}}
           </div>
 
           <div class="single_left_coloum_wrapper">
             <h2 class="title">Program UKM</h2>
-            <a class="more" href="#">more</a>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
-            <div class="single_left_coloum floatleft"> <img src="images/single_featured.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet, consectetur</h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper 
-                dolor eu mattis.</p>
-              <a class="readmore" href="#">read more</a> </div>
+            <a class="more" href="{{ url('acara') }}">more</a>
+
+            <?php $i = 0 ?>
+            @foreach($events as $event)
+
+            <div class="single_left_coloum floatleft">
+              <div class="thumbnail">
+                <img src="{{ asset($event->gambar) }}" alt="" />
+                <h3>{{ $event->tajuk }}</h3>
+                <p>{{ $event->created_at->format('d/m/Y') }}</p>
+                                  <p><strong> {{ $event->lokasi }} </strong></p>
+                <a class="readmore" href="{{ url('acara', $event->id) }}">huraian program</a> 
+              </div>
+            </div>
+              @endforeach
           </div>
+
           <div class="single_left_coloum_wrapper gallery">
-            <h2 class="title">gallery</h2>
+            <h2 class="title">berita dan program terkini!</h2>
             <a class="more" href="#">more</a> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> </div>
           <div class="single_left_coloum_wrapper single_cat_left">
             <h2 class="title">tech news</h2>
@@ -155,73 +163,99 @@
               <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper dolor ...interdum</p>
               <p class="single_cat_left_content_meta">by <span>John Doe</span> |  29 comments</p>
             </div>
-            <div class="single_cat_left_content floatleft">
-              <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit </h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper dolor ...interdum</p>
-              <p class="single_cat_left_content_meta">by <span>John Doe</span> |  29 comments</p>
-            </div>
-            <div class="single_cat_left_content floatleft">
-              <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit </h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper dolor ...interdum</p>
-              <p class="single_cat_left_content_meta">by <span>John Doe</span> |  29 comments</p>
-            </div>
-            <div class="single_cat_left_content floatleft">
-              <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit </h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper dolor ...interdum</p>
-              <p class="single_cat_left_content_meta">by <span>John Doe</span> |  29 comments</p>
-            </div>
+            
           </div>
-        </div>
-        <div class="right_coloum floatright">
-          <div class="single_right_coloum">
-            <h2 class="title">from the desk</h2>
-            <ul>
-              <li>
-                <div class="single_cat_right_content">
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit</h3>
-                  <p>Nulla quis lorem neque, mattis venen atis lectus. In interdum ull amcorper dolor eu mattis.</p>
-                  <p class="single_cat_right_content_meta"><a href="#"><span>read more</span></a> 3 hours ago</p>
-                </div>
-              </li>
-              <li>
-                <div class="single_cat_right_content">
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit</h3>
-                  <p>Nulla quis lorem neque, mattis venen atis lectus. In interdum ull amcorper dolor eu mattis.</p>
-                  <p class="single_cat_right_content_meta"><a href="#"><span>read more</span></a> 3 hours ago</p>
-                </div>
-              </li>
-              <li>
-                <div class="single_cat_right_content">
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit</h3>
-                  <p>Nulla quis lorem neque, mattis venen atis lectus. In interdum ull amcorper dolor eu mattis.</p>
-                  <p class="single_cat_right_content_meta"><a href="#"><span>read more</span></a> 3 hours ago</p>
-                </div>
-              </li>
-            </ul>
-            <a class="popular_more" href="#">more</a> </div>
-          <div class="single_right_coloum">
-            <h2 class="title">editorial</h2>
-            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
-            </div>
-            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
-            </div>
-            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
-            </div>
-            <div class="single_cat_right_content editorial"> <img src="images/editorial_img.png" alt="" />
-              <h3>Lorem ipsum dolor sit amet con se cte tur adipiscing elit</h3>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="sidebar floatright">
-        <div class="single_sidebar"> <img src="images/add1.png" alt="" /> </div>
+        
+        <div class="single_sidebar">
+          <div class="popular">
+            {{-- <h2 class="title">Kategori</h2> --}}
+            <ul>
+              <div class="panel-group kategori-products" id="accordian"><!--category-productsr-->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordian" href="#jenis">
+                          <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                Kategori
+                      </a>
+                    </h4>
+                  </div>
+
+                  <div id="jenis" class="panel-collapse collapse">
+                      <div class="panel-body">
+                          <ul>
+                            {{-- <li class="dropdown">
+                              <a href="{{ url('/katalog?jenis=Leptop') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Berita
+                              </a>
+                                <ul class="dropdown-menu" role="menu">
+                                  <li><a href="{{ url('papar') }}">Sukan</a></li>
+                                </ul>
+                            </li> --}}
+
+                                <li><a href="{{ url('/katalog?jenis=Telefon') }}">Berita</a></li>
+                                <li><a href="{{ url('/katalog?jenis=Telefon') }}">Program</a></li>
+                                <li><a href="{{ url('?/katalog?jenis=lain-lain') }}">Semua Berita & Program</a></li>       
+                                          
+                          </ul>
+                      </div>
+                  </div>
+                </div>
+              </div><!--/category-products-->
+          </ul>
+        </div>
+        </div>
+        <br>
+
+        <div class="single_sidebar">
+          <div class="lokasi">
+            {{-- <h2 class="title">Kategori</h2> --}}
+            <ul>
+              <div class="panel-group lokasi-products" id="accordian1"><!--category-productsr-->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordian" href="#Kategori">
+                          <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                Lokasi
+                      </a>
+                    </h4>
+                  </div>
+
+                  <div id="lokasi" class="panel-collapse collapse">
+                      <div class="panel-body">
+                          <ul>
+                                <li><a href="{{ url('/katalog?lokasi=Telefon') }}">Berita</a></li>
+                                <li><a href="{{ url('/katalog?lokasi=Telefon') }}">Program</a></li>
+                                <li><a href="{{ url('?/katalog?lokasi=lain-lain') }}">Semua Berita & Program</a></li>       
+                          </ul>
+                      </div>
+                  </div>
+                </div>
+              </div><!--/category-products-->
+          </ul>
+        </div>
+        </div>
+
+        <br>
+
+        {{-- <div class="single_sidebar">
+          <div class="list-group">
+            <button type="button" class="list-group-item list-group-item-action active">
+              Cras justo odio
+            </button>
+            <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
+            <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
+            <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+            <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
+          </div>
+        </div> --}}
+
         <div class="single_sidebar">
           <div class="news-letter">
-            <h2>Sign Up for Newsletter</h2>
-            <p>Sign up to receive our free newsletters!</p>
+            <h2>Sign Up for New Member</h2>
+            <p>Sign up to receive our latest news!</p>
             <form action="#" method="post">
               <input type="text" value="Name" id="name" />
               <input type="text" value="Email Address" id="email" />
@@ -230,47 +264,6 @@
             <p class="news-letter-privacy">We do not spam. We value your privacy!</p>
           </div>
         </div>
-        <div class="single_sidebar">
-          <div class="popular">
-            <h2 class="title">Popular</h2>
-            <ul>
-              <li>
-                <div class="single_popular">
-                  <p>Sept 24th 2045</p>
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit <a href="#" class="readmore">Read More</a></h3>
-                </div>
-              </li>
-              <li>
-                <div class="single_popular">
-                  <p>Sept 24th 2045</p>
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit <a href="#" class="readmore">Read More</a></h3>
-                </div>
-              </li>
-              <li>
-                <div class="single_popular">
-                  <p>Sept 24th 2045</p>
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit <a href="#" class="readmore">Read More</a></h3>
-                </div>
-              </li>
-              <li>
-                <div class="single_popular">
-                  <p>Sept 24th 2045</p>
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit <a href="#" class="readmore">Read More</a></h3>
-                </div>
-              </li>
-              <li>
-                <div class="single_popular">
-                  <p>Sept 24th 2045</p>
-                  <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit <a href="#" class="readmore">Read More</a></h3>
-                </div>
-              </li>
-            </ul>
-            <a class="popular_more">more</a> </div>
-        </div>
-        <div class="single_sidebar"> <img src="images/add1.png" alt="" /> </div>
-        {{-- <div class="single_sidebar">
-          <h2 class="title">ADD</h2>
-          <img src="images/add2.png" alt="" /> </div> --}}
       </div>
     </div>
     {{-- <div class="footer_top_area">
@@ -279,16 +272,13 @@
     <div class="footer_bottom_area">
       <div class="footer_menu">
         <ul id="f_menu">
+          <CENTER>
           <li><a href="#">world news</a></li>
           <li><a href="#">sports</a></li>
           <li><a href="#">tech</a></li>
           <li><a href="#">business</a></li>
           <li><a href="#">Movies</a></li>
-          <li><a href="#">entertainment</a></li>
-          <li><a href="#">culture</a></li>
-          <li><a href="#">Books</a></li>
-          <li><a href="#">classifieds</a></li>
-          <li><a href="#">blogs</a></li>
+          </CENTER>
         </ul>
       </div>
       <div class="copyright_text">

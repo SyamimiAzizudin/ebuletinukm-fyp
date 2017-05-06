@@ -30,7 +30,7 @@
                             <td><br><img src="{{ asset($berita->gambar) }}" style="width:200px"></td>
                             <td>
                                 <h5><a href="{{ url('papar', $berita->id) }}"><strong>{{ $berita->tajuk }} </strong></a></h5>
-                                <p> Diterbitkan pada {{ $berita->created_at }}</p>
+                                <p> Diterbitkan pada {{ $berita->created_at->format('d/m/Y')}}</p>
                                 <p> {{ $berita->lokasi }}</p>
 
                             </td>

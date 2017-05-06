@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -9,27 +8,29 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
 
-                <form class="form-horizontal" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                {{-- <form class="form-horizontal" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data"> --}}
 
-                    {{ csrf_field() }}
-                    {{ method_field('PATCH') }}
+                   {{--  {{ csrf_field() }}
+                    {{ method_field('PATCH') }} --}}
 
-                    <div class="form-group">
-                        <label for="no_matrik" class="col-md-4 control-label">Nombor Matrik</label>
-                        <div class="col-md-6">
-                            <td>{{Auth::user()->no_matrik}}</td>
+                {!! Form::model($user, ['class' => 'form-horizontal', 'method' => 'PATCH','action' =>  ['ProfilesController@update', $user->profile->id], 'files' => true]) !!}
+
+                        <div class="form-group">
+                            <label for="no_matrik" class="col-md-4 control-label">Nombor Matrik</label>
+                            <div class="col-md-6">
+                                <td>{{Auth::user()->no_matrik}}</td>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="no_matrik" class="col-md-4 control-label">Username</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" name="username" placeholder="" value="{{ old('username', $user->username) }}">
+                        <div class="form-group">
+                            <label for="username" class="col-md-4 control-label">Username</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="username" placeholder="" value="{{ old('username', $user->username) }}">
+                            </div>
                         </div>
-                    </div>
 
                     <div class="form-group">
-                        <label for="no_matrik" class="col-md-4 control-label">Email</label>
+                        <label for="email" class="col-md-4 control-label">Email</label>
                         <div class="col-md-6">
                                 <input type="text" class="form-control" name="email" placeholder="" value="{{ old('email', $user->email) }}">
                         </div>
@@ -49,17 +50,26 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="fakulti" class="col-md-4 control-label">Fakulti</label>
                         <div class="col-md-6">
                             <input id="fakulti" type="text" class="form-control" name="fakulti" value="{{ old('fakulti', $user->profile->fakulti) }}" required>
+                        </div>
+                    </div> --}}
+
+                    <div class="form-group">
+                        <label for="fakulti" class="col-md-4 control-label">Fakulti</label>
+                        <div class="col-md-6">
+                            {{ Form::select('fakulti',
+                               ['FTSM' => 'Fakulti Teknologi dan Sains Maklumat', 'FSSK' => 'Fakulti Sains Sosial dan Kemanusiaan', 'FST' => 'Fakulti Sains dan Teknologi', 'FEP' => 'Fakulti Ekonomi dan Pengurusan', 'Farmasi' => 'Fakulti Farmasi', 'FPI' => 'Fakulti Pengajian Islam', 'FSK' => 'Fakulti Sains Kesihatan', 'FKAB' => 'Fakulti Kejuruteraan dan Alam Bina', 'FGG' => 'Fakulti Pergigian', 'FUU' => 'Fakulti Undang-Undang', 'FPEND' => 'Fakulti Pendidikan', 'FPU' => 'Fakulti Perubatan', 'GSB' => 'UKM-GSB Pusat Pengajian Siswazah Perniagaan'], null, ['class' => 'form-control']) }}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="persatuan" class="col-md-4 control-label">Persatuan</label>
                         <div class="col-md-6">
-                            <input id="persatuan" type="text" class="form-control" name="persatuan" value="{{ old('persatuan', $user->profile->persatuan) }}" required>
+                            {{ Form::select('persatuan',
+                               ['PERSATUAN MAHASISWA UNIVERSITI KEBANGSAAN MALAYSIA' => 'PERSATUAN MAHASISWA UNIVERSITI KEBANGSAAN MALAYSIA', 'PERTUBUHAN AKADEMIK FAKULTI' => 'PERTUBUHAN AKADEMIK FAKULTI', 'PERTUBUHAN ANAK NEGERI/KEBAJIKAN' => 'PERTUBUHAN ANAK NEGERI/KEBAJIKAN', 'PERTUBUHAN KEBAJIKAN KOLEJ' => 'PERTUBUHAN KEBAJIKAN KOLEJ', 'PERTUBUHAN KHUSUS' => 'PERTUBUHAN KHUSUS', 'PERTUBUHAN LUAR' => 'PERTUBUHAN LUAR', 'PERTUBUHAN SISWAZAH' => 'PERTUBUHAN SISWAZAH', 'PUSAT KEMBANGAN PENDIDIKAN' => 'PUSAT KEMBANGAN PENDIDIKAN', 'URUSETIA HEPA' => 'URUSETIA HEPA'], null, ['class' => 'form-control']) }}
                         </div>
                     </div>
 
@@ -70,6 +80,7 @@
                                 <input id="jawatan" type="text" class="form-control" name="jawatan" value="{{ old('jawatan', $user->profile->jawatan) }}" required>
                             </div>
                         </div>
+                    
                     @else
                         <div class="form-group">
                             <label for="jabatan" class="col-md-4 control-label">Jabatan</label>
@@ -78,13 +89,6 @@
                             </div>
                         </div>
                     @endif
-
-                    {{-- <div class="form-group">
-                        <label for="gambar" class="col-md-4 control-label">Gambar Profil</label>
-                        <div class="col-md-6">
-                            <input id="gambar" type="file" name="gambar" value="{{ old('gambar') }}">
-                        </div>
-                    </div> --}}
 
                     <div class="form-group">
                         <label for="gambar" class="col-md-4 control-label">Gambar Profil</label>
@@ -104,7 +108,7 @@
                         </div>
                     </div>
 
-                </form>
+          {!! Form::close() !!}
 
             </div>
         </div>

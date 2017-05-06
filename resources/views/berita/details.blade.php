@@ -13,8 +13,8 @@
             </div>
                 <div class=" col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
                     <h2>{{ $berita->tajuk }}</h2>
-                    <p> Diterbitkan pada {{ $berita->created_at }}</p>
-                    <p> Lokasi: {{ $berita->lokasi }}</p>
+                    <p> Diterbitkan pada {{ $berita->created_at->format('d/m/Y') }}</p>
+                    <strong> {{ $berita->lokasi }}</strong>
                     <br>
                     <p> {{ $berita->huraian }}</p>
                     <br>

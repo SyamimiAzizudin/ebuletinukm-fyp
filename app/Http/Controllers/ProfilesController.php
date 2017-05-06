@@ -78,7 +78,10 @@ class ProfilesController extends Controller
                 'gambar'      => $image,
             ]);
         }
-        return redirect()->back()->withMessage('Profil anda telah berjaya dikemaskini!');
+
+        $user->save();
+
+        return redirect()->action('ProfilesController@index')->withMessage('Profil anda telah berjaya dikemaskini!');
 
     }
 

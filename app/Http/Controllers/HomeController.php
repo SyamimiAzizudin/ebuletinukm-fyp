@@ -26,11 +26,6 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function pembaca()
-    {
-        return view('pembaca');
-    }
-
     public function profile()
     {
         return view('profile');

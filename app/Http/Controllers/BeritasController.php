@@ -31,15 +31,17 @@ class BeritasController extends Controller
     {
         $searchResults =Input::get('search');
         $beritas = Berita::where('tajuk','like',"%$searchResults%")->paginate(5);
+        // dd ($beritas);
         return view('berita.papar', compact('beritas'));
     }
 
-    public function first()
+    public function home()
     {
 
-        $searchResults =Input::get('search');
-        $beritas = Berita::where('tajuk','like',"%$searchResults%");
-        return view('/home', compact('beritas'));
+        // $beritas = Berita::with('user')->where('user_id', Auth::user()->id);
+        $beritas = Berita::with('user')->paginate(4);
+        $events = Event::with('user')->paginate(4);
+        return view('/home', compact('beritas' , 'events'));
     }
 
     /**
@@ -96,7 +98,15 @@ class BeritasController extends Controller
     public function show($id)
     {
         $berita = Berita::findOrFail($id);
+        // dd ($berita);
         return view('berita.details', compact('berita'));
+    }
+
+    public function laporan($id)
+    {
+        $berita = Berita::with('user.profile')->findOrFail($id);
+        // dd ($berita);
+        return view('berita.laporan', compact('berita'));
     }
 
     /**

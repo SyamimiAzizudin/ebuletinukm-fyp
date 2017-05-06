@@ -28,6 +28,7 @@
         ]) !!};
     </script>
 </head>
+
 <body>
     <div id="app" >
         <nav class="navbar navbar-default navbar-static-top">
@@ -63,6 +64,15 @@
                             </li>
                             <li><a href="{{ url('berita') }}">Hebahan Berita</a></li>
                             <li><a href="{{ url('event') }}">Hebahan Acara</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Perincian Buletin <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="{{ url('berita_details') }}"> Berita</a></li>
+                                    <li><a href="{{ url('event_details') }}"> Acara</a></li>
+                                </ul>
+                            </li>
                             <unread></unread>
                         @endif
                     </ul>
