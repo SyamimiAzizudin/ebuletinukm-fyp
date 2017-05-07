@@ -12,9 +12,10 @@
                 <p><img src="{{ $berita->gambar }}" style="width:500px"></p>
             </div>
                 <div class=" col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
-                    <h2>{{ $berita->tajuk }}</h2>
-                    <p> Diterbitkan pada {{ $berita->created_at->format('d/m/Y') }}</p>
+                    <h2><strong>{{ $berita->tajuk }}</strong></h2>
+                    <p> Diterbitkan pada {{ $berita->created_at->format('d F Y') }}</p>
                     <strong> {{ $berita->lokasi }}</strong>
+                    <br>
                     <br>
                     <p> {{ $berita->huraian }}</p>
                     <br>

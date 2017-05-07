@@ -19,11 +19,12 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th width="20%">Gambar</th>
-                <th width="35%">Tajuk</th>
+                <th width="15%">Gambar</th>
+                <th width="15%">Tajuk</th>
                 <th width="15%">Lokasi</th>
-                <th width="15%">Tarikh Hebahan</th>
-                <th width="15%"></th>
+                <th width="20%">Tarikh Hebahan</th>
+                <th width="15%">Published</th>
+                <th width="25%"></th>
               </tr>
             </thead>
             <tbody pull-{right}>
@@ -31,13 +32,15 @@
               @forelse($beritas as $berita)
               <tr>
                 <td >{{ $beritas->firstItem() + $i }}</td>
-                <td><img src="{{ asset($berita->gambar) }}" style="width:200px"></td>
+                <td><img src="{{ asset($berita->gambar) }}" style="width:150px"></td>
                 <td> {{ $berita->tajuk }} </td>
                 <td> {{ $berita->lokasi }} </td>
-                <td>{{ $berita->created_at }}</td>
+                <td> {{ $berita->created_at->format('g:i A, d F Y')}}</td>
+                <td> {{ $berita->is_published == 1 ? 'Ya' : 'Tidak' }}</td>
                 <td>
                   @if( $berita->user_id == Auth::user()->id)
-                  <a href="{{ action('BeritasController@edit', $berita->id) }}" class="btn btn-primary btn-sm">Kemas</a>
+                  <a class="btn btn-primary btn-sm" mm href="{{ action('BeritasController@published', $berita) }}">{{ $berita->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
+                  <a href="{{ action('BeritasController@edit', $berita->id) }}" class="btn btn-warning btn-sm">Kemas</a>
                   <a href="{{ action('BeritasController@destroy', $berita->id) }}" class="btn btn-danger btn-sm" id="confirm-modal">Padam</a>
                   @endif
                 </td>
@@ -45,7 +48,7 @@
               <?php $i++ ?>
               @empty
               <tr>
-                <td colspan="6">Looks like there is no news available.</td>
+                <td colspan="6">Tiada berita dihebahkan.</td>
               </tr>
               @endforelse
             </tbody>
@@ -56,6 +59,21 @@
         </div>
       </div>
     </div>
+
+    <div class="container">
+
+            <hr>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; 2017 eBuletin UKM - Nur Syamimi Ahmat Azizudin (FYP)</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
   </div>
 </div>
 <script src="{{ asset('js/warning.js') }}"></script>

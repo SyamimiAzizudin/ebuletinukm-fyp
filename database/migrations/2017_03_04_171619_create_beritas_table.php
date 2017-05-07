@@ -20,6 +20,7 @@ class CreateBeritasTable extends Migration
             $table->string('lokasi');
             $table->string('kumpulan_sasaran');
             $table->string('gambar')->nullable();
+            $table->boolean("is_published")->default(false);
             $table->integer('user_id')->index()->unsigned();
             $table->timestamps();
             $table->timestamp('expired_at')->nullable();

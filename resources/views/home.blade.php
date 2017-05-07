@@ -10,30 +10,25 @@
 <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/src/self.css" />
+
 </head>
 <style>
-.img {
+.thumbnail img {
   display: block;
-  width: 150px;
+  width: 200px;
   height: 90px;
+  max-height: 150px;
 }
+
 </style>
 <body>
 <div class="body_wrapper">
   <div class="center">
     <div class="header_area">
-      <div class="logo floatleft"><a href="#"><img src="images/ukm.png" alt="" /></a>
+      <div class="logo floatleft"><a href="#"><img src="images/ukm.png"  /></a>
       <img src="images/kpt.png" alt="" /></div>
 
-      {{-- <div class="top_menu floatleft">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact us</a></li>
-          <li><a href="#">Subscribe</a></li>
-          <li><a href="#">Login</a></li>
-        </ul>
-      </div> --}}
       <div class="social_plus_search floatright">
         <div class="social">
           <ul>
@@ -68,7 +63,15 @@
             <li>
                 <a href="{{ url('event') }}">Hebahan Acara</a>
             </li>
-                <unread></unread>
+            <li><a href="{{ url('event') }}">Tetapan Buletin</a></li>
+            <li >
+                <a href="#">Laporan Buletin</a>
+                <ul>
+                  <li><a href="{{ url('berita_details') }}"> Berita</a></li>
+                  <li><a href="{{ url('event_details') }}"> Acara</a></li>
+                </ul>
+            </li>
+            <unread></unread>
         @endif
     </ul>
         <ul class="nav navbar-right">
@@ -100,15 +103,43 @@
         @endif
         </ul>
     </div>
-    <div class="slider_area">
-      <div class="slider">
-        <ul class="bxslider">
-          <li><img src="images/23.jpg" alt="" title="Welcome to UKM" /></li>
-          <li><img src="images/1.jpg" alt="" title="Pemilihan MPP Sesi 2016-2017" /></li>
-          <li><img src="images/55.jpg" alt="" title="UKM 46 Tahun Menjejak Kegemilangan" /></li>
-        </ul>
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+        <div class="item active">
+          <img src="images/23.jpg" alt="...">
+          <div class="carousel-caption">
+            <h2>Welcome to UKM</h2>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/1.jpg" alt="...">
+          <div class="carousel-caption">
+            <h2>Pemilihan MPP Sesi 2016-2017</h2>
+          </div>
+        </div>
+        <div class="item">
+          <img src="images/45.png" alt="...">
+          <div class="carousel-caption">
+            <h2>UKM 46 Tahun Menjejak Kegemilangan</h2>
+          </div>
+        </div>
       </div>
+
+       <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span>
+      </a>
     </div>
+
     <div class="content_area">
       <div class="main_content floatleft">
         {{-- <div class="left_coloum floatleft"> --}}
@@ -122,15 +153,14 @@
 
             <div class="single_left_coloum floatleft">
               <div class="thumbnail">
-                <p><img src="{{ asset($berita->gambar) }}" class="img" /></p>
+                <p><img src="{{ asset($berita->gambar) }}" class="img"/></p>
                 <h3>{{ $berita->tajuk }}</h3>
-                <p>{{ $berita->created_at->format('d/m/Y')}}</p>
+                <p>{{ $berita->created_at->format('F d, Y')}}</p>
                                   <p><strong> {{ $berita->lokasi }}</strong></p>
                 <a class="readmore" href="{{ url('papar', $berita->id) }}">huraian berita</a> 
               </div>
             </div>
               @endforeach
-              {{-- <div style="clear: both;"></div> --}}
           </div>
 
           <div class="single_left_coloum_wrapper">
@@ -142,9 +172,9 @@
 
             <div class="single_left_coloum floatleft">
               <div class="thumbnail">
-                <img src="{{ asset($event->gambar) }}" alt="" />
+                <img src="{{ asset($event->gambar) }}" class="img" />
                 <h3>{{ $event->tajuk }}</h3>
-                <p>{{ $event->created_at->format('d/m/Y') }}</p>
+                <p>{{ $event->created_at->format('F d, Y') }}</p>
                                   <p><strong> {{ $event->lokasi }} </strong></p>
                 <a class="readmore" href="{{ url('acara', $event->id) }}">huraian program</a> 
               </div>

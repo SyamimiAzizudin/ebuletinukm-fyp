@@ -20,6 +20,10 @@ class Berita extends Model
         'gambar'
     ];
 
+    protected $casts = [
+        'is_published' => 'boolean'
+    ];
+
     /**
      *
      */
@@ -42,7 +46,7 @@ class Berita extends Model
      */
     public function categories()
     {
-      return $this->morphMany(Category::class, 'categorizable');
+      return $this->morphToMany(Category::class, 'categorizable');
     }
 
 }

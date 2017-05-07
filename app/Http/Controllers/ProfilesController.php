@@ -40,6 +40,15 @@ class ProfilesController extends Controller
         return view('profile.edit', compact('user'));
     }
 
+    public function role()
+    {
+
+        // $users = User::with('profile')->where('id', auth()->id())->get();
+        $user = auth()->user()->userRole;
+
+        return view ('layouts.app', compact('user'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -49,6 +58,7 @@ class ProfilesController extends Controller
      */
     public function update(Request $request)
     {
+        // dd($request->input());
         $user = User::with('profile')->where('id', auth()->id())->firstOrFail();
 
         $image = '';

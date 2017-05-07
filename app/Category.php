@@ -17,8 +17,18 @@ class Category extends Model
 	/**
 	 *
 	 */
-    public function categorizable()
+    public function beritas()
     {
-        return $this->morphTo();
+        return $this->morphedByMany(Berita::class, 'categorizables');
     }
+
+    /**
+     * 
+     */
+    public function events()
+    {
+        return $this->morphedByMany(Event::class, 'categorizables');
+    }
+
+
 }

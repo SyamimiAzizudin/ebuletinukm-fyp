@@ -12,7 +12,7 @@
 
 <div class="panel panel-info" style="margin-top:50px">
 <div class="panel-heading">
-  <h3 class="panel-title">{{ Auth::user()->username }}<p class="pull-right">{{ Auth::user()->created_at }}</p></h3>
+  <h3 class="panel-title">{{ Auth::user()->username }}<p class="pull-right">{{ Auth::user()->created_at->format('g:i A, d F Y') }}</p></h3>
 
 </div>
 <div class="panel-body">

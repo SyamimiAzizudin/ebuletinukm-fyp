@@ -24,7 +24,7 @@
                 <th width="10%">Gambar</th>
                 <th width="25%">Tajuk</th>
                 <th width="10%">Masa</th>
-                <th width="10%">Tarikh</th>
+                <th width="15%">Tarikh</th>
                 <th width="15%">Gambar</th>
                 <th width="15%"></th>
               </tr>
@@ -36,9 +36,10 @@
                 <td >{{ $events->firstItem() + $i }}</td>
                 <td><img src="{{ asset($event->gambar) }}" style="width:200px"></td>
                 <td> {{ $event->tajuk }} </td>
-                <td> {{ $event->masa }} </td>
-                <td>{{ $event->tarikh }}</td>
+                <td> {{ $event->created_at->format('g:i A')}} </td>
+                <td>{{ $event->tarikh->format('d F Y ')}}</td>
                 <td>{{ count($event->MultipleGambar) }} Gambar</td>
+                
                 <td>
                   @if( $event->user_id == Auth::user()->id)
                   <a href="{{ action('EventsController@edit', $event->id) }}" class="btn btn-primary btn-sm">Kemas</a>
@@ -60,6 +61,21 @@
         </div>
       </div>
     </div>
+
+    <div class="container">
+
+            <hr>
+
+            <!-- Footer -->
+            <footer>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; 2017 eBuletin UKM - Nur Syamimi Ahmat Azizudin (FYP)</p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
   </div>
 </div>
 <script src="{{ asset('js/warning.js') }}"></script>

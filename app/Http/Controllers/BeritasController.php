@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Berita;
 use App\Event;
 use App\User;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,18 +28,47 @@ class BeritasController extends Controller
 
     }
 
+    public function category($id)
+    {
+        $beritas = Berita::whereHas('categories', function ($query) use ($id) {
+            $query->where('category_id', $id);
+        })->paginate();
+
+        $categories = Category::all();
+
+        return view('berita.papar', compact('categories', 'beritas'));
+    }
+
     public function papar()
     {
+        $beritas = Berita::with('user')->where('is_published', true);
         $searchResults =Input::get('search');
         $beritas = Berita::where('tajuk','like',"%$searchResults%")->paginate(5);
-        // dd ($beritas);
-        return view('berita.papar', compact('beritas'));
+        $categories = Category::all();
+        return view('berita.papar', compact('beritas', 'categories'));
     }
+
+    // public function tetapan ()
+    // {
+    //     //
+    //     return view('/tetapan', compact('categories', 'beritas'));
+    // }
+
+    // public function newsfunct(){
+
+    //     $beritas = Berita::all();//get data from table
+    //     return view('tetapan',compact('beritas'));//sent data to view
+
+    // }
+
+    // public function fingBySasaran(Request $request)
+    // {
+    //     $data=News::select('tajuk','id')->where('kumpulan_sasaran', $request->id)->take(100)->get();
+    //     return response()->json($data);//then sent this data to ajax success
+    // }
 
     public function home()
     {
-
-        // $beritas = Berita::with('user')->where('user_id', Auth::user()->id);
         $beritas = Berita::with('user')->paginate(4);
         $events = Event::with('user')->paginate(4);
         return view('/home', compact('beritas' , 'events'));
@@ -155,6 +185,17 @@ class BeritasController extends Controller
 
         return redirect()->action('BeritasController@index')->withMessage('Perincian berita telah berjaya dikemaskini.');
 
+    }
+
+    public function published($id)
+    {
+      $berita = Berita::findOrFail($id);
+
+      $berita->is_published = $berita->is_published == true ? false : true ;
+
+      $berita->save();
+
+      return back();
     }
 
     /**

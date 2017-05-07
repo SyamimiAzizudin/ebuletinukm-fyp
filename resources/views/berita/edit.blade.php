@@ -50,8 +50,8 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Kumpulan Sasaran:</strong>
-                            {{ Form::select('kumpulan_sasaran',
-                               ['Pelajar UKM' => 'Pelajar UKM', 'Staff UKM' => 'Staff UKM', 'Warga UKM' => 'Warga UKM', 'Warga Kolej Zaba' => 'Warga Kolej Zaba', 'Warga FTSM' => 'Warga FTSM', 'Warga KTSN' => 'Warga KTSN'], null, ['class' => 'form-control']) }}
+                               {{ Form::select('kumpulan_sasaran',
+                            ['Pelajar PraSiswazah' => 'Pelajar PraSiswazah', 'Pelajar PascaSiswazah' => 'Pelajar PascaSiswazah', 'Staff UKM' => 'Staff UKM', 'Warga UKM' => 'Warga UKM', 'Warga Kolej Zaba' => 'Warga Kolej Zaba', 'Warga FTSM' => 'Warga FTSM', 'Warga KTSN' => 'Warga KTSN'], null, ['class' => 'form-control']) }}
                     </div>
                 </div>
 

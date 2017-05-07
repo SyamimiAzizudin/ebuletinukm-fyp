@@ -34,6 +34,12 @@ class EventsController extends Controller
         return view('event.papar', compact('events'));
     }
 
+    public function category ($id)
+    {
+        $events = Event::with('Category')->findOrFail($id);
+        return view('event.papar', compact('events'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
