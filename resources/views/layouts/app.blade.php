@@ -85,14 +85,16 @@
                                 <li><a href="{{ url('berita') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Berita</a></li>
                                 <li><a href="{{ url('event') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Acara</a></li>
                                 <li><a href="{{ url('tetapan') }}"><span class="glyphicon glyphicon-cog"></span> Tetapan Buletin</a></li>
-                                <li class="dropdown">
+                                <li><a href="{{ url('laporan') }}"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin</a></li>
+
+                                {{-- <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ url('berita_details') }}"> Berita</a></li>
-                                        <li><a href="{{ url('event_details') }}"> Acara</a></li>
+                                        <li><a href="{{ url('laporan_berita') }}"> Berita</a></li>
+                                        <li><a href="{{ url('laporan_acara') }}"> Acara</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                             {{-- @else --}}
                         @endif
                     </ul>

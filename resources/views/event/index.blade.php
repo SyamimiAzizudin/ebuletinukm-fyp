@@ -5,7 +5,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
 
-    <h2>Senarai Acara <a href="{{ url('/event/create') }}" class="btn btn-info pull-right" role="button">Cipta Acara Baru</a></h2>
+    <h2>Senarai Acara <a href="{{ url('/event/create') }}" class="btn btn-primary pull-right" role="button">Cipta Acara Baru</a></h2>
 
   </div>
 
@@ -21,12 +21,13 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th width="10%">Gambar</th>
-                <th width="25%">Tajuk</th>
-                <th width="10%">Masa</th>
-                <th width="15%">Tarikh</th>
                 <th width="15%">Gambar</th>
-                <th width="15%"></th>
+                <th width="18%">Tajuk</th>
+                {{-- <th width="10%">Masa</th> --}}
+                <th width="15%">Tarikh</th>
+                <th width="15%">Multiple Gambar</th>
+                <th width="15%">Published</th>
+                <th width="25%"></th>
               </tr>
             </thead>
             <tbody pull-{right}>
@@ -36,14 +37,15 @@
                 <td >{{ $events->firstItem() + $i }}</td>
                 <td><img src="{{ asset($event->gambar) }}" style="width:200px"></td>
                 <td> {{ $event->tajuk }} </td>
-                <td> {{ $event->created_at->format('g:i A')}} </td>
+                {{-- <td> {{ $event->created_at->format('g:i A')}} </td> --}}
                 <td>{{ $event->tarikh->format('d F Y ')}}</td>
                 <td>{{ count($event->MultipleGambar) }} Gambar</td>
-                
+                <td> {{ $event->is_published == 1 ? 'Ya' : 'Tidak' }}</td>
                 <td>
                   @if( $event->user_id == Auth::user()->id)
-                  <a href="{{ action('EventsController@edit', $event->id) }}" class="btn btn-primary btn-sm">Kemas</a>
-                  <a href="{{ action('EventsController@destroy', $event->id) }}" class="btn btn-danger btn-sm" id="confirm-modal">Padam</a>
+                  <a class="btn btn-info btn-xs" mm href="{{ action('EventsController@published', $event) }}">{{ $event->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
+                  <a href="{{ action('EventsController@edit', $event->id) }}" class="btn btn-warning btn-xs">Kemas</a>
+                  <a href="{{ action('EventsController@destroy', $event->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Padam</a>
                   @endif
                 </td>
               </tr>

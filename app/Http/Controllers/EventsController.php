@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\User;
 use App\MultipleGambar;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -29,15 +30,22 @@ class EventsController extends Controller
 
     public function papar()
     {
+        $events = Event::with('user')->where('is_published', true)->paginate(5);
         $searchResults =Input::get('search');
         $events = Event::where('tajuk','like','%'.$searchResults.'%')->with('MultipleGambar')->paginate(5);
+        // $categories = Category::all();
         return view('event.papar', compact('events'));
     }
 
     public function category ($id)
     {
-        $events = Event::with('Category')->findOrFail($id);
-        return view('event.papar', compact('events'));
+        $events = Event::whereHas('categories', function ($query) use ($id) {
+            $query->where('category_id', $id);
+        })->paginate();
+
+        $categories = Category::all();
+
+        return view('event.papar', compact('categories', 'events'));
     }
 
     /**
@@ -198,6 +206,17 @@ class EventsController extends Controller
 
         return redirect()->action('EventsController@index')->withMessage('Perincian program telah berjaya dikemaskini.');
 
+    }
+
+    public function published($id)
+    {
+      $event = Event::findOrFail($id);
+
+      $event->is_published = $event->is_published == true ? false : true ;
+
+      $event->save();
+
+      return back();
     }
 
     /**

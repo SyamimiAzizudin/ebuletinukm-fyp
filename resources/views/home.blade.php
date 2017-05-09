@@ -64,13 +64,15 @@
                 <a href="{{ url('event') }}">Hebahan Acara</a>
             </li>
             <li><a href="{{ url('event') }}">Tetapan Buletin</a></li>
-            <li >
+            <li><a href="{{ url('laporan') }}">Laporan Buletin</a></li>
+
+            {{-- <li >
                 <a href="#">Laporan Buletin</a>
                 <ul>
-                  <li><a href="{{ url('berita_details') }}"> Berita</a></li>
-                  <li><a href="{{ url('event_details') }}"> Acara</a></li>
+                  <li><a href="{{ url('laporan_berita') }}"> Berita</a></li>
+                  <li><a href="{{ url('laporan_acara') }}"> Acara</a></li>
                 </ul>
-            </li>
+            </li> --}}
             <unread></unread>
         @endif
     </ul>
@@ -200,41 +202,22 @@
         
         <div class="single_sidebar">
           <div class="popular">
-            {{-- <h2 class="title">Kategori</h2> --}}
-            <ul>
-              <div class="panel-group kategori-products" id="accordian"><!--category-productsr-->
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordian" href="#jenis">
-                          <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                Kategori
-                      </a>
-                    </h4>
-                  </div>
-
-                  <div id="jenis" class="panel-collapse collapse">
-                      <div class="panel-body">
-                          <ul>
-                            {{-- <li class="dropdown">
-                              <a href="{{ url('/katalog?jenis=Leptop') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Berita
-                              </a>
-                                <ul class="dropdown-menu" role="menu">
-                                  <li><a href="{{ url('papar') }}">Sukan</a></li>
-                                </ul>
-                            </li> --}}
-
-                                <li><a href="{{ url('/katalog?jenis=Telefon') }}">Berita</a></li>
-                                <li><a href="{{ url('/katalog?jenis=Telefon') }}">Program</a></li>
-                                <li><a href="{{ url('?/katalog?jenis=lain-lain') }}">Semua Berita & Program</a></li>       
-                                          
-                          </ul>
-                      </div>
-                  </div>
+            
+                    <h2 class="lead">Kategori:</h2>
+                
+                    <div class="list-group">
+                       {{--  @foreach($categories as $category)
+                            <a class="list-group-item" href="{{ url('category', $category->id) }}">{{ $category->name }}</a>
+                        @endforeach --}}
+                    </div>
+                <br>
+                <p class="lead">Lokasi</p>
+                <div class="list-group">
+                    <a href="home.php?cat=sort&item=az" class="list-group-item">UKM Bangi</a>
+                    <a href="home.php?cat=sort&item=low" class="list-group-item">UKM KL</a>
                 </div>
-              </div><!--/category-products-->
-          </ul>
-        </div>
+
+          </div>
         </div>
         <br>
 

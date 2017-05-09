@@ -26,14 +26,13 @@ class CreateEventsTable extends Migration
             $table->string('penganjur');
             $table->string('telephone');
             $table->string('gambar')->nullable();
+            $table->boolean("is_published")->default(false);
             $table->integer('user_id')->index()->unsigned();
-            //$table->integer('category_id');
             $table->timestamps();
             $table->timestamp('expired_at')->nullable();
 
             //foreign key
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            //$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
         });
     }

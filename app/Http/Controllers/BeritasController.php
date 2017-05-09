@@ -6,10 +6,14 @@ use App\Berita;
 use App\Event;
 use App\User;
 use App\Category;
+use Charts;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use Barryvdh\DomPDF\PDF;
+use App\Notifications\Hebahan;
 
 class BeritasController extends Controller
 {
@@ -44,28 +48,10 @@ class BeritasController extends Controller
         $beritas = Berita::with('user')->where('is_published', true);
         $searchResults =Input::get('search');
         $beritas = Berita::where('tajuk','like',"%$searchResults%")->paginate(5);
+        // dd ($beritas);
         $categories = Category::all();
         return view('berita.papar', compact('beritas', 'categories'));
     }
-
-    // public function tetapan ()
-    // {
-    //     //
-    //     return view('/tetapan', compact('categories', 'beritas'));
-    // }
-
-    // public function newsfunct(){
-
-    //     $beritas = Berita::all();//get data from table
-    //     return view('tetapan',compact('beritas'));//sent data to view
-
-    // }
-
-    // public function fingBySasaran(Request $request)
-    // {
-    //     $data=News::select('tajuk','id')->where('kumpulan_sasaran', $request->id)->take(100)->get();
-    //     return response()->json($data);//then sent this data to ajax success
-    // }
 
     public function home()
     {
@@ -132,13 +118,6 @@ class BeritasController extends Controller
         return view('berita.details', compact('berita'));
     }
 
-    public function laporan($id)
-    {
-        $berita = Berita::with('user.profile')->findOrFail($id);
-        // dd ($berita);
-        return view('berita.laporan', compact('berita'));
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -196,6 +175,58 @@ class BeritasController extends Controller
       $berita->save();
 
       return back();
+    }
+
+    public function janalaporan()
+    {
+      $chart_berita = Charts::database(Berita::all(), 'bar', 'highcharts')
+      ->title("Jumlah Hebahan Berita Setiap Bulan")
+      ->elementLabel("Total")
+      ->dimensions(1000, 500)
+      ->responsive(false)
+      ->groupByMonth('2017', true);
+
+      $chart_acara = Charts::database(Event::all(), 'bar', 'highcharts')
+      ->title("Jumlah Hebahan Acara Setiap Bulan")
+      ->elementLabel("Total")
+      ->dimensions(1000, 500)
+      ->responsive(false)
+      ->groupByMonth('2017', true);
+        return view('laporan.index', ['chart_berita' => $chart_berita], ['chart_acara' => $chart_acara]);
+    }
+
+    public function showLaporanBerita() 
+    {
+      $beritas = Berita::with('user')->paginate(5);
+         $pdf = app('dompdf.wrapper');
+        $pdf->loadView('laporan.berita',compact('beritas'));
+        return $pdf->stream('LaporanHebahanBerita.pdf');
+    }
+
+    public function showLaporanAcara() 
+    {
+        $events = Event::with('user')->paginate(5);
+        $pdf = app('dompdf.wrapper');
+        $pdf->loadView('laporan.event',compact('events'));
+        return $pdf->stream('LaporanHebahanAcara.pdf');
+    }
+
+    public function notification($id)
+    {
+        $berita = Berita::findOrFail($id);
+        $timestamp = Carbon::now();
+
+        $user = $berita->user;
+        $matrik = $berita->user->no_matrik;
+        $nama_pembaca = $berita->user->username; 
+        $tajuk = $berita->tajuk;
+        $huraian = $berita->huraian;
+        $lokasi = $berita->lokasi;
+        $kumpulan_sasaran = $berita->kumpulan_sasaran;
+
+        $user->notify(new Hebahan($timestamp, $matrik, $nama_pembaca, $tajuk, $huraian, $lokasi, $kumpulan_sasaran ));
+        return back()->withMessage('Berita telah berjaya diemail.');
+
     }
 
     /**

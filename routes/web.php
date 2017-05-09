@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth', 'pengarang']], function() {
      */
     Route::delete('event/gambar/{id}', ['as'=>'event.destroyImage','uses'=>'EventsController@destroyImage']);
     Route::resource('/event', 'EventsController');
+    Route::get('/event/{event}/published', 'EventsController@published');
 
     /**
      * Berita
@@ -33,9 +34,13 @@ Route::group(['middleware' => ['auth', 'pengarang']], function() {
     Route::get('/berita/{berita}/published', 'BeritasController@published');
 
     /**
-     * Laporan Berita
+     * Laporan Buletin
      */
-    Route::get('/berita_details', 'BeritasController@laporan');
+    Route::get('/laporan', 'BeritasController@janalaporan');
+    Route::get('/laporan_berita', 'BeritasController@showLaporanBerita');
+    Route::get('/laporan_acara', 'BeritasController@showLaporanAcara');
+
+    Route::get('/maklumat/email/{berita}', 'BeritasController@notification');
 
 });
 
@@ -56,9 +61,6 @@ Route::group(['before' => 'pengarang|pembaca'], function() {
     Route::get('/papar', 'BeritasController@papar');
     Route::get('/papar/{berita}', 'BeritasController@show');
 
-    // Route::get('/home', 'BeritasController@first');
-    // Route::get('/home/{berita}', 'BeritasController@show');
-
     /**
      * Paparan Acara
      */
@@ -76,6 +78,7 @@ Route::group(['before' => 'pengarang|pembaca'], function() {
      * Category
      */
     Route::get('/category/{category_id}', 'BeritasController@category');
+    Route::get('/category/{category_id}', 'EventsController@category');
 
     /**
      * Tetapan Buletin

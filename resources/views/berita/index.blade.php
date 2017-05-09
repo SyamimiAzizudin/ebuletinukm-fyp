@@ -4,7 +4,7 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h2>Senarai Berita<a href="{{ url('/berita/create') }}" class="btn btn-info pull-right" role="button">Cipta Berita Baru</a></h2>
+    <h2>Senarai Berita<a href="{{ url('/berita/create') }}" class="btn btn-primary pull-right btn_md" role="button">Cipta Berita Baru</a></h2>
   </div>
 
   <div class="panel-body">
@@ -20,9 +20,9 @@
               <tr>
                 <th>#</th>
                 <th width="15%">Gambar</th>
-                <th width="15%">Tajuk</th>
+                <th width="18%">Tajuk</th>
                 <th width="15%">Lokasi</th>
-                <th width="20%">Tarikh Hebahan</th>
+                <th width="18%">Tarikh Hebahan</th>
                 <th width="15%">Published</th>
                 <th width="25%"></th>
               </tr>
@@ -39,9 +39,10 @@
                 <td> {{ $berita->is_published == 1 ? 'Ya' : 'Tidak' }}</td>
                 <td>
                   @if( $berita->user_id == Auth::user()->id)
-                  <a class="btn btn-primary btn-sm" mm href="{{ action('BeritasController@published', $berita) }}">{{ $berita->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
-                  <a href="{{ action('BeritasController@edit', $berita->id) }}" class="btn btn-warning btn-sm">Kemas</a>
-                  <a href="{{ action('BeritasController@destroy', $berita->id) }}" class="btn btn-danger btn-sm" id="confirm-modal">Padam</a>
+                  <a class="btn btn-info btn-xs" mm href="{{ action('BeritasController@published', $berita) }}">{{ $berita->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
+                  <a href="{{ action('BeritasController@notification', $berita->id) }}" class="btn btn-primary btn-xs">Notify</a>
+                  <a href="{{ action('BeritasController@edit', $berita->id) }}" class="btn btn-warning btn-xs">Kemas</a>
+                  <a href="{{ action('BeritasController@destroy', $berita->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Padam</a>
                   @endif
                 </td>
               </tr>

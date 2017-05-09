@@ -22,6 +22,10 @@ class Event extends Model
         'gambar'
     ];
 
+    protected $casts = [
+        'is_published' => 'boolean'
+    ];
+
     /**
      *
      */
