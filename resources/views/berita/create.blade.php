@@ -39,6 +39,18 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Kategori Hebahan:</strong>
+                        <select class="form-control" name="kategori_berita">
+                            <option disabled selected="">Sila Pilih</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Lokasi:</strong>
                         {!! Form::text('lokasi', null, array('placeholder' => 'Lokasi Berita','class' => 'form-control')) !!}
                 </div>
@@ -49,10 +61,6 @@
                     <strong>Kumpulan Sasaran:</strong>
                         {{ Form::select('kumpulan_sasaran',
                             ['Pelajar PraSiswazah' => 'Pelajar PraSiswazah', 'Pelajar PascaSiswazah' => 'Pelajar PascaSiswazah', 'Staff UKM' => 'Staff UKM', 'Warga UKM' => 'Warga UKM', 'Warga Kolej Zaba' => 'Warga Kolej Zaba', 'Warga FTSM' => 'Warga FTSM', 'Warga KTSN' => 'Warga KTSN'], null, ['class' => 'form-control']) }}
-                           {{-- {{ Form::select('kumpulan_sasaran',
-                               ['Pelajar UKM' => array('Pra Siswazah', 'Pasca Siswazah'),
-                               'Staff UKM' => array('Pensyarah', 'Staff Sokongan'),
-                               'Warga UKM' => array('Warga Kolej Zaba', 'Warga FTSM')], null, ['class' => 'form-control']) }} --}}
                 </div>
             </div>
 

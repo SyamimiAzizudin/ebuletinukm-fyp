@@ -39,6 +39,18 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
+                    <strong>Kategori Program:</strong>
+                        <select class="form-control" name="kategori_program">
+                            <option disabled selected="">Sila Pilih</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
                     <strong>Tarikh Diadakan:</strong>
                         {!! Form::date('tarikh', null, array('class' => 'form-control')) !!}
                 </div>
@@ -96,7 +108,7 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Gambar Berita:</strong><br>
+                    <strong>Poster Program:</strong><br>
                     <input type="file" name="gambar" id="fileUpload" class="hide">
                     <label for="fileUpload" style="width: 500px">
                         <img class="image-placeholder" src="{{ asset('img/image-placeholder.jpg') }}" width="100%"/>
@@ -106,7 +118,7 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="control-group">
-                        <strong>Multiple Images:</strong>
+                        <strong>Tambahan Poster Program:</strong>
                         {!! Form::file('images[]', array('multiple'=>true)) !!}
                             <p class="errors">{!!$errors->first('images')!!}</p>
                         @if(Session::has('error'))

@@ -13,8 +13,18 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $data = [
+            'Pra Siswazah',
+            'Pasca Siswazah',
+            // 'PHD',
         	'FTSM',
-        	'FUU'
+        	'FUU',
+            // 'FKAB',
+            // 'FST',
+            // 'FEP',
+            // 'FPI',
+            'Sukan',
+            // 'Hiburan',
+            // 'Teater',
         ];
 
         foreach ($data as $datum) {

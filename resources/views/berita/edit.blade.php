@@ -42,6 +42,18 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
+                        <strong>Kategori Hebahan:</strong>
+                            <select class="form-control" name="kategori_program">
+                                <option disabled selected="">Sila Pilih</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{  $category->id == $berita->categories()->first()->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="form-group">
                         <strong>Lokasi:</strong>
                             {!! Form::text('lokasi', null, array('placeholder' => 'Lokasi Berita','class' => 'form-control')) !!}
                     </div>

@@ -14,39 +14,23 @@
     </div>
 
     <div class="container">
-        {{-- <div class="col-xs-2 col-sm-2 col-md-2">
-            <nav class="nav-sidebar">
-                <ul class="nav tabs">
-                  <li class="active"><a href="#tab1" data-toggle="tab">FTSM</a></li>
-                  <li class=""><a href="#tab2" data-toggle="tab">Sukan</a></li>
-                  <li class=""><a href="#tab3" data-toggle="tab">Zaba</a></li>                               
-                </ul>
-            </nav>
-        </div> --}}
 
     <div class="row">
                 <div class="col-md-3">
                     <h2 class="lead">Kategori:</h2>
-                
-                <?php $i = 0 ?>
-                @forelse($events as $event)
-                    @foreach($event->categories as $category)
-                    
+                                    
                     <div class="list-group">
-                        <a href="" class="list-group-item">{{ ($category->name) }}</a>
-                            
+                        @foreach($categories as $category)
+                            <a class="list-group-item" href="{{ url('category/event', $category->id) }}">{{ $category->name }}</a>
+                        @endforeach()
                     </div>
                     
-                    @endforeach
-                <?php $i++ ?>
-                @empty
-                @endforelse
                 <br>
-                <p class="lead">Lokasi</p>
+                {{-- p class="lead">Lokasi</p>
                 <div class="list-group">
                     <a href="home.php?cat=sort&item=az" class="list-group-item">UKM Bangi</a>
                     <a href="home.php?cat=sort&item=low" class="list-group-item">UKM KL</a>
-                </div>
+                </div> --}}
 
             </div>
 

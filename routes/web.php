@@ -77,16 +77,15 @@ Route::group(['before' => 'pengarang|pembaca'], function() {
     /**
      * Category
      */
-    Route::get('/category/{category_id}', 'BeritasController@category');
-    Route::get('/category/{category_id}', 'EventsController@category');
+    Route::get('/category/berita/{category_id}', 'BeritasController@category');
+    Route::get('/category/event/{category_id}', 'EventsController@category');
 
     /**
      * Tetapan Buletin
      */
-    Route::get('/tetapan', 'BeritasController@tetapan');
+    Route::get('/tetapan');
     Route::get('/newsview','BeritasController@newsfunct');
     Route::get('/findNewsName','BeritasController@findNewsName');
-    // Route::get('/findPrice','BeritasController@findPrice');
 
 });
 

@@ -28,15 +28,6 @@ class EventsController extends Controller
 
     }
 
-    public function papar()
-    {
-        $events = Event::with('user')->where('is_published', true)->paginate(5);
-        $searchResults =Input::get('search');
-        $events = Event::where('tajuk','like','%'.$searchResults.'%')->with('MultipleGambar')->paginate(5);
-        // $categories = Category::all();
-        return view('event.papar', compact('events'));
-    }
-
     public function category ($id)
     {
         $events = Event::whereHas('categories', function ($query) use ($id) {
@@ -48,6 +39,15 @@ class EventsController extends Controller
         return view('event.papar', compact('categories', 'events'));
     }
 
+    public function papar()
+    {
+        // $events = Event::with('user')->where('is_published', true)->paginate(5);
+        $searchResults =Input::get('search');
+        $events = Event::where('tajuk','like','%'.$searchResults.'%')->with('MultipleGambar')->paginate(5);
+        $categories = Category::all();
+        return view('event.papar', compact('events', 'categories'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -55,7 +55,8 @@ class EventsController extends Controller
      */
     public function create()
     {
-        return view('event.create');
+        $categories = Category::all();
+        return view('event.create', compact('categories'));
     }
 
     /**
@@ -85,6 +86,8 @@ class EventsController extends Controller
             $request->gambar->move(public_path('images/'), $image);
         }
 
+        $category = Category::findOrFail($request->kategori_program);
+
         $event = new Event;
         $event->tajuk = $request->tajuk;
         $event->huraian = $request->huraian;
@@ -99,6 +102,8 @@ class EventsController extends Controller
         $event->gambar = $image;
         $event->user_id = Auth::user()->id;
         $event->save();
+
+        $event->categories()->save($category);
 
         if ($request->hasFile('images')) 
         {
@@ -128,8 +133,6 @@ class EventsController extends Controller
 
     public function show($id)
     {
-        // $penggunas = Pengguna::where('user_id',Auth::user()->id)->get();
-        // $event = Event::findOrFail($id);
         $event = Event::with('MultipleGambar')->findOrFail($id);
         return view('event.details', compact('event'));
     }
@@ -142,8 +145,10 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
-        $event = Event::with('MultipleGambar')->findOrFail($id);
-        return view('event.edit', compact('event'));
+        $categories = Category::all();
+        $event = Event::with('MultipleGambar', 'categories')->findOrFail($id);
+
+        return view('event.edit', compact('event', 'categories'));
     }
 
     /**
@@ -168,6 +173,8 @@ class EventsController extends Controller
             'telephone' => 'required',
         ]);
 
+        $category = Category::findOrFail($request->kategori_program);
+
         $event = Event::findOrFail($id);
 
         if ($request->hasFile('gambar')) 
@@ -188,6 +195,11 @@ class EventsController extends Controller
         $event->penganjur = $request->penganjur;
         $event->telephone = $request->telephone;
         $event->save();
+
+        if (!$category->id == $request->kategori_program) 
+        {
+            $event->categories()->save($category);
+        }
 
         if ($request->hasFile('images')) 
         {

@@ -12,15 +12,15 @@
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
             		<h3>Filter By:</h3>
 
-                    <span>News/Event: </span>
+                    <span>Pelajar/Staff: </span>
                     <select style="width: 200px" class="berita" id="beritas_id">
                         <option value="0" disabled="true" selected="true">-Select-</option>
-                        @foreach($beritas as $berita)
+                        @foreach($categories as $berita)
                             <option value="{{$berita->id}}">{{$berita->name}}</option>
                         @endforeach
                     </select>
 
-                    <span>Category: </span>
+                    <span>Fakulti: </span>
                     <select style="width: 200px" class="category" id="categories_id">
                         <option value="0" disabled="true" selected="true">-Select-</option>
                         @foreach($categories as $category)
@@ -28,7 +28,7 @@
                         @endforeach
                     </select>
 
-                    <span>Sasaran: </span>
+                    <span>Minat: </span>
                     <select style="width: 200px" class="berita" id="beritas_id">
                         <option value="0" disabled="true" selected="true">-Select-</option>
                         @foreach($beritas as $berita)

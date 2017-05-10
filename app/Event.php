@@ -49,7 +49,7 @@ class Event extends Model
      */
     public function categories()
     {
-      return $this->morphMany(Category::class, 'categorizable');
+      return $this->morphToMany(Category::class, 'categorizable');
     }
 
     /**

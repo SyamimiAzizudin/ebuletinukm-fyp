@@ -24,7 +24,6 @@ class BeritasController extends Controller
      */
     public function index()
     {
-
         $searchResults =Input::get('search');
         $beritas = Berita::where('tajuk','like','%'.$searchResults.'%');
         $beritas = Berita::with('user')->where('user_id', Auth::user()->id)->paginate(5);
@@ -45,10 +44,9 @@ class BeritasController extends Controller
 
     public function papar()
     {
-        $beritas = Berita::with('user')->where('is_published', true);
+        // $beritas = Berita::with('user')->where('is_published', true);
         $searchResults =Input::get('search');
         $beritas = Berita::where('tajuk','like',"%$searchResults%")->paginate(5);
-        // dd ($beritas);
         $categories = Category::all();
         return view('berita.papar', compact('beritas', 'categories'));
     }
@@ -67,7 +65,8 @@ class BeritasController extends Controller
      */
     public function create()
     {
-        return view('berita.create');
+        $categories = Category::all();
+        return view('berita.create', compact('categories'));
 
     }
 
@@ -92,6 +91,8 @@ class BeritasController extends Controller
             $request->gambar->move(public_path('images/'), $image);
         }
 
+        $category = Category::findOrFail($request->kategori_berita);
+
         $berita = new Berita;
         $berita->tajuk = $request->tajuk;
         $berita->huraian = $request->huraian;
@@ -100,6 +101,8 @@ class BeritasController extends Controller
         $berita->gambar = $image;
         $berita->user_id = Auth::user()->id;
         $berita->save();
+
+        $berita->categories()->save($category);
 
         return redirect()->action('BeritasController@store')->withMessage('Perincian berita telah berjaya dihebahkan.');
 
@@ -114,7 +117,6 @@ class BeritasController extends Controller
     public function show($id)
     {
         $berita = Berita::findOrFail($id);
-        // dd ($berita);
         return view('berita.details', compact('berita'));
     }
 
@@ -126,9 +128,10 @@ class BeritasController extends Controller
      */
     public function edit($id)
     {
-        $berita = Berita::findOrFail($id);
-        // dd($berita->kumpulan_sasaran);
-        return view('berita.edit', compact('berita'));
+        $categories = Category::all();
+        $berita = Berita::with('categories')->findOrFail($id);
+
+        return view('berita.edit', compact('berita', 'categories'));
     }
 
     /**
@@ -140,6 +143,8 @@ class BeritasController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+          // dd($request->input());
          $this->validate ($request, [
             'tajuk' => 'required',
             'huraian' => 'required',
@@ -147,7 +152,13 @@ class BeritasController extends Controller
             'kumpulan_sasaran' => 'required',
         ]);
 
+
+        $category = Category::findOrFail($request->kategori_program);
+
+
         $berita = Berita::findOrFail($id);
+
+   
 
         if ($request->hasFile('gambar'))
         {
@@ -161,6 +172,11 @@ class BeritasController extends Controller
         $berita->lokasi = $request->lokasi;
         $berita->kumpulan_sasaran = $request->kumpulan_sasaran;
         $berita->save();
+
+        if (!$category->id == $request->kategori_berita) 
+        {
+            $berita->categories()->save($category);
+        }
 
         return redirect()->action('BeritasController@index')->withMessage('Perincian berita telah berjaya dikemaskini.');
 

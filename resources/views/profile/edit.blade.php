@@ -53,8 +53,6 @@
                     <div class="form-group">
                         <label for="fakulti" class="col-md-4 control-label">Fakulti</label>
                         <div class="col-md-6">
-                            {{-- {{ Form::select('fakulti',
-                               ['FTSM' => 'Fakulti Teknologi dan Sains Maklumat', 'FSSK' => 'Fakulti Sains Sosial dan Kemanusiaan', 'FST' => 'Fakulti Sains dan Teknologi', 'FEP' => 'Fakulti Ekonomi dan Pengurusan', 'Farmasi' => 'Fakulti Farmasi', 'FPI' => 'Fakulti Pengajian Islam', 'FSK' => 'Fakulti Sains Kesihatan', 'FKAB' => 'Fakulti Kejuruteraan dan Alam Bina', 'FGG' => 'Fakulti Pergigian', 'FUU' => 'Fakulti Undang-Undang', 'FPEND' => 'Fakulti Pendidikan', 'FPU' => 'Fakulti Perubatan', 'GSB' => 'UKM-GSB Pusat Pengajian Siswazah Perniagaan'], null, ['class' => 'form-control']) }} --}}
                                <select name="fakulti" class="form-control">
                                   <option value="FTSM" {{ old('fakulti', $user->profile->fakulti) == 'FTSM' ? 'selected' : '' }}>Fakulti Teknologi dan Sains Maklumat</option>
                                   <option value="FSSK" {{ old('fakulti', $user->profile->fakulti) == 'FSSK' ? 'selected' : '' }}>Fakulti Sains Sosial dan Kemanusiaan</option>
