@@ -22,16 +22,11 @@
                         @endforeach
                     </div>
                 <br>
-                <p class="lead">Lokasi</p>
-                <div class="list-group">
-                    <a href="home.php?cat=sort&item=az" class="list-group-item">UKM Bangi</a>
-                    <a href="home.php?cat=sort&item=low" class="list-group-item">UKM KL</a>
+
                 </div>
 
-            </div>
-
         <div class="row">
-            <div class="col-xs-8 col-sm-8 col-md-8">
+            <div class="col-md-8">
 
                 <div class="table-responsive" >
                     <table class="table table-striped">

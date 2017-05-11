@@ -77,14 +77,14 @@
             <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                     <div class="form-group">
                         <a href="{{ action('BeritasController@index') }}" class="btn btn-default">Batal</a>
-                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Simpan</button>
                     </div>
                 </div>
 
           {!! Form::close() !!}    
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 @endsection
 @section('script')

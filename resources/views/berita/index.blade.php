@@ -39,7 +39,7 @@
                 <td> {{ $berita->is_published == 1 ? 'Ya' : 'Tidak' }}</td>
                 <td>
                   @if( $berita->user_id == Auth::user()->id)
-                  <a class="btn btn-info btn-xs" mm href="{{ action('BeritasController@published', $berita) }}">{{ $berita->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
+                  <a class="btn btn-info btn-xs" href="{{ action('BeritasController@published', $berita) }}">{{ $berita->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
                   <a href="{{ action('BeritasController@notification', $berita->id) }}" class="btn btn-primary btn-xs">Notify</a>
                   <a href="{{ action('BeritasController@edit', $berita->id) }}" class="btn btn-warning btn-xs">Kemas</a>
                   <a href="{{ action('BeritasController@destroy', $berita->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Padam</a>

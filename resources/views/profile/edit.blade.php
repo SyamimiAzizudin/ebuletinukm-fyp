@@ -72,13 +72,18 @@
                     <div class="form-group">
                         <label for="persatuan" class="col-md-4 control-label">Persatuan</label>
                         <div class="col-md-6">
-                            {{-- {{ Form::select('persatuan', --}}
-                               {{-- ['PERSATUAN MAHASISWA UNIVERSITI KEBANGSAAN MALAYSIA' => 'PERSATUAN MAHASISWA UNIVERSITI KEBANGSAAN MALAYSIA', 'PERTUBUHAN AKADEMIK FAKULTI' => 'PERTUBUHAN AKADEMIK FAKULTI', 'PERTUBUHAN ANAK NEGERI/KEBAJIKAN' => 'PERTUBUHAN ANAK NEGERI/KEBAJIKAN', 'PERTUBUHAN KEBAJIKAN KOLEJ' => 'PERTUBUHAN KEBAJIKAN KOLEJ', 'PERTUBUHAN KHUSUS' => 'PERTUBUHAN KHUSUS', 'PERTUBUHAN LUAR' => 'PERTUBUHAN LUAR', 'PERTUBUHAN SISWAZAH' => 'PERTUBUHAN SISWAZAH', 'PUSAT KEMBANGAN PENDIDIKAN' => 'PUSAT KEMBANGAN PENDIDIKAN', 'URUSETIA HEPA' => 'URUSETIA HEPA'], null, ['class' => 'form-control']) }} --}}
                             <select name="persatuan" class="form-control">
                                   <option value="PM UKM" {{ old('persatuan', $user->profile->persatuan) == 'PM UKM' ? 'selected' : '' }}>PERSATUAN MAHASISWA UNIVERSITI KEBANGSAAN MALAYSIA</option>
-                                  <option value="PAF" {{ old('persatuan', $user->profile->persatuan) == 'FSSK' ? 'selected' : '' }}>PERTUBUHAN AKADEMIK FAKULTI</option>
-                                  <option value="FST" {{ old('persatuan', $user->profile->persatuan) == 'FST' ? 'selected' : '' }}>persatuan Sains dan Teknologi</option>
-                                  <option value="FEP" {{ old('persatuan', $user->profile->persatuan) == 'FEP' ? 'selected' : '' }}>Fakulti Ekonomi dan Pengurusan</option>
+                                  <option value="PERTUBUHAN AKADEMIK FAKULTI" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN AKADEMIK FAKULTI' ? 'selected' : '' }}>PERTUBUHAN AKADEMIK FAKULTI</option>
+                                  <option value="Persatuan FST" {{ old('persatuan', $user->profile->persatuan) == 'Persatuan FST' ? 'selected' : '' }}>Persatuan Sains dan Teknologi</option>
+                                  <option value="PERTUBUHAN KEBAJIKAN KOLEJ" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN KEBAJIKAN KOLEJ' ? 'selected' : '' }}>PERTUBUHAN KEBAJIKAN KOLEJ</option>
+                                  <option value="PERTUBUHAN ANAK NEGERI/KEBAJIKAN" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN ANAK NEGERI/KEBAJIKAN' ? 'selected' : '' }}>PERTUBUHAN ANAK NEGERI/KEBAJIKAN</option>
+                                  <option value="PERTUBUHAN KHUSUS" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN KHUSUS' ? 'selected' : '' }}>PERTUBUHAN KHUSUS</option>
+                                  <option value="PERTUBUHAN LUAR" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN LUAR' ? 'selected' : '' }}>PERTUBUHAN LUAR</option>
+                                  <option value="PERTUBUHAN SISWAZAH" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN SISWAZAH' ? 'selected' : '' }}>PERTUBUHAN SISWAZAH</option>
+                                  <option value="PUSAT KEMBANGAN PENDIDIKAN" {{ old('persatuan', $user->profile->persatuan) == 'PUSAT KEMBANGAN PENDIDIKAN' ? 'selected' : '' }}>PUSAT KEMBANGAN PENDIDIKAN</option>
+                                  <option value="URUSETIA HEPA" {{ old('persatuan', $user->profile->persatuan) == 'URUSETIA HEPA' ? 'selected' : '' }}>URUSETIA HEPA</option>
+
                             </select>
                         </div>
                     </div>

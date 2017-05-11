@@ -90,7 +90,6 @@
             <th width="15%">Tajuk</th>
             <th width="8%">Lokasi</th>
             <th width="10%">Kumpulan Sasaran</th>
-            <!-- <th width="10%">Gambar</th> -->
         </tr>
     </thead>
     <tbody pull-{right}>
@@ -102,7 +101,6 @@
                         <td>{{ $berita->tajuk }}</td>
                         <td>{{ $berita->lokasi }}</td>
                         <td>{{ $berita->kumpulan_sasaran }}</td>
-                        <!-- <td><img src="{{ asset($berita->gambar) }}" style="width:150px"></td> -->
                     </tr>
                         <?php $i++ ?>
                         @empty
@@ -119,7 +117,7 @@
     <tbody>
     <tr>
         <td width="60%" style="text-align: right; font-size: 18px; padding: 10px;">Jumlah Hebahan Berita :</td>
-        <td width="40%" style="text-align: right; font-size: 18px; font-weight: bold; padding: 10px;">24</td>
+        <td width="40%" style="text-align: right; font-size: 18px; font-weight: bold; padding: 10px;">{{ $count }}</td>
     </tr>
     </tbody>
 </table>

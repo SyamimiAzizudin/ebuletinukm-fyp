@@ -6,10 +6,12 @@ use App\Event;
 use App\User;
 use App\MultipleGambar;
 use App\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
+use App\Notifications\NotifyEvent;
 
 class EventsController extends Controller
 {
@@ -103,8 +105,6 @@ class EventsController extends Controller
         $event->user_id = Auth::user()->id;
         $event->save();
 
-        $event->categories()->save($category);
-
         if ($request->hasFile('images')) 
         {
 
@@ -119,6 +119,8 @@ class EventsController extends Controller
                 $event_image->save();
             }
         }
+
+        $event->categories()->save($category);
 
         return redirect()->action('EventsController@store')->withMessage('Perincian program telah berjaya dihebahkan.');
 
@@ -196,11 +198,6 @@ class EventsController extends Controller
         $event->telephone = $request->telephone;
         $event->save();
 
-        if (!$category->id == $request->kategori_program) 
-        {
-            $event->categories()->save($category);
-        }
-
         if ($request->hasFile('images')) 
         {
 
@@ -216,6 +213,11 @@ class EventsController extends Controller
             }
         }
 
+        if (!$category->id == $request->kategori_program) 
+        {
+            $event->categories()->save($category);
+        }
+
         return redirect()->action('EventsController@index')->withMessage('Perincian program telah berjaya dikemaskini.');
 
     }
@@ -229,6 +231,30 @@ class EventsController extends Controller
       $event->save();
 
       return back();
+    }
+
+    public function notify($id)
+    {
+        $event = Event::findOrFail($id);
+        $timestamp = Carbon::now();
+
+        $user = $event->user;
+        $matrik = $event->user->no_matrik;
+        $nama_pengarang = $event->user->username; 
+        $tajuk = $event->tajuk;
+        $huraian = $event->huraian;
+        $tarikh = $event->tarikh;
+        $masa = $event->masa;
+        $lokasi = $event->lokasi;
+        $tempoh = $event->tempoh;
+        $max_peserta = $event->max_peserta;
+        $penganjur = $event->penganjur;
+        $telephone = $event->telephone;
+        $kumpulan_sasaran = $event->kumpulan_sasaran;
+
+        $user->notify(new NotifyEvent($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $tarikh, $masa, $lokasi, $tempoh, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran ));
+        return back()->withMessage('Perincian program telah berjaya diemail.');
+
     }
 
     /**

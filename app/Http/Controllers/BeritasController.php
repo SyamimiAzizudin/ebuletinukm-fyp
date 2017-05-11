@@ -44,17 +44,25 @@ class BeritasController extends Controller
 
     public function papar()
     {
-        // $beritas = Berita::with('user')->where('is_published', true);
+        $categories = Category::all();
+        // $beritas = Berita::with('user')->where('is_published', true)->paginate(5);
         $searchResults =Input::get('search');
         $beritas = Berita::where('tajuk','like',"%$searchResults%")->paginate(5);
-        $categories = Category::all();
         return view('berita.papar', compact('beritas', 'categories'));
+    }
+
+    public function welcome()
+    {
+        $beritas = Berita::with('user')->where('is_published', true)->paginate(8);
+        $events = Event::with('user')->where('is_published', true)->paginate(8);
+
+        return view('/welcome', compact('beritas' , 'events'));
     }
 
     public function home()
     {
-        $beritas = Berita::with('user')->paginate(4);
-        $events = Event::with('user')->paginate(4);
+        $beritas = Berita::with('user')->paginate(8);
+        $events = Event::with('user')->paginate(8);
         return view('/home', compact('beritas' , 'events'));
     }
 
@@ -144,7 +152,6 @@ class BeritasController extends Controller
     public function update(Request $request, $id)
     {
 
-          // dd($request->input());
          $this->validate ($request, [
             'tajuk' => 'required',
             'huraian' => 'required',
@@ -152,13 +159,9 @@ class BeritasController extends Controller
             'kumpulan_sasaran' => 'required',
         ]);
 
-
         $category = Category::findOrFail($request->kategori_program);
 
-
         $berita = Berita::findOrFail($id);
-
-   
 
         if ($request->hasFile('gambar'))
         {
@@ -197,14 +200,14 @@ class BeritasController extends Controller
     {
       $chart_berita = Charts::database(Berita::all(), 'bar', 'highcharts')
       ->title("Jumlah Hebahan Berita Setiap Bulan")
-      ->elementLabel("Total")
+      ->elementLabel("Jumlah")
       ->dimensions(1000, 500)
       ->responsive(false)
       ->groupByMonth('2017', true);
 
       $chart_acara = Charts::database(Event::all(), 'bar', 'highcharts')
       ->title("Jumlah Hebahan Acara Setiap Bulan")
-      ->elementLabel("Total")
+      ->elementLabel("Jumlah")
       ->dimensions(1000, 500)
       ->responsive(false)
       ->groupByMonth('2017', true);
@@ -214,8 +217,11 @@ class BeritasController extends Controller
     public function showLaporanBerita() 
     {
       $beritas = Berita::with('user')->paginate(5);
+      $count = DB::table('beritas')->sum('id');
+        // $timestamp = Carbon::now();
+
          $pdf = app('dompdf.wrapper');
-        $pdf->loadView('laporan.berita',compact('beritas'));
+        $pdf->loadView('laporan.berita',compact('beritas', 'count'));
         return $pdf->stream('LaporanHebahanBerita.pdf');
     }
 

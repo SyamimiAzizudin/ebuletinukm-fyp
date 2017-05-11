@@ -16,8 +16,8 @@
 <style>
 .thumbnail img {
   display: block;
-  width: 200px;
-  height: 90px;
+  width: 150px;
+  height: 80px;
   max-height: 150px;
 }
 
@@ -65,14 +65,6 @@
             </li>
             <li><a href="{{ url('event') }}">Tetapan Buletin</a></li>
             <li><a href="{{ url('laporan') }}">Laporan Buletin</a></li>
-
-            {{-- <li >
-                <a href="#">Laporan Buletin</a>
-                <ul>
-                  <li><a href="{{ url('laporan_berita') }}"> Berita</a></li>
-                  <li><a href="{{ url('laporan_acara') }}"> Acara</a></li>
-                </ul>
-            </li> --}}
             <unread></unread>
         @endif
     </ul>
@@ -135,20 +127,20 @@
 
        <!-- Controls -->
       <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">Previous</span>
+        <span class="glyphicon glyphicon-chevron-left">Previous</span>
       </a>
       <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span><span class="sr-only">Next</span>
+        <span class="glyphicon glyphicon-chevron-right" ></span>Next</span>
       </a>
     </div>
 
     <div class="content_area">
-      <div class="main_content floatleft">
+      <div class="main_menu">
         {{-- <div class="left_coloum floatleft"> --}}
           <div class="single_left_coloum_wrapper">
 
             <h2 class="title">Buletin UKM</h2>
-            <a class="more" href="{{ url('papar') }}">more</a>
+            <a class="more" href="{{ url('papar') }}">Arkib buletin</a>
 
             <?php $i = 0 ?>
             @foreach($beritas as $berita)
@@ -167,7 +159,7 @@
 
           <div class="single_left_coloum_wrapper">
             <h2 class="title">Program UKM</h2>
-            <a class="more" href="{{ url('acara') }}">more</a>
+            <a class="more" href="{{ url('acara') }}">arkib program</a>
 
             <?php $i = 0 ?>
             @foreach($events as $event)
@@ -184,119 +176,14 @@
               @endforeach
           </div>
 
-          <div class="single_left_coloum_wrapper gallery">
-            <h2 class="title">berita dan program terkini!</h2>
-            <a class="more" href="#">more</a> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> <img src="images/single_featured.png" alt="" /> </div>
-          <div class="single_left_coloum_wrapper single_cat_left">
-            <h2 class="title">tech news</h2>
-            <a class="more" href="#">more</a>
-            <div class="single_cat_left_content floatleft">
-              <h3>Lorem ipsum dolor sit amet conse ctetur adipiscing elit </h3>
-              <p>Nulla quis lorem neque, mattis venenatis lectus. In interdum ullamcorper dolor ...interdum</p>
-              <p class="single_cat_left_content_meta">by <span>John Doe</span> |  29 comments</p>
-            </div>
-            
-          </div>
       </div>
-      <div class="sidebar floatright">
-        
-        <div class="single_sidebar">
-          <div class="popular">
-            
-                    <h2 class="lead">Kategori:</h2>
-                
-                    <div class="list-group">
-                       {{--  @foreach($categories as $category)
-                            <a class="list-group-item" href="{{ url('category', $category->id) }}">{{ $category->name }}</a>
-                        @endforeach --}}
-                    </div>
-                <br>
-                <p class="lead">Lokasi</p>
-                <div class="list-group">
-                    <a href="home.php?cat=sort&item=az" class="list-group-item">UKM Bangi</a>
-                    <a href="home.php?cat=sort&item=low" class="list-group-item">UKM KL</a>
-                </div>
-
-          </div>
-        </div>
-        <br>
-
-        <div class="single_sidebar">
-          <div class="lokasi">
-            {{-- <h2 class="title">Kategori</h2> --}}
-            <ul>
-              <div class="panel-group lokasi-products" id="accordian1"><!--category-productsr-->
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordian" href="#Kategori">
-                          <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                Lokasi
-                      </a>
-                    </h4>
-                  </div>
-
-                  <div id="lokasi" class="panel-collapse collapse">
-                      <div class="panel-body">
-                          <ul>
-                                <li><a href="{{ url('/katalog?lokasi=Telefon') }}">Berita</a></li>
-                                <li><a href="{{ url('/katalog?lokasi=Telefon') }}">Program</a></li>
-                                <li><a href="{{ url('?/katalog?lokasi=lain-lain') }}">Semua Berita & Program</a></li>       
-                          </ul>
-                      </div>
-                  </div>
-                </div>
-              </div><!--/category-products-->
-          </ul>
-        </div>
-        </div>
-
-        <br>
-
-        {{-- <div class="single_sidebar">
-          <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action active">
-              Cras justo odio
-            </button>
-            <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-            <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-            <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-            <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
-          </div>
-        </div> --}}
-
-        <div class="single_sidebar">
-          <div class="news-letter">
-            <h2>Sign Up for New Member</h2>
-            <p>Sign up to receive our latest news!</p>
-            <form action="#" method="post">
-              <input type="text" value="Name" id="name" />
-              <input type="text" value="Email Address" id="email" />
-              <input type="submit" value="SUBMIT" id="form-submit" />
-            </form>
-            <p class="news-letter-privacy">We do not spam. We value your privacy!</p>
-          </div>
-        </div>
-      </div>
+      
     </div>
-    {{-- <div class="footer_top_area">
-      <div class="inner_footer_top"> <img src="images/add3.png" alt="" /> </div>
-    </div> --}}
+
     <div class="footer_bottom_area">
-      <div class="footer_menu">
-        <ul id="f_menu">
-          <CENTER>
-          <li><a href="#">world news</a></li>
-          <li><a href="#">sports</a></li>
-          <li><a href="#">tech</a></li>
-          <li><a href="#">business</a></li>
-          <li><a href="#">Movies</a></li>
-          </CENTER>
-        </ul>
-      </div>
+      
       <div class="copyright_text">
-        <p>Copyright &copy; 2017 Final Year Project | Design by <a target="_blank" rel="nofollow" href="http://www.graphicsfuel.com/2045/10/wp-magazine-theme-template-psd/">Nur Syamimi Ahmat Azizudin</a></p>
-        <p>Trade marks and images used in the design are the copyright of their respective owners and are used for demo purposes only.</p>
+        <p>Copyright &copy; 2017 Final Year Project | Design by <a target="_blank" rel="nofollow" href="#">Nur Syamimi Ahmat Azizudin</a></p>
       </div>
     </div>
   </div>

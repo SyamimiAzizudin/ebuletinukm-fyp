@@ -1,7 +1,7 @@
-.thumbnail img {
-	max-height: 150px;
+/*.thumbnail img {
+	max-height: 0px;
 }
-
+*/
 /* Makes images fully responsive */
 
 .img-responsive,

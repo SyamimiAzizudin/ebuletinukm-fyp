@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ config('app2.locale') }}">
+<html lang="{{ config('app.locale') }}">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -16,7 +16,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'eBuletin UKM') }}</title>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -28,6 +28,25 @@
         ]) !!};
     </script>
 </head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style>
+.thumbnail img {
+  display: block;
+  width: 200px;
+  height: 90px;
+  max-height: 150px;
+}
+
+</style>
+
 <body>
     <div id="app" >
         <nav class="navbar navbar-default navbar-static-top">
@@ -44,19 +63,39 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app2.name', 'Laravel') }}
+                        {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse " id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
+                    {{-- Left Side Of Navbar -  -> --}}
                     <ul class="nav navbar-nav">
                         @if(Auth::check())
 
-                                    <li><a href="{{ url('papar') }}">Paparan Berita</a></li>
-                                    <li><a href="{{ url('acara') }}">Paparan Acara</a></li>
+                            {{-- @if ($user->userRole == 'pengarang') --}}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-calendar"></span>
+                                        Paparan Buletin <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ url('papar') }}">Paparan Berita</a></li>
+                                        <li><a href="{{ url('acara') }}">Paparan Acara</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{{ url('berita') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Berita</a></li>
+                                <li><a href="{{ url('event') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Acara</a></li>
+                                <li><a href="{{ url('tetapan') }}"><span class="glyphicon glyphicon-cog"></span> Tetapan Buletin</a></li>
+                                <li><a href="{{ url('laporan') }}"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin</a></li>
 
-                            <unread></unread>
+                                {{-- <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="{{ url('laporan_berita') }}"> Berita</a></li>
+                                        <li><a href="{{ url('laporan_acara') }}"> Acara</a></li>
+                                    </ul>
+                                </li> --}}
+                            {{-- @else --}}
                         @endif
                     </ul>
 
@@ -64,21 +103,20 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Log Masuk</a></li>
+                            <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-lock"></span> Log Masuk</a></li>
                             <li><a href="{{ route('register') }}">Daftar Masuk</a></li>
                         @else
-                            <li><a href="{{ url('profil') }}"><i class="fa fa-btn fa-user"></i>My Profile</a></li>
-
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-check"></span>
                                     {{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                     <li><a href="{{ url('profile') }}"><i class="fa fa-btn fa-user"></i><span class="glyphicon glyphicon-user"></span> Profil</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> 
                                             Log Keluar
                                         </a>
 
@@ -128,6 +166,7 @@
     <!-- Scripts -->
 
     <script src="{{ asset('js/app.js') }}"></script>
+
     <script>
       $(document).on("click", "#confirm-modal", function(e) {
         window.console&&console.log('foo');

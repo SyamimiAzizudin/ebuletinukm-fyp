@@ -86,16 +86,6 @@
                                 <li><a href="{{ url('event') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Acara</a></li>
                                 <li><a href="{{ url('tetapan') }}"><span class="glyphicon glyphicon-cog"></span> Tetapan Buletin</a></li>
                                 <li><a href="{{ url('laporan') }}"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin</a></li>
-
-                                {{-- <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ url('laporan_berita') }}"> Berita</a></li>
-                                        <li><a href="{{ url('laporan_acara') }}"> Acara</a></li>
-                                    </ul>
-                                </li> --}}
-                            {{-- @else --}}
                         @endif
                     </ul>
 
@@ -104,7 +94,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-lock"></span> Log Masuk</a></li>
-                            <li><a href="{{ route('register') }}">Daftar Masuk</a></li>
+                            <li><a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Daftar Masuk</a></li>
                         @else
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-check"></span>

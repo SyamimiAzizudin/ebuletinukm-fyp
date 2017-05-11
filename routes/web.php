@@ -2,9 +2,13 @@
 /**
  * Homepage
  */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BeritasController@welcome');
+
+
+// Route::get('/', function () {
+//     Route::get('/home', 'BeritasController@home');
+//     return view('welcome');
+// });
 
 /**
  * Scaffolding Authentication
@@ -14,9 +18,7 @@ Auth::routes();
 /**
  * Homepage
  */
-// Route::get('/home', 'HomeController@index');
 Route::get('/home', 'BeritasController@home');
-
 
 Route::group(['middleware' => ['auth', 'pengarang']], function() {
 
@@ -41,6 +43,8 @@ Route::group(['middleware' => ['auth', 'pengarang']], function() {
     Route::get('/laporan_acara', 'BeritasController@showLaporanAcara');
 
     Route::get('/maklumat/email/{berita}', 'BeritasController@notification');
+    Route::get('/notifyEvent/{event}', 'EventsController@notify');
+
 
 });
 
@@ -83,9 +87,8 @@ Route::group(['before' => 'pengarang|pembaca'], function() {
     /**
      * Tetapan Buletin
      */
-    Route::get('/tetapan');
-    Route::get('/newsview','BeritasController@newsfunct');
-    Route::get('/findNewsName','BeritasController@findNewsName');
+    Route::get('/tetapan', 'BeritasController@tetapan');
+    
 
 });
 

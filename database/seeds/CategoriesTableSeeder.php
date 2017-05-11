@@ -15,16 +15,16 @@ class CategoriesTableSeeder extends Seeder
         $data = [
             'Pra Siswazah',
             'Pasca Siswazah',
-            // 'PHD',
+            'PHD',
         	'FTSM',
         	'FUU',
-            // 'FKAB',
-            // 'FST',
-            // 'FEP',
-            // 'FPI',
+            'FKAB',
+            'FST',
+            'FEP',
+            'FPI',
             'Sukan',
-            // 'Hiburan',
-            // 'Teater',
+            'Hiburan',
+            'Teater',
         ];
 
         foreach ($data as $datum) {

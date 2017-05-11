@@ -13,28 +13,28 @@
             		<h3>Filter By:</h3>
 
                     <span>Pelajar/Staff: </span>
-                    <select style="width: 200px" class="berita" id="beritas_id">
+                    {{-- <select style="width: 200px" class="berita" id="beritas_id">
                         <option value="0" disabled="true" selected="true">-Select-</option>
                         @foreach($categories as $berita)
                             <option value="{{$berita->id}}">{{$berita->name}}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
 
                     <span>Fakulti: </span>
-                    <select style="width: 200px" class="category" id="categories_id">
+                    {{-- <select style="width: 200px" class="category" id="categories_id">
                         <option value="0" disabled="true" selected="true">-Select-</option>
                         @foreach($categories as $category)
                             <option value="{{$category->id}}">{{$category->pname}}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
 
                     <span>Minat: </span>
-                    <select style="width: 200px" class="berita" id="beritas_id">
+                    {{-- <select style="width: 200px" class="berita" id="beritas_id">
                         <option value="0" disabled="true" selected="true">-Select-</option>
                         @foreach($beritas as $berita)
                             <option value="{{$berita->id}}">{{$berita->kumpulan_sasaran}}</option>
                         @endforeach
-                    </select>
+                    </select> --}}
 
             </div>
         </div>
