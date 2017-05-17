@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -118,7 +118,7 @@
                         <div class="col-md-6 col-md-offset-4">
                             <a href="{{ action('ProfilesController@index') }}" class="btn btn-default">Batal</a>
                             <button type="submit" class="btn btn-primary">
-                                Hantar
+                                Kemaskini 
                             </button>
                         </div>
                     </div>

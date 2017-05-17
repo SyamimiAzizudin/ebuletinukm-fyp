@@ -17,6 +17,7 @@
 
     <div class="row">
                 <div class="col-md-3">
+                <br>
                     <h2 class="lead">Kategori:</h2>
                                     
                     <div class="list-group">
@@ -26,12 +27,6 @@
                     </div>
                     
                 <br>
-                {{-- p class="lead">Lokasi</p>
-                <div class="list-group">
-                    <a href="home.php?cat=sort&item=az" class="list-group-item">UKM Bangi</a>
-                    <a href="home.php?cat=sort&item=low" class="list-group-item">UKM KL</a>
-                </div> --}}
-
             </div>
 
     <div class="row">
@@ -51,9 +46,11 @@
                     <tr>
                         <td><br><img src="{{ asset($event->gambar) }}" style="width:200px"></td>
                         <td>
+                            <br>
                             <h5><a href="{{ url('acara', $event->id) }}"><strong>{{ $event->tajuk }} </strong></a></h5>
-                            <p> {{ $event->tarikh->format('F d, Y') }} , {{ $event->masa }}</p>
-                            <p><strong>{{ $event->lokasi }}</strong></p>
+                            <br>
+                            {{-- <p><span class="glyphicon glyphicon-time"></span>  {{ $event->masaMula->format('d F Y') }} - {{ $event->masaAkhir->format('d F Y')}}</p> --}}
+                            <p> {{ $event->lokasi }}</p>
 
                         </td>
                     </tr>
@@ -79,6 +76,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <p>Copyright &copy; 2017 eBuletin UKM - Nur Syamimi Ahmat Azizudin (FYP)</p>
+                    <br>
                     </div>
                 </div>
             </footer>

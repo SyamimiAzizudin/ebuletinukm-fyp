@@ -17,8 +17,8 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->string('tajuk');
             $table->text('huraian');
-            $table->date('tarikh');
-            $table->time('masa');
+            $table->timestamp('masaMula');
+            $table->timestamp('masaAkhir')->nullable();
             $table->string('lokasi');
             $table->string('tempoh');
             $table->string('kumpulan_sasaran');

@@ -7,6 +7,7 @@ use App\User;
 use App\MultipleGambar;
 use App\Category;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +44,6 @@ class EventsController extends Controller
 
     public function papar()
     {
-        // $events = Event::with('user')->where('is_published', true)->paginate(5);
         $searchResults =Input::get('search');
         $events = Event::where('tajuk','like','%'.$searchResults.'%')->with('MultipleGambar')->paginate(5);
         $categories = Category::all();
@@ -72,8 +72,7 @@ class EventsController extends Controller
         $this->validate ($request, [
             'tajuk' => 'required',
             'huraian' => 'required',
-            'tarikh' => 'required',
-            'masa' => 'required',
+            'time' => 'required',
             'lokasi' => 'required',
             'tempoh' => 'required',
             'kumpulan_sasaran' => 'required',
@@ -81,6 +80,8 @@ class EventsController extends Controller
             'penganjur' => 'required',
             'telephone' => 'required',
         ]);
+
+        $time = explode(" - ", $request->input('time'));
 
         if ($request->hasFile('gambar')) 
         {
@@ -93,8 +94,8 @@ class EventsController extends Controller
         $event = new Event;
         $event->tajuk = $request->tajuk;
         $event->huraian = $request->huraian;
-        $event->tarikh = $request->tarikh;
-        $event->masa = $request->masa;
+        $event->masaMula = $this->change_date_format($time[0]);
+        $event->masaAkhir = $this->change_date_format($time[1]);
         $event->lokasi = $request->lokasi;
         $event->tempoh = $request->tempoh;
         $event->kumpulan_sasaran = $request->kumpulan_sasaran;
@@ -165,8 +166,7 @@ class EventsController extends Controller
          $this->validate ($request, [
             'tajuk' => 'required',
             'huraian' => 'required',
-            'tarikh' => 'required',
-            'masa' => 'required',
+            'time' => 'required',
             'lokasi' => 'required',
             'tempoh' => 'required',
             'kumpulan_sasaran' => 'required',
@@ -175,9 +175,10 @@ class EventsController extends Controller
             'telephone' => 'required',
         ]);
 
+        $time = explode(" - ", $request->input('time'));
+        $event = Event::findOrFail($id);
         $category = Category::findOrFail($request->kategori_program);
 
-        $event = Event::findOrFail($id);
 
         if ($request->hasFile('gambar')) 
         {
@@ -188,8 +189,8 @@ class EventsController extends Controller
 
         $event->tajuk = $request->tajuk;
         $event->huraian = $request->huraian;
-        $event->tarikh = $request->tarikh;
-        $event->masa = $request->masa;
+        $event->masaMula = $this->change_date_format($time[0]);
+        $event->masaAkhir = $this->change_date_format($time[1]);
         $event->lokasi = $request->lokasi;
         $event->tempoh = $request->tempoh;
         $event->kumpulan_sasaran = $request->kumpulan_sasaran;
@@ -221,7 +222,7 @@ class EventsController extends Controller
         return redirect()->action('EventsController@index')->withMessage('Perincian program telah berjaya dikemaskini.');
 
     }
-
+    
     public function published($id)
     {
       $event = Event::findOrFail($id);
@@ -244,7 +245,6 @@ class EventsController extends Controller
         $tajuk = $event->tajuk;
         $huraian = $event->huraian;
         $tarikh = $event->tarikh;
-        $masa = $event->masa;
         $lokasi = $event->lokasi;
         $tempoh = $event->tempoh;
         $max_peserta = $event->max_peserta;
@@ -252,7 +252,7 @@ class EventsController extends Controller
         $telephone = $event->telephone;
         $kumpulan_sasaran = $event->kumpulan_sasaran;
 
-        $user->notify(new NotifyEvent($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $tarikh, $masa, $lokasi, $tempoh, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran ));
+        $user->notify(new NotifyEvent($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $tarikh, $lokasi, $tempoh, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran ));
         return back()->withMessage('Perincian program telah berjaya diemail.');
 
     }
@@ -275,6 +275,31 @@ class EventsController extends Controller
         $MultipleGambar = MultipleGambar::findOrFail($id);
         $MultipleGambar->delete();
         return back()->withError('Gambar telah berjaya dipadam.');
+    }
+
+    public function change_date_format($date)
+    {
+        $time = DateTime::createFromFormat('d/m/Y H:i:s', $date);
+        return $time->format('Y-m-d H:i:s');
+    }
+    
+    public function change_date_format_fullcalendar($date)
+    {
+        $time = DateTime::createFromFormat('Y-m-d H:i:s', $date);
+        return $time->format('d/m/Y H:i:s');
+    }
+           
+    public function format_interval(\DateInterval $interval)
+    {
+        $result = "";
+        if ($interval->y) { $result .= $interval->format("%y year(s) "); }
+        if ($interval->m) { $result .= $interval->format("%m month(s) "); }
+        if ($interval->d) { $result .= $interval->format("%d day(s) "); }
+        if ($interval->h) { $result .= $interval->format("%h hour(s) "); }
+        if ($interval->i) { $result .= $interval->format("%i minute(s) "); }
+        if ($interval->s) { $result .= $interval->format("%s second(s) "); }
+        
+        return $result;
     }
 
 }

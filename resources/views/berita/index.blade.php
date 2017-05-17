@@ -22,7 +22,7 @@
                 <th width="15%">Gambar</th>
                 <th width="18%">Tajuk</th>
                 <th width="15%">Lokasi</th>
-                <th width="18%">Tarikh Hebahan</th>
+                <th width="18%">Dicipta Pada</th>
                 <th width="15%">Published</th>
                 <th width="25%"></th>
               </tr>
@@ -35,7 +35,7 @@
                 <td><img src="{{ asset($berita->gambar) }}" style="width:150px"></td>
                 <td> {{ $berita->tajuk }} </td>
                 <td> {{ $berita->lokasi }} </td>
-                <td> {{ $berita->created_at->format('g:i A, d F Y')}}</td>
+                <td> {{ $berita->created_at->diffForHumans()}}</td>
                 <td> {{ $berita->is_published == 1 ? 'Ya' : 'Tidak' }}</td>
                 <td>
                   @if( $berita->user_id == Auth::user()->id)

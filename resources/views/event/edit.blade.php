@@ -1,44 +1,62 @@
 @include('modal.destroy-modal')
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h2>Kemaskini Program </h2>
+    <h1>Kemaskini Program </h1>
   </div>
   <div class="panel-body">
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12">
         {!! Form::model($event, ['method' => 'PATCH','action' =>  ['EventsController@update', $event->id], 'files' => true]) !!}
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-lg-11 col-centered">
+            <div class="panel-heading">
+                <strong><h2>Butiran Pengarang</h2></strong>
+            </div>
+
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Nombor Matrik:</strong>
                     <td>{{Auth::user()->no_matrik}}</td>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                  <div class="form-group">
                     <strong>Nama:</strong>
                         <td>{{Auth::user()->username}}</td>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
+                 <div class="form-group">
+                    <strong>Email:</strong>
+                        <td>{{Auth::user()->email}}</td>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-11 col-centered">
+            <div class="panel-heading">
+                <strong><h2>Butiran Berita</h2></strong>
+            </div>
+
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Tajuk Program:</strong>
                         {!! Form::text('tajuk', null, array('placeholder' => 'Tajuk Program','class' => 'form-control')) !!}
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Perincian Program:</strong>
                         {!! Form::textarea('huraian', null, array('placeholder' => 'Huraian Program','class' => 'form-control')) !!}
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Kategori Program:</strong>
                         <select class="form-control" name="kategori_program">
@@ -50,10 +68,39 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
+                <div class="form-group"> 
+                @if($errors->has('time')) has-error @endif
+                    <label  for="time">Masa</label>
+                    <div class="input-group">
+
+                        <input type="text" class="form-control" name="time" placeholder="Pilih masa program" value="{{ old('time') }}">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+
+                    @if ($errors->has('time'))
+                        <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span> 
+                        {{ $errors->first('time') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+
+            <div class="col-lg-10 col-centered">
+                <div class="form-group">
+                    <strong>Tempoh Berlangsung:</strong>
+                        {!! Form::text('tempoh', null, array('placeholder' => 'Tempoh Program','class' => 'form-control')) !!}
+                </div>
+            </div>
+
+            {{-- <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Tarikh Diadakan:</strong>
                         {!! Form::date('tarikh', null, array('class' => 'form-control')) !!}
+                        <input type="date" class="form-control" name="tarikh" placeholder="" value="{{ old('tarikh', $event->tarikh) }}">
+
                 </div>
             </div>
 
@@ -62,23 +109,16 @@
                     <strong>Masa Berlangsung:</strong>
                         {!! Form::time('masa', null, array('class' => 'form-control')) !!}
                 </div>
-            </div>
+            </div> --}} 
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Lokasi:</strong>
                         {!! Form::text('lokasi', null, array('placeholder' => 'Lokasi Program','class' => 'form-control')) !!}
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Tempoh Berlangsung:</strong>
-                        {!! Form::text('tempoh', null, array('placeholder' => 'Tempoh Program','class' => 'form-control')) !!}
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Kumpulan Sasaran:</strong>
                         {{ Form::select('kumpulan_sasaran',
@@ -86,28 +126,28 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Maximum Peserta:</strong>
                         {!! Form::text('max_peserta', null, array('placeholder' => 'Maximum Peserta','class' => 'form-control')) !!}
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Penganjur:</strong>
                         {!! Form::text('penganjur', null, array('placeholder' => 'Penganjur Program','class' => 'form-control')) !!}
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Telefon:</strong>
                         {!! Form::text('telephone', null, array('placeholder' => 'Nombor Telefon','class' => 'form-control')) !!}
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Poster Program:</strong><br>
                     <input type="file" name="gambar" id="fileUpload" class="hide">
@@ -117,7 +157,7 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-lg-10 col-centered">
                 <div class="control-group">
                         <strong>Tambahan Poster Program:</strong>
                         {!! Form::file('images[]', array('multiple'=>true)) !!}
@@ -129,7 +169,7 @@
             </div>
 
             @if(count($event->MultipleGambar)>0)
-                    <div class="col-xs-12 col-sm-12 col-md-12" style="padding-left: 0px">
+                    <div class="col-lg-10 col-centered" style="padding-left: 0px">
                         @foreach ($event->MultipleGambar as $image)
                         <div class="col-xs-12 col-sm-12 col-md-4">
                                 <div class="panel panel-default" >
@@ -144,11 +184,12 @@
                         @endforeach
                     </div>
             @endif
+        </div>
 
             <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                     <div class="form-group">
                         <a href="{{ action('EventsController@index') }}" class="btn btn-default">Batal</a>
-                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button type="submit" class="btn btn-success">Kemaskini</button>
                     </div>
             </div>
 

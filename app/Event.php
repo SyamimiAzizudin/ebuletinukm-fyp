@@ -12,8 +12,9 @@ class Event extends Model
     protected $fillable = [
         'tajuk',
         'huraian',
+        'masaMula',
+        'masaAkhir',
         'lokasi',
-        'masa',
         'tempoh',
         'kumpulan_sasaran',
         'max_peserta',
@@ -30,7 +31,6 @@ class Event extends Model
      *
      */
     protected $dates = [
-        'tarikh',
         'created_at',
         'updated_at',
         'expired_at'

@@ -1,58 +1,57 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
 <head>
 <title>eBuletin UKM</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- Custom Theme files -->
+<!--theme-style-->
+<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />  
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" type="text/css" href="assets/font/font-awesome.min.css" />
-<link rel="stylesheet" type="text/css" href="assets/font/font.css" />
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="assets/css/responsive.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="assets/css/jquery.bxslider.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="css/src/self.css" />
-
+<meta name="keywords" content="Enlighten Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!---->
+<!---->
+<link href='//fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+<!---->
 </head>
-<style>
-.thumbnail img {
-  display: block;
-  width: 200px;
-  height: 90px;
-  max-height: 250px;
-}
-
-</style>
 <body>
-<div class="body_wrapper">
-  <div class="center">
-    <div class="header_area">
-      <div class="logo floatleft"><a href="#"><img src="images/ukm.png"  /></a>
-      <img src="images/kpt.png" alt="" /></div>
-
-      <div class="social_plus_search floatright">
-        <div class="social">
-          <ul>
-            <li><a href="#" class="twitter"></a></li>
-            <li><a href="#" class="facebook"></a></li>
-            <li><a href="#" class="feed"></a></li>
-          </ul>
-        </div>
-        <div class="search">
-          <form action="#" method="post" id="search_form">
-            <input type="text" value="Search news" id="s" />
-            <input type="submit" id="searchform" value="search" />
-            <input type="hidden" value="post" name="post_type" />
-          </form>
-        </div>
-      </div>
+ <div class="header">
+  <div class="container">
+  <div class="header-menu">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+     
     </div>
-    <br>
-    <div class="main_menu_area">
-    <ul id="nav">
-        @if(Auth::check())
-            <li>
-                <a href="#">Paparan Buletin </a>
-                <ul>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+          @if(Auth::check())
+      <li class="active"><a href="{{ url('/home') }}">Home </a></li>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paparan <span class="caret"></span></a>
+                <ul class="dropdown-menu">
                     <li><a href="{{ url('papar') }}">Paparan Berita</a></li>
                     <li><a href="{{ url('acara') }}">Paparan Acara</a></li>
                 </ul>
@@ -68,8 +67,8 @@
             <unread></unread>
         @endif
     </ul>
-        <ul class="nav navbar-right">
-                        <!-- Authentication Links -->
+        <ul class="nav navbar-nav">
+        <!-- Authentication Links -->
         @if (Auth::guest())
             <li>
                 <a href="{{ route('login') }}">Log Masuk</a>
@@ -79,10 +78,9 @@
             </li>
         @else
             <li class="dropdown">
-                <a href="#"> {{ Auth::user()->username }}</a>
-
-                <ul>
-                    <li><a href="{{ url('profile') }}"><i class="fa fa-btn fa-user"></i>Profil</a></li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url('profile') }}"><i class="fa fa-btn fa-user"></i> Profil</a></li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"> Log Keluar
@@ -95,134 +93,258 @@
                 </ul>
             </li>
         @endif
-        </ul>
-    </div>
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-        </ol>
-
-        <div class="carousel-inner">
-        <div class="item active">
-          <img src="images/23.jpg" alt="...">
-          <div class="carousel-caption">
-            <h2>Welcome to UKM</h2>
+     </ul>
+    </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  <!-- start search-->
+  
+        <div class="search-box">
+           <div id="sb-search" class="sb-search">
+           <form action="#" method="post">
+             <input class="sb-search-input" placeholder="Enter your search term..." type="search" name="search" id="search">
+             <input class="sb-search-submit" type="submit" value="">
+             <span class="sb-icon-search"> </span>
+          </form>
           </div>
-        </div>
-        <div class="item">
-          <img src="images/1.jpg" alt="...">
-          <div class="carousel-caption">
-            <h2>Pemilihan MPP Sesi 2016-2017</h2>
-          </div>
-        </div>
-        <div class="item">
-          <img src="images/45.png" alt="...">
-          <div class="carousel-caption">
-            <h2>UKM 46 Tahun Menjejak Kegemilangan</h2>
-          </div>
-        </div>
-      </div>
-
-       <!-- Controls -->
-      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" ></span><span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" ></span><span class="sr-only">Next</span>
-      </a>
-    </div>
-
-    <div class="content_area">
-      <div class="main_menu">
-        {{-- <div class="left_coloum floatleft"> --}}
-          <div class="single_left_coloum_wrapper">
-
-            <h2 class="title">Buletin UKM</h2>
-            <a class="more" href="{{ url('papar') }}">more</a>
-
-            <?php $i = 0 ?>
-            @foreach($beritas as $berita)
-
-            <div class="single_left_coloum floatleft">
-              <div class="thumbnail">
-                <p><img src="{{ asset($berita->gambar) }}" class="img"/></p>
-                <h3>{{ $berita->tajuk }}</h3>
-                <p>{{ $berita->created_at->format('F d, Y')}}</p>
-                                  <p><strong> {{ $berita->lokasi }}</strong></p>
-                <a class="readmore" href="{{ url('papar', $berita->id) }}">huraian berita</a> 
-              </div>
-            </div>
-              @endforeach
-          </div>
-
-          <div class="single_left_coloum_wrapper">
-            <h2 class="title">Program UKM</h2>
-            <a class="more" href="{{ url('acara') }}">more</a>
-
-            <?php $i = 0 ?>
-            @foreach($events as $event)
-
-            <div class="single_left_coloum floatleft">
-              <div class="thumbnail">
-                <img src="{{ asset($event->gambar) }}" class="img" />
-                <h3>{{ $event->tajuk }}</h3>
-                <p>{{ $event->created_at->format('F d, Y') }}</p>
-                                  <p><strong> {{ $event->lokasi }} </strong></p>
-                <a class="readmore" href="{{ url('acara', $event->id) }}">huraian program</a> 
-              </div>
-            </div>
-              @endforeach
-          </div>
-
-      </div>
-      {{-- <div class="sidebar floatright">
-
-        <br>
-
-        <div class="single_sidebar">
-          <div class="news-letter">
-            <h2>Daftar Masuk ke eBuletin UKM</h2>
-            <p>Sign up to receive our latest news!</p>
-            <form action="#" method="post">
-              <input type="text" value="Name" id="name" />
-              <input type="text" value="Email Address" id="email" />
-              <input type="submit" value="SUBMIT" id="form-submit" />
-            </form>
-            <p class="news-letter-privacy">We do not spam. We value your privacy!</p>
-          </div>
-        </div>
-      </div> --}}
-    </div>
-
-    <div class="footer_bottom_area">
-    
-      <div class="copyright_text">
-        <p>Copyright &copy; 2017 Final Year Project | Design by <a target="_blank" rel="nofollow" href="http://www.graphicsfuel.com/2045/10/wp-magazine-theme-template-psd/">Nur Syamimi Ahmat Azizudin</a></p>
-      </div>
-    </div>
-  </div>
+         </div>
+        
+          <div class="clearfix"></div>
 </div>
-<script type="text/javascript" src="assets/js/jquery-min.js"></script> 
-<script type="text/javascript" src="assets/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="assets/js/jquery.bxslider.js"></script> 
-<script type="text/javascript" src="assets/js/selectnav.min.js"></script> 
-<script type="text/javascript">
-selectnav('nav', {
-    label: '-Navigation-',
-    nested: true,
-    indent: '-'
-});
-selectnav('f_menu', {
-    label: '-Navigation-',
-    nested: true,
-    indent: '-'
-});
-$('.bxslider').bxSlider({
-    mode: 'fade',
-    captions: true
-});
-</script>
+      
+    <div class="number">
+      <p>eBuletin UKM</p>
+    </div>
+    <div class="logo">
+      <a href="index.html"><img src="images/logo.png" alt=""><span>eBuletin</span>UKM</a>
+      </div>
+    <div class="banner">
+      <h1>Universiti Kebangsaan Malaysia  </h1>
+      <h2>Pendaulat Amanah Negara</h2>
+    </div>
+  </div> 
+</div>      
+  <!--content-->
+  <div class="content w3layouts-agile">
+    <div class="container">
+    <div class="content-top wthee-agileinfo">
+      <div class="col-md-6 content-top1">
+        <img src="images/pl.jpg" class="img-responsive" alt="">
+        <div class="content-plan">
+        
+          <h6><a href="http://smp.ukm.my/">Sistem Maklumat Pelajar</a></h6>
+          <p>Menyemak maklumat peribadi, pendaftaran kursus dan keputusan peperiksaan. </p>
+        </div>
+        <span class="locations" >SMP Web</span>
+      </div>
+      <div class="col-md-6 content-top1">
+        <img src="images/pl1.jpg" class="img-responsive" alt="">
+        <div class="content-plan">
+        
+          <h6><a href="http://ifolio.ukm.my/">Sistem LearningCare</a></h6>
+          <p>Memuat turun latihan tutorial, nota kuliah dan berinteraksi dengan pensyarah melalui e-Pembelajaran. </p>
+        </div>
+        <span class="locations" >iFolio UKM</span>
+      </div>
+      
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <!---->
+    <div class="content-mid">
+      <div class="col-md-3 content-mid1">
+        <div class=" content-mid-img">
+        
+        </div>
+      </div>
+      <div class="col-md-7 content-mid2">
+      <div class=" grid-middle">
+      <div class=" grid-mid">
+      <label></label>
+      <h3><a href="{{ url('papar') }}">Latest-News</a></h3>
+      <p>Segala maklumat berita yang berlaku di dalam mahupun di luar UKM hanya di sini!</p>
+      
+        <div class="news-top">
+        <div class=" col-md-6 latest-grid">
+          <div class="col-md-9 news-in">
+            <h5><a href="single.html">Lorem ipsum dolor sit</a></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod .</p>
+          </div>
+          <div class="col-md-3 news">
+            <h4>20<span>June</span></h4>          
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class=" col-md-6 latest-grid">
+          <div class="col-md-3 news">
+            <h4>16<span>June</span></h4>          
+          </div>
+          <div class="col-md-9 news-in in-news">
+            <h5><a href="single.html">Lorem ipsum dolor sit</a></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+
+          </div>
+          
+          <div class="clearfix"> </div>
+        </div>
+      <div class="clearfix"> </div>
+      </div>
+          <div class="news-top">
+        <div class=" col-md-6 latest-grid">
+          <div class="col-md-9 news-in">
+            <h5><a href="single.html">Lorem ipsum dolor sit</a></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+          </div>
+          <div class="col-md-3 news">
+            <h4>11<span>June</span></h4>          
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+        <div class=" col-md-6 latest-grid">
+          <div class="col-md-3 news">
+            <h4>09<span>June</span></h4>          
+          </div>
+          <div class="col-md-9 news-in in-news">
+            <h5><a href="single.html">Lorem ipsum dolor sit</a></h5>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+
+          </div>
+          
+          <div class="clearfix"> </div>
+        </div>
+      <div class="clearfix"> </div>
+      </div>
+    </div>
+    </div>
+      </div>
+      <div class="col-md-2 content-mid1">
+        <div class=" content-mid-img1">
+        
+        </div>      
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <!---->
+          
+    <div class="feature">
+      <div class="container">
+        <div class="feature-top">
+          <label></label>
+          <h3>Special Care On Students</h3>
+        </div>
+        <div class="feature-grid">
+          <div class="col-md-4 feature-grid">
+            <h5><a href="single.html">Consectetur adipisicing</a></h5>
+            <div class=" fe-grid">
+              <i class="glyphicon glyphicon-map-marker"></i>
+              <div class="feature-text">
+                <p>Tempor Street Lorem ipsum dolor,
+                TL 19034-88974, Country</p>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <a href="single.html"><img src="images/pc.jpg" class="img-responsive" alt=""></a>
+            <a href="single.html" class="read"> Read More</a>
+          </div>
+          <div class="col-md-4 feature-grid">
+            <h5><a href="single.html">Consectetur adipisicing</a></h5>
+            <div class=" fe-grid">
+              <i class="glyphicon glyphicon-map-marker"></i>
+              <div class="feature-text">
+                <p>Tempor Street Lorem ipsum dolor,
+                TL 19034-88974, Country</p>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <a href="single.html"><img src="images/pc1.jpg" class="img-responsive" alt=""></a>
+            <a href="single.html" class="read"> Read More</a>
+          </div>
+          <div class="col-md-4 feature-grid">
+            <h5><a href="single.html">Consectetur adipisicing</a></h5>
+            <div class=" fe-grid">
+              <i class="glyphicon glyphicon-map-marker"></i>
+              <div class="feature-text">
+                <p>Tempor Street Lorem ipsum dolor,
+                TL 19034-88974, Country</p>
+              </div>
+              <div class="clearfix"> </div>
+            </div>
+            <a href="single.html"><img src="images/pc2.jpg" class="img-responsive" alt=""></a>
+            <a href="single.html" class="read"> Read More</a>
+          </div>
+          <div class="clearfix"> </div> 
+        </div>
+      </div>
+    </div>
+    <!--map-->
+      <div class="map-top w3layouts-agile">
+        <div class="map wl-agileinfo">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.720013275624!2d101.69833925057526!3d3.1682616976817926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31cc4823d06ae9ab%3A0xe006878f9ec89fc7!2sUniversiti+Kebangsaan+Malaysia+Fakulti+Sains+Kesihatan+Kampus+Kuala+Lumpur!5e0!3m2!1sen!2smy!4v1494743449388" width="600" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <span></span>
+        </div>
+          <div class="address">
+          <label></label>
+            <h4>Universiti Kebangsaan Malaysia</h4>
+            <p>Pekan Bangi, 43600 Bangi, Selangor, Malaysia</p>
+          </div>
+        </div>
+        <!--//map-->
+        <!---->
+        <div class="container">
+        <div class="content-bottom">
+          
+          
+          <div class="col-md-4 address-grid">
+                <h5>Address</h5>
+                <p>Universiti Kebangsaan Malaysia,
+                Pekan Bangi, 43600 Bangi, Selangor, Malaysia</p>
+              
+            </div>
+            <div class="col-md-4 address-grid ">
+              
+              <h5>Our Phone</h5>
+                <p>+60 3-8921 5555</p>
+              
+            </div>
+            <div class="col-md-4 address-grid ">
+              
+              <h5>Official Website</h5>
+                <p><a href="http://www.ukm.my/"> www.ukm.my</a></p>
+              
+            </div>
+            <div class="clearfix"> </div> 
+          
+          </div>
+        </div>
+    <!--//-->
+    
+  </div>
+  <!--//content-->
+<!--footer-->
+  <div class="footer w3layouts-agile">
+        <div class="container">
+          <p class="footer-class">&copy; 2017 eBuletin UKM. All Rights Reserved | Design by  Nur Syamimi Ahmat Azizudin For Final Year Project</a> </p>
+          <section id="set-9">
+        <div class="hi-icon-wrap hi-icon-effect-9 hi-icon-effect-9a">
+          <a href="#set-9" class="hi-icon "><i></i></a>
+          <a href="#set-9" class="hi-icon "><i class="ic"></i></a>
+          <a href="#set-9" class="hi-icon "><i class="ic1"></i></a>
+          <a href="#set-9" class="hi-icon "><i class="ic2"></i></a>
+        </div>
+      </section>
+      </div>
+    </div>
+    <!--//footer-->
+    <!--//footer-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/uisearch.js"></script>
+    <script>
+      new UISearch( document.getElementById( 'sb-search' ) );
+    </script>
+    <!----//search-scripts---->
+    <!---->
+
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

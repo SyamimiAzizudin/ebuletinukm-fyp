@@ -123,7 +123,7 @@
     <tbody>
     <tr>
         <td width="60%" style="text-align: right; font-size: 18px; padding: 10px;">Jumlah Hebahan Berita :</td>
-        <td width="40%" style="text-align: right; font-size: 18px; font-weight: bold; padding: 10px;">24</td>
+        <td width="40%" style="text-align: right; font-size: 18px; font-weight: bold; padding: 10px;">{{ $count }}</td>
     </tr>
     </tbody>
 </table>

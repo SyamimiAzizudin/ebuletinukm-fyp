@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 @section('content')
 
 <div class="panel panel-default">
@@ -48,8 +48,8 @@
 
                 <h2><strong>{{ $event->tajuk }}</strong></h2>
                 <br>
-                <p> Tarikh: {{ $event->tarikh->format('d F Y')}}</p>
-                <p> Masa: {{ $event->masa }}</p>
+                {{-- <p> Tarikh: {{ $event->tarikh->format('d F Y')}}</p> --}}
+                <p> Masa: {{ $event->time}}</p>
                 <p> Tempat: {{ $event->lokasi }}</p>
                 <p> Tempoh berlangsung: {{ $event->tempoh }}</p>
                 <p> Maximum peserta: {{ $event->max_peserta }} orang</p>

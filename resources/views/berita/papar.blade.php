@@ -4,9 +4,9 @@
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <form class="form-inline my-4 my-lg-5 pull-right" method="get" action="{{ url('papar') }}">
-            <input class="form-control mr-sm-2" type="text" placeholder="Carian Buletin" name="search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cari</button>
+        <form class="form-inline" method="get" action="{{ url('papar') }}">
+            <input class="form-control" type="text" placeholder="Carian Buletin" name="search">
+            <button class="btn btn-outline-success pull-right" type="submit">Cari</button>
         </form>
         <h2>Buletin UKM</h2>
     </div>
@@ -44,7 +44,7 @@
                             <td>
                                 <h5><a href="{{ url('papar', $berita->id) }}"><strong>{{ $berita->tajuk }} </strong></a></h5>
                                 <p> Diterbitkan pada {{ $berita->created_at->format('F d, Y')}}</p>
-                                <p><strong>{{ $berita->lokasi }}</strong></p>
+                                <p> <strong>{{ $berita->lokasi }}</strong></p>
 
                             </td>
                         </tr>
@@ -52,11 +52,6 @@
                         @empty
                         @endforelse
 
-                       {{--  @foreach ($berita->categories as $category)
-
-                            <P>{{ $category->name}}</P>
-
-                        @endforeach --}}
                         </tbody>
                     </table>
                     <div class="text-center">

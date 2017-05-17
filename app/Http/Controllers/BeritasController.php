@@ -42,10 +42,20 @@ class BeritasController extends Controller
         return view('berita.papar', compact('categories', 'beritas'));
     }
 
+    public function tetapan($name)
+    {
+        $beritas = Berita::whereHas('categories', function ($query) use ($name) {
+            $query->where('name', $name);
+        })->paginate();
+
+        $categories = Category::all();
+
+        return view('tetapan', compact('categories', 'beritas'));
+    }
+
     public function papar()
     {
         $categories = Category::all();
-        // $beritas = Berita::with('user')->where('is_published', true)->paginate(5);
         $searchResults =Input::get('search');
         $beritas = Berita::where('tajuk','like',"%$searchResults%")->paginate(5);
         return view('berita.papar', compact('beritas', 'categories'));
@@ -53,16 +63,18 @@ class BeritasController extends Controller
 
     public function welcome()
     {
-        $beritas = Berita::with('user')->where('is_published', true)->paginate(8);
-        $events = Event::with('user')->where('is_published', true)->paginate(8);
+        $beritas = Berita::with('user')->where('is_published', true)->paginate(1);
+        $events = Event::with('user')->where('is_published', true)->paginate(1);
 
         return view('/welcome', compact('beritas' , 'events'));
     }
 
     public function home()
     {
-        $beritas = Berita::with('user')->paginate(8);
-        $events = Event::with('user')->paginate(8);
+        
+        $beritas = Berita::with('user')->where('is_published', true)->paginate(6);
+        $events = Event::with('user')->where('is_published', true)->paginate(6);
+
         return view('/home', compact('beritas' , 'events'));
     }
 
@@ -206,7 +218,7 @@ class BeritasController extends Controller
       ->groupByMonth('2017', true);
 
       $chart_acara = Charts::database(Event::all(), 'bar', 'highcharts')
-      ->title("Jumlah Hebahan Acara Setiap Bulan")
+      ->title("Jumlah Hebahan Pengumuman Setiap Bulan")
       ->elementLabel("Jumlah")
       ->dimensions(1000, 500)
       ->responsive(false)
@@ -216,8 +228,8 @@ class BeritasController extends Controller
 
     public function showLaporanBerita() 
     {
-      $beritas = Berita::with('user')->paginate(5);
-      $count = DB::table('beritas')->sum('id');
+      $beritas = Berita::with('user')->paginate();
+      $count = Berita::with('user')->count();
         // $timestamp = Carbon::now();
 
          $pdf = app('dompdf.wrapper');
@@ -227,9 +239,11 @@ class BeritasController extends Controller
 
     public function showLaporanAcara() 
     {
-        $events = Event::with('user')->paginate(5);
+        $events = Event::with('user')->paginate();
+        $count = Event::with('user')->count();
+
         $pdf = app('dompdf.wrapper');
-        $pdf->loadView('laporan.event',compact('events'));
+        $pdf->loadView('laporan.event',compact('events', 'count'));
         return $pdf->stream('LaporanHebahanAcara.pdf');
     }
 

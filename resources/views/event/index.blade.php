@@ -19,10 +19,10 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th width="15%">Gambar</th>
+                <th width="15%">Poster</th>
                 <th width="18%">Tajuk</th>
-                <th width="15%">Tarikh</th>
-                <th width="15%">Multiple Gambar</th>
+                <th width="15%">Dikemaskini Pada</th>
+                <th width="15%">Tambahan Poster</th>
                 <th width="15%">Published</th>
                 <th width="25%"></th>
               </tr>
@@ -34,7 +34,7 @@
                 <td >{{ $events->firstItem() + $i }}</td>
                 <td><img src="{{ asset($event->gambar) }}" style="width:200px"></td>
                 <td> {{ $event->tajuk }} </td>
-                <td>{{ $event->tarikh->format('d F Y ')}}</td>
+                <td>{{ $event->updated_at->diffForHumans() }}</td>
                 <td>{{ count($event->MultipleGambar) }} Gambar</td>
                 <td> {{ $event->is_published == 1 ? 'Ya' : 'Tidak' }}</td>
                 <td>

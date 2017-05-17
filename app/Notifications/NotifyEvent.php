@@ -17,7 +17,6 @@ class NotifyEvent extends Notification
     protected $tajuk;
     protected $huraian;
     protected $tarikh;
-    protected $masa;
     protected $lokasi;
     protected $tempoh;
     protected $max_peserta;
@@ -30,7 +29,7 @@ class NotifyEvent extends Notification
      *
      * @return void
      */
-    public function __construct($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $tarikh, $masa, $lokasi, $tempoh, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran)
+    public function __construct($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $tarikh, $lokasi, $tempoh, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran)
     {
         $this->timestamp = $timestamp;
         $this->matrik = $matrik;
@@ -38,7 +37,6 @@ class NotifyEvent extends Notification
         $this->tajuk = $tajuk;
         $this->huraian = $huraian;
         $this->tarikh = $tarikh;
-        $this->masa = $masa;
         $this->lokasi = $lokasi;
         $this->tempoh = $tempoh;
         $this->max_peserta = $max_peserta;
@@ -75,7 +73,7 @@ class NotifyEvent extends Notification
                     ->line("Tajuk: {$this->tajuk}")
                     ->line("Huraian: {$this->huraian}")
                     ->line("Tarikh: {$this->tarikh->format('d F, Y')}")
-                    ->line("Masa: {$this->masa}")
+                    // ->line("Masa: {$this->masa}")
                     ->line("Lokasi: {$this->lokasi}")
                     ->line("Tempoh Acara: {$this->tempoh}")
                     ->line("Kumpulan Sasaran Acara: {$this->kumpulan_sasaran}")

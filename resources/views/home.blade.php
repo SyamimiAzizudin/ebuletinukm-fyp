@@ -112,7 +112,7 @@
           </div>
         </div>
         <div class="item">
-          <img src="images/1.jpg" alt="...">
+          <img src="images/34.jpg" alt="...">
           <div class="carousel-caption">
             <h2>Pemilihan MPP Sesi 2016-2017</h2>
           </div>
@@ -127,10 +127,10 @@
 
        <!-- Controls -->
       <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left">Previous</span>
+        <span class="glyphicon glyphicon-chevron-left"></span>
       </a>
       <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" ></span>Next</span>
+        <span class="glyphicon glyphicon-chevron-right" ></span></span>
       </a>
     </div>
 
