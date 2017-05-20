@@ -1,3 +1,4 @@
+@include('modal.destroy-modal')
 @extends('layouts.app2')
 @section('content')
 
@@ -5,17 +6,19 @@
     <div clss="col-lg-12">
         <ol class="breadcrumb">
             <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
-            <li><a href="{{ url('acara') }}">Paparan Acara</a></li>
+            <li><a href="{{ url('event') }}">Hebahan Acara</a></li>
             <li class="active"> {{ $event->tajuk }}</li>
         </ol>
     </div>
 </div>
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2>Perincian Acara </h2>
+<div class="row">
+    <div class="col-lg-12">
+        <h2>{{ $event->tajuk }} <small>dihebahkan oleh {{ Auth::user()->username }}</small></h2>
+        <hr>
     </div>
-    <div class="panel-body">
+</div>
+
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 text-center">
                 <br>
@@ -54,7 +57,7 @@
                     </a>
                 </div>
             </div>
-            <div class=" col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+            <div class=" col-lg-8 col-lg-offset-2">
 
                 <h2><strong>{{ $event->tajuk }}</strong></h2>
                 <br>
@@ -68,13 +71,15 @@
 
                 <br>
                 <p> {{ $event->huraian }}</p>
-                    <br>
-                    <div class=" col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 text-center">
-                        <a href="{{ url('acara') }}" class="btn btn-primary">Kembali</a>
-                    </div>
+                <p>
+                        
+                        <a href="{{ action('EventsController@destroy', $event->id) }}" class="btn btn-danger" id="confirm-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Padam</a>
+
+                        <a class="btn btn-primary" href="{{ url('event/' . $event->id . '/edit')}}">
+                        <span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                    </p>
             </div>
         </div>
-    </div>
-</div>
+   
 <script src="{{ asset('js/warning.js') }}"></script>
 @endsection

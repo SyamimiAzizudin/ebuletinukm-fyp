@@ -66,42 +66,42 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
           @if(Auth::check())
-      <li class="active"><a href="{{ url('/home') }}">Home </a></li>
-        <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paparan <span class="caret"></span></a>
+              <li class="active"><a href="{{ url('/home') }}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+              <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-calendar"></span> Paparan <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url('papar') }}">Paparan Berita</a></li>
-                    <li><a href="{{ url('acara') }}">Paparan Acara</a></li>
+                    <li><a href="{{ url('papar') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Berita</a></li>
+                    <li><a href="{{ url('acara') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Acara</a></li>
                 </ul>
-            </li>
-            <li>
-                <a href="{{ url('berita') }}">Hebahan Berita</a>
-            </li>
-            <li>
-                <a href="{{ url('event') }}">Hebahan Acara</a>
-            </li>
-            <li><a href="{{ url('tetapan') }}">Tetapan Buletin</a></li>
-            <li><a href="{{ url('laporan') }}">Laporan Buletin</a></li>
-            <unread></unread>
+              </li>
+              <li>
+                  <a href="{{ url('berita') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Berita</a>
+              </li>
+              <li>
+                  <a href="{{ url('event') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Acara</a>
+              </li>
+              <li><a href="{{ url('tetapan') }}"><span class="glyphicon glyphicon-cog"></span> Tetapan Buletin</a></li>
+              <li><a href="{{ url('laporan') }}"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin</a></li>
+              <unread></unread>
         @endif
     </ul>
         <ul class="nav navbar-nav">
         <!-- Authentication Links -->
         @if (Auth::guest())
             <li>
-                <a href="{{ route('login') }}">Log Masuk</a>
+                <a href="{{ route('login') }}"><span class="glyphicon glyphicon-lock"></span> Log Masuk</a>
             </li>
             <li>
-                <a href="{{ route('register') }}">Daftar Masuk</a>
+                <a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Daftar Masuk</a>
             </li>
         @else
             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-check"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url('profile') }}"><i class="fa fa-btn fa-user"></i> Profil</a></li>
+                    <li><a href="{{ url('profile') }}"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"> Log Keluar
+                                document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Log Keluar
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -194,9 +194,18 @@
             </div>
         </div>
         <!--//footer-->
+        <!--//footer-->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/classie.js"></script>
+        <script src="js/uisearch.js"></script>
+        <script>
+          new UISearch( document.getElementById( 'sb-search' ) );
+        </script>
+        <!----//search-scripts---->
+        <!---->
 
     <!-- Scripts -->
-
+    <script src="js/bootstrap.min.js"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 
     <script>

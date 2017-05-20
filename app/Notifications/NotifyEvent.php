@@ -16,7 +16,9 @@ class NotifyEvent extends Notification
     protected $nama_pengarang;
     protected $tajuk;
     protected $huraian;
-    protected $tarikh;
+    protected $first_date;
+    protected $second_date;
+    protected $duration;
     protected $lokasi;
     protected $tempoh;
     protected $max_peserta;
@@ -29,16 +31,17 @@ class NotifyEvent extends Notification
      *
      * @return void
      */
-    public function __construct($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $tarikh, $lokasi, $tempoh, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran)
+    public function __construct($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $first_date, $second_date, $duration, $lokasi, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran)
     {
         $this->timestamp = $timestamp;
         $this->matrik = $matrik;
         $this->nama_pengarang = $nama_pengarang;
         $this->tajuk = $tajuk;
         $this->huraian = $huraian;
-        $this->tarikh = $tarikh;
+        $this->first_date = $first_date;
+        $this->second_date = $second_date;
+        $this->duration = $duration;
         $this->lokasi = $lokasi;
-        $this->tempoh = $tempoh;
         $this->max_peserta = $max_peserta;
         $this->penganjur = $penganjur;
         $this->telephone = $telephone;
@@ -72,10 +75,10 @@ class NotifyEvent extends Notification
                     ->line("Berikut adalah perincian acara anda:")
                     ->line("Tajuk: {$this->tajuk}")
                     ->line("Huraian: {$this->huraian}")
-                    ->line("Tarikh: {$this->tarikh->format('d F, Y')}")
-                    // ->line("Masa: {$this->masa}")
+                    ->line("Mula: {$this->first_date->format('g:i A, d F Y')}")
+                    ->line("Tamat: {$this->second_date->format('g:i A, d F Y')}")
+                    ->line("Tempoh Acara: {$this->duration}")
                     ->line("Lokasi: {$this->lokasi}")
-                    ->line("Tempoh Acara: {$this->tempoh}")
                     ->line("Kumpulan Sasaran Acara: {$this->kumpulan_sasaran}")
                     ->line("Jumlah Peserta: {$this->max_peserta}")
                     ->line("Penganjur: {$this->penganjur}")

@@ -1,6 +1,14 @@
 @extends('layouts.app2')
-
 @section('content')
+
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
+            <li class="active">Tetapan Buletin</li>
+        </ol>
+    </div>
+</div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -20,9 +28,6 @@
                                 <option value="{{$category->name}}">{{$category->name}}</option>
                             @endforeach
                         </select>
-                            {{-- @foreach($categories as $category)
-                                <a class="list-group-item" href="{{ url('tetapan', $category->name) }}">{{ $category->name }}</a>
-                            @endforeach --}}
                     </div>
 
                     <div class="col-lg-10 col-centered">

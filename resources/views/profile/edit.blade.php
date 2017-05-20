@@ -116,8 +116,8 @@
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
-                            <a href="{{ action('ProfilesController@index') }}" class="btn btn-default">Batal</a>
-                            <button type="submit" class="btn btn-primary">
+                            <a href="{{ action('ProfilesController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Batal</a>
+                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>
                                 Kemaskini 
                             </button>
                         </div>

@@ -500,8 +500,8 @@ h1,h2,h3,h4,h5,h6,label,p{
 	margin: 0.5em 0 1em;
 }
 span.glyphicon.glyphicon-map-marker {
-    color: #fff;
-    font-size: 4em;
+    color: #080808;
+    font-size: 1em;
 }
 /*---*/
 .address-grid {

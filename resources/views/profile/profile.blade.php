@@ -67,7 +67,7 @@
         </table>
         <div class="text-center">
           @if( $user->profile->user_id == Auth::user()->id)
-            <a href="{{ action ('ProfilesController@edit',   $user->user_id) }}" class="btn btn-success">Kemaskini Maklumat Diri</a>
+            <a href="{{ action ('ProfilesController@edit',   $user->user_id) }}" class="btn btn-success"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemaskini Maklumat Diri</a>
           @endif
         </div>
       </div>

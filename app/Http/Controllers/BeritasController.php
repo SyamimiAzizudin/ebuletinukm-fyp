@@ -124,7 +124,7 @@ class BeritasController extends Controller
 
         $berita->categories()->save($category);
 
-        return redirect()->action('BeritasController@store')->withMessage('Perincian berita telah berjaya dihebahkan.');
+        return redirect()->action('BeritasController@store')->withMessage('Perincian berita telah berjaya dicipta.');
 
     }
 
@@ -138,6 +138,12 @@ class BeritasController extends Controller
     {
         $berita = Berita::findOrFail($id);
         return view('berita.details', compact('berita'));
+    }
+
+    public function tengok($id)
+    {
+        $berita = Berita::findOrFail($id);
+        return view('berita.show', compact('berita'));
     }
 
     /**
@@ -200,12 +206,20 @@ class BeritasController extends Controller
     public function published($id)
     {
       $berita = Berita::findOrFail($id);
-
       $berita->is_published = $berita->is_published == true ? false : true ;
+      $berita->save();    
+      $timestamp = Carbon::now();
 
-      $berita->save();
+      $user = $berita->user;
+      $matrik = $berita->user->no_matrik;
+      $nama_pembaca = $berita->user->username; 
+      $tajuk = $berita->tajuk;
+      $huraian = $berita->huraian;
+      $lokasi = $berita->lokasi;
+      $kumpulan_sasaran = $berita->kumpulan_sasaran;
 
-      return back();
+      $user->notify(new Hebahan($timestamp, $matrik, $nama_pembaca, $tajuk, $huraian, $lokasi, $kumpulan_sasaran ));
+      return back()->withMessage('Berita telah berjaya diemail.');
     }
 
     public function janalaporan()
@@ -228,41 +242,24 @@ class BeritasController extends Controller
 
     public function showLaporanBerita() 
     {
-      $beritas = Berita::with('user')->paginate();
+      $beritas = Berita::all();
       $count = Berita::with('user')->count();
-        // $timestamp = Carbon::now();
+      $timestamp = Carbon::now();
 
-         $pdf = app('dompdf.wrapper');
-        $pdf->loadView('laporan.berita',compact('beritas', 'count'));
-        return $pdf->stream('LaporanHebahanBerita.pdf');
+      $pdf = app('dompdf.wrapper');
+      $pdf->loadView('laporan.berita',compact('beritas', 'count', 'timestamp'));
+      return $pdf->stream('LaporanHebahanBerita.pdf');
     }
 
     public function showLaporanAcara() 
     {
-        $events = Event::with('user')->paginate();
-        $count = Event::with('user')->count();
+      $events = Event::all();
+      $count = Event::with('user')->count();
+      $timestamp = Carbon::now();
 
-        $pdf = app('dompdf.wrapper');
-        $pdf->loadView('laporan.event',compact('events', 'count'));
-        return $pdf->stream('LaporanHebahanAcara.pdf');
-    }
-
-    public function notification($id)
-    {
-        $berita = Berita::findOrFail($id);
-        $timestamp = Carbon::now();
-
-        $user = $berita->user;
-        $matrik = $berita->user->no_matrik;
-        $nama_pembaca = $berita->user->username; 
-        $tajuk = $berita->tajuk;
-        $huraian = $berita->huraian;
-        $lokasi = $berita->lokasi;
-        $kumpulan_sasaran = $berita->kumpulan_sasaran;
-
-        $user->notify(new Hebahan($timestamp, $matrik, $nama_pembaca, $tajuk, $huraian, $lokasi, $kumpulan_sasaran ));
-        return back()->withMessage('Berita telah berjaya diemail.');
-
+      $pdf = app('dompdf.wrapper');
+      $pdf->loadView('laporan.event',compact('events', 'count', 'timestamp'));
+      return $pdf->stream('LaporanHebahanAcara.pdf');
     }
 
     /**

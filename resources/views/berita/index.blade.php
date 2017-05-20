@@ -2,9 +2,18 @@
 @extends('layouts.app')
 @section('content')
 
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
+            <li class="active">Hebahan Berita</li>
+        </ol>
+    </div>
+</div>
+
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h2>Senarai Berita<a href="{{ url('/berita/create') }}" class="btn btn-primary pull-right btn_md" role="button">Cipta Berita Baru</a></h2>
+    <h2>Senarai Berita<a href="{{ url('/berita/create') }}" class="btn btn-primary pull-right btn_md" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Cipta Berita Baru</a></h2>
   </div>
 
   <div class="panel-body">
@@ -33,16 +42,15 @@
               <tr>
                 <td >{{ $beritas->firstItem() + $i }}</td>
                 <td><img src="{{ asset($berita->gambar) }}" style="width:150px"></td>
-                <td> {{ $berita->tajuk }} </td>
+                <td><a href="{{ url('show.berita', $berita->id) }}"> {{ $berita->tajuk }} </a></td>
                 <td> {{ $berita->lokasi }} </td>
                 <td> {{ $berita->created_at->diffForHumans()}}</td>
                 <td> {{ $berita->is_published == 1 ? 'Ya' : 'Tidak' }}</td>
                 <td>
                   @if( $berita->user_id == Auth::user()->id)
-                  <a class="btn btn-info btn-xs" href="{{ action('BeritasController@published', $berita) }}">{{ $berita->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
-                  <a href="{{ action('BeritasController@notification', $berita->id) }}" class="btn btn-primary btn-xs">Notify</a>
-                  <a href="{{ action('BeritasController@edit', $berita->id) }}" class="btn btn-warning btn-xs">Kemas</a>
-                  <a href="{{ action('BeritasController@destroy', $berita->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Padam</a>
+                  <a class="btn btn-warning btn-xs" href="{{ action('BeritasController@published', $berita) }}"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> {{ $berita->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
+                  <a href="{{ action('BeritasController@edit', $berita->id) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemas</a>
+                  <a href="{{ action('BeritasController@destroy', $berita->id) }}" class="btn btn-danger btn-xs" id="confirm-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Padam</a>
                   @endif
                 </td>
               </tr>

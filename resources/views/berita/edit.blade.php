@@ -1,7 +1,17 @@
 @extends('layouts.app2')
 @section('content')
-<div class="panel panel-default">
 
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Laman Utama</a></li>
+            <li><a href="{{ url('/berita') }}">Hebahan Berita</a></li>
+            <li class="active">Kemaskini Berita</li>
+        </ol>
+    </div>
+</div>
+
+<div class="panel panel-default">
   <div class="panel-heading">
     <h1>Kemaskini Berita</h1>
   </div>

@@ -64,7 +64,7 @@
     <tr>
         <td colspan="2" style="background: #F1F1F1;padding: 14px;">
             <p style="margin: 0px; font-size: 14px;">
-                Tarikh Laporan : <br>
+                Tarikh Laporan : {{ $timestamp->format('g:i A, d F Y') }}<br>
             </p>
         </td>
     </tr>

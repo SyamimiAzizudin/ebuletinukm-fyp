@@ -38,7 +38,7 @@
 
             <div class="col-lg-11 col-centered">
                 <div class="panel-heading">
-                    <strong><h2>Butiran Berita</h2></strong>
+                    <strong><h2>Butiran Acara</h2></strong>
                 </div>
 
                 <div class="col-lg-10 col-centered">

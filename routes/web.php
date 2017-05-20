@@ -28,12 +28,16 @@ Route::group(['middleware' => ['auth', 'pengarang']], function() {
     Route::delete('event/gambar/{id}', ['as'=>'event.destroyImage','uses'=>'EventsController@destroyImage']);
     Route::resource('/event', 'EventsController');
     Route::get('/event/{event}/published', 'EventsController@published');
+    Route::get('/show.event/{event}', 'EventsController@tengok');
+
 
     /**
      * Berita
      */
     Route::resource('/berita', 'BeritasController');
     Route::get('/berita/{berita}/published', 'BeritasController@published');
+    Route::get('/show.berita/{berita}', 'BeritasController@tengok');
+    Route::delete('/show.berita/delete/{berita}', 'BeritasController@destroy');
 
     /**
      * Laporan Buletin

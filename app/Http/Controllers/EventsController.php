@@ -123,7 +123,7 @@ class EventsController extends Controller
 
         $event->categories()->save($category);
 
-        return redirect()->action('EventsController@store')->withMessage('Perincian program telah berjaya dihebahkan.');
+        return redirect()->action('EventsController@store')->withMessage('Perincian program telah berjaya dicipta.');
 
     }
 
@@ -137,7 +137,25 @@ class EventsController extends Controller
     public function show($id)
     {
         $event = Event::with('MultipleGambar')->findOrFail($id);
+        $first_date = new DateTime($event->masaMula);
+        $second_date = new DateTime($event->masaAkhir);
+        $difference = $first_date->diff($second_date);
+
+        $event->duration = $this->format_interval($difference);
+
         return view('event.details', compact('event'));
+    }
+
+    public function tengok($id)
+    {
+        $event = Event::with('MultipleGambar')->findOrFail($id);
+        $first_date = new DateTime($event->masaMula);
+        $second_date = new DateTime($event->masaAkhir);
+        $difference = $first_date->diff($second_date);
+
+        $event->duration = $this->format_interval($difference);
+
+        return view('event.show', compact('event'));
     }
 
     /**
@@ -150,6 +168,8 @@ class EventsController extends Controller
     {
         $categories = Category::all();
         $event = Event::with('MultipleGambar', 'categories')->findOrFail($id);
+        $event->masaMula =  $this->change_date_format_fullcalendar($event->masaMula);
+        $event->masaAkhir =  $this->change_date_format_fullcalendar($event->masaAkhir);
 
         return view('event.edit', compact('event', 'categories'));
     }
@@ -225,36 +245,28 @@ class EventsController extends Controller
     
     public function published($id)
     {
-      $event = Event::findOrFail($id);
-
-      $event->is_published = $event->is_published == true ? false : true ;
-
-      $event->save();
-
-      return back();
-    }
-
-    public function notify($id)
-    {
         $event = Event::findOrFail($id);
+        $event->is_published = $event->is_published == true ? false : true ;
         $timestamp = Carbon::now();
+        $first_date = new DateTime($event->masaMula);
+        $second_date = new DateTime($event->masaAkhir);
+        $difference = $first_date->diff($second_date);
+        $event->duration = $this->format_interval($difference);
 
         $user = $event->user;
         $matrik = $event->user->no_matrik;
         $nama_pengarang = $event->user->username; 
         $tajuk = $event->tajuk;
         $huraian = $event->huraian;
-        $tarikh = $event->tarikh;
+        $duration = $event->duration;
         $lokasi = $event->lokasi;
-        $tempoh = $event->tempoh;
         $max_peserta = $event->max_peserta;
         $penganjur = $event->penganjur;
         $telephone = $event->telephone;
         $kumpulan_sasaran = $event->kumpulan_sasaran;
 
-        $user->notify(new NotifyEvent($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $tarikh, $lokasi, $tempoh, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran ));
+        $user->notify(new NotifyEvent($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $first_date, $second_date, $duration, $lokasi, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran ));
         return back()->withMessage('Perincian program telah berjaya diemail.');
-
     }
 
     /**

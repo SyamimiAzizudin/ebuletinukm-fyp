@@ -1,7 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('content')
 
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
+            <li class="active"><a href="{{ url('acara') }}">Paparan Acara</a></li>
+        </ol>
+    </div>
+</div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -48,9 +56,9 @@
                         <td>
                             <br>
                             <h5><a href="{{ url('acara', $event->id) }}"><strong>{{ $event->tajuk }} </strong></a></h5>
-                            <br>
-                            {{-- <p><span class="glyphicon glyphicon-time"></span>  {{ $event->masaMula->format('d F Y') }} - {{ $event->masaAkhir->format('d F Y')}}</p> --}}
-                            <p> {{ $event->lokasi }}</p>
+                            <p><span class="glyphicon glyphicon-map-marker"></span> {{ $event->lokasi }}</p>
+                            <p><span class="glyphicon glyphicon-time"></span> Mula: {{ date("g:ia\, jS M Y", strtotime($event->masaMula)) }}</p>
+                            <p><span class="glyphicon glyphicon-time"></span> Tamat: {{ date("g:ia\, jS M Y", strtotime($event->masaAkhir)) }}</p>
 
                         </td>
                     </tr>

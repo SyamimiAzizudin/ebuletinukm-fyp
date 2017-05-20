@@ -2,9 +2,18 @@
 @extends('layouts.app')
 @section('content')
 
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
+            <li class="active">Hebahan Acara</li>
+        </ol>
+    </div>
+</div>
+
 <div class="panel panel-default">
   <div class="panel-heading">
-        <h2>Senarai Acara <a href="{{ url('/event/create') }}" class="btn btn-primary pull-right" role="button">Cipta Acara Baru</a></h2>
+        <h2>Senarai Acara <a href="{{ url('/event/create') }}" class="btn btn-primary pull-right" role="button"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Cipta Acara Baru</a></h2>
   </div>
 
   <div class="panel-body">
@@ -33,16 +42,15 @@
               <tr>
                 <td >{{ $events->firstItem() + $i }}</td>
                 <td><img src="{{ asset($event->gambar) }}" style="width:200px"></td>
-                <td> {{ $event->tajuk }} </td>
+                <td><a href="{{ url('show.event', $event->id) }}"> {{ $event->tajuk }} </a></td>
                 <td>{{ $event->updated_at->diffForHumans() }}</td>
                 <td>{{ count($event->MultipleGambar) }} Gambar</td>
                 <td> {{ $event->is_published == 1 ? 'Ya' : 'Tidak' }}</td>
                 <td>
                   @if( $event->user_id == Auth::user()->id)
-                  <a class="btn btn-info btn-xs" href="{{ action('EventsController@published', $event) }}">{{ $event->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
-                  <a href="{{ action('EventsController@notify', $event->id) }}" class="btn btn-primary btn-xs">Notify</a>
-                  <a href="{{ action('EventsController@edit', $event->id) }}" class="btn btn-warning btn-xs">Kemas</a>
-                  <a href="{{ action('EventsController@destroy', $event->id) }}" class="btn btn-danger btn-xs" id="confirm-modal">Padam</a>
+                  <a class="btn btn-warning btn-xs" href="{{ action('EventsController@published', $event) }}"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> {{ $event->is_published == 1 ? 'Tidak Papar' : 'Papar' }}</a>
+                  <a href="{{ action('EventsController@edit', $event->id) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Kemas</a>
+                  <a href="{{ action('EventsController@destroy', $event->id) }}" class="btn btn-danger btn-xs" id="confirm-modal"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Padam</a>
                   @endif
                 </td>
               </tr>

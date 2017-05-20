@@ -1,10 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.app2')
 
 @section('content')
 
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
+            <li class="active">Paparan Buletin</li>
+        </ol>
+    </div>
+</div>
+
 <div class="panel panel-default">
     <div class="panel-heading">
-        <form class="form-inline" method="get" action="{{ url('papar') }}">
+        <form class="form-inline my-4 my-lg-5 pull-right" method="get" action="{{ url('papar') }}">
             <input class="form-control" type="text" placeholder="Carian Buletin" name="search">
             <button class="btn btn-outline-success pull-right" type="submit">Cari</button>
         </form>

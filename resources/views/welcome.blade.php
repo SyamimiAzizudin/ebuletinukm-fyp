@@ -80,7 +80,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url('profile') }}"><i class="fa fa-btn fa-user"></i> Profil</a></li>
+                    <li><a href="{{ url('profile') }}"> Profil</a></li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();"> Log Keluar

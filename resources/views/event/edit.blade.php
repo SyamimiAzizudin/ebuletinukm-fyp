@@ -1,9 +1,20 @@
 @include('modal.destroy-modal')
 @extends('layouts.app2')
 @section('content')
+
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
+            <li><a href="{{ url('event') }}">Hebahan Acara</a></li>
+            <li class="active">Kemaskini Acara</li>
+        </ol>
+    </div>
+</div>
+
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h1>Kemaskini Program </h1>
+    <h1>Kemaskini Acara </h1>
   </div>
   <div class="panel-body">
     <div class="row">
@@ -39,7 +50,7 @@
 
         <div class="col-lg-11 col-centered">
             <div class="panel-heading">
-                <strong><h2>Butiran Berita</h2></strong>
+                <strong><h2>Butiran Acara</h2></strong>
             </div>
 
             <div class="col-lg-10 col-centered">
@@ -71,10 +82,10 @@
             <div class="col-lg-10 col-centered">
                 <div class="form-group"> 
                 @if($errors->has('time')) has-error @endif
-                    <label  for="time">Masa</label>
+                    <label  for="time">Masa dan Tarikh</label>
                     <div class="input-group">
 
-                        <input type="text" class="form-control" name="time" placeholder="Pilih masa program" value="{{ old('time') }}">
+                        <input type="text" class="form-control" name="time" value="{{ $event->masaMula . ' - ' . $event->masaAkhir }}" placeholder="Sila Pilih Masa Dan Tarikh">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -93,23 +104,7 @@
                     <strong>Tempoh Berlangsung:</strong>
                         {!! Form::text('tempoh', null, array('placeholder' => 'Tempoh Program','class' => 'form-control')) !!}
                 </div>
-            </div>
-
-            {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Tarikh Diadakan:</strong>
-                        {!! Form::date('tarikh', null, array('class' => 'form-control')) !!}
-                        <input type="date" class="form-control" name="tarikh" placeholder="" value="{{ old('tarikh', $event->tarikh) }}">
-
-                </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Masa Berlangsung:</strong>
-                        {!! Form::time('masa', null, array('class' => 'form-control')) !!}
-                </div>
-            </div> --}} 
+            </div> 
 
             <div class="col-lg-10 col-centered">
                 <div class="form-group">
