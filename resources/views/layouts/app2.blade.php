@@ -158,6 +158,26 @@
     <script src="{{ asset('js/add-image.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 
+    <script>
+        function count_up(obj) {
+            document.getElementById('huraian').innerHTML = obj.value.length;
+        }
+     
+        function count_down(obj) {
+             
+            var element = document.getElementById('count2');
+             
+            element.innerHTML = 30 - obj.value.length;
+             
+            if (30 - obj.value.length < 0) {
+                element.style.color = 'red';
+             
+            } else {
+                element.style.color = 'grey';
+            }
+             
+        }
+    </script>
 
     <script type="text/javascript">
         $(function () {

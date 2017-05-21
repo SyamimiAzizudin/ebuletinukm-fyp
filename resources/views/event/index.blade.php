@@ -19,7 +19,7 @@
   <div class="panel-body">
       {{-- <form class="form-inline my-4 my-lg-5 pull-right" method="get" action="{{ url('event') }}">
           <input class="form-control mr-sm-2" type="text" placeholder="Carian Acara" name="search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Cari</button>
+          <button class="btn btn-inline-success my-2 my-sm-0" type="submit">Cari</button>
       </form> --}}
     <div class="row">
       <div class="col-md-12">

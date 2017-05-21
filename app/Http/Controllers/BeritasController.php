@@ -217,7 +217,7 @@ class BeritasController extends Controller
       $lokasi = $berita->lokasi;
       $kumpulan_sasaran = $berita->kumpulan_sasaran;
 
-    //   $user->notify(new Hebahan($timestamp, $matrik, $nama_pembaca, $tajuk, $huraian, $lokasi, $kumpulan_sasaran ));
+      $user->notify(new Hebahan($timestamp, $matrik, $nama_pembaca, $tajuk, $huraian, $lokasi, $kumpulan_sasaran ));
       return back()->withMessage('Berita anda telah berjaya dihebahkan dan email kepada anda.');
     }
 

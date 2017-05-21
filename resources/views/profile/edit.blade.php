@@ -82,16 +82,16 @@
                         <label for="persatuan" class="col-md-4 control-label">Persatuan</label>
                         <div class="col-md-6">
                             <select name="persatuan" class="form-control">
-                                  <option value="PM UKM" {{ old('persatuan', $user->profile->persatuan) == 'PM UKM' ? 'selected' : '' }}>PERSATUAN MAHASISWA UNIVERSITI KEBANGSAAN MALAYSIA</option>
-                                  <option value="PERTUBUHAN AKADEMIK FAKULTI" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN AKADEMIK FAKULTI' ? 'selected' : '' }}>PERTUBUHAN AKADEMIK FAKULTI</option>
+                                  <option value="PM UKM" {{ old('persatuan', $user->profile->persatuan) == 'PM UKM' ? 'selected' : '' }}>Persatuan Mahasiswa Universiti Kebangsaan Malaysia</option>
+                                  <option value="Pertubuhan Akademik Fakulti" {{ old('persatuan', $user->profile->persatuan) == 'Pertubuhan Akademik Fakulti' ? 'selected' : '' }}>Pertubuhan Akademik Fakulti</option>
                                   <option value="Persatuan FST" {{ old('persatuan', $user->profile->persatuan) == 'Persatuan FST' ? 'selected' : '' }}>Persatuan Sains dan Teknologi</option>
-                                  <option value="PERTUBUHAN KEBAJIKAN KOLEJ" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN KEBAJIKAN KOLEJ' ? 'selected' : '' }}>PERTUBUHAN KEBAJIKAN KOLEJ</option>
-                                  <option value="PERTUBUHAN ANAK NEGERI/KEBAJIKAN" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN ANAK NEGERI/KEBAJIKAN' ? 'selected' : '' }}>PERTUBUHAN ANAK NEGERI/KEBAJIKAN</option>
-                                  <option value="PERTUBUHAN KHUSUS" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN KHUSUS' ? 'selected' : '' }}>PERTUBUHAN KHUSUS</option>
-                                  <option value="PERTUBUHAN LUAR" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN LUAR' ? 'selected' : '' }}>PERTUBUHAN LUAR</option>
-                                  <option value="PERTUBUHAN SISWAZAH" {{ old('persatuan', $user->profile->persatuan) == 'PERTUBUHAN SISWAZAH' ? 'selected' : '' }}>PERTUBUHAN SISWAZAH</option>
-                                  <option value="PUSAT KEMBANGAN PENDIDIKAN" {{ old('persatuan', $user->profile->persatuan) == 'PUSAT KEMBANGAN PENDIDIKAN' ? 'selected' : '' }}>PUSAT KEMBANGAN PENDIDIKAN</option>
-                                  <option value="URUSETIA HEPA" {{ old('persatuan', $user->profile->persatuan) == 'URUSETIA HEPA' ? 'selected' : '' }}>URUSETIA HEPA</option>
+                                  <option value="Pertubuhan Kebajikan Kolej" {{ old('persatuan', $user->profile->persatuan) == 'Pertubuhan Kebajikan Kolej' ? 'selected' : '' }}>Pertubuhan Kebajikan Kolej</option>
+                                  <option value="Pertubuhan Anak Negeri" {{ old('persatuan', $user->profile->persatuan) == 'Pertubuhan Anak Negeri' ? 'selected' : '' }}>Pertubuhan Anak Negeri</option>
+                                  <option value="Pertubuhan Khusus" {{ old('persatuan', $user->profile->persatuan) == 'Pertubuhan Khusus' ? 'selected' : '' }}>Pertubuhan Khusus</option>
+                                  <option value="Pertubuhan Luar" {{ old('persatuan', $user->profile->persatuan) == 'Pertubuhan Luar' ? 'selected' : '' }}>Pertubuhan Luar</option>
+                                  <option value="Pertubuhan Siswazah" {{ old('persatuan', $user->profile->persatuan) == 'Pertubuhan Siswazah' ? 'selected' : '' }}>Pertubuhan Siswazah</option>
+                                  <option value="Pusat Perkembangan Pendidikan" {{ old('persatuan', $user->profile->persatuan) == 'Pusat Perkembangan Pendidikan' ? 'selected' : '' }}>Pusat Perkembangan Pendidikan</option>
+                                  <option value="Urusetia HEPA" {{ old('persatuan', $user->profile->persatuan) == 'Urusetia HEPA' ? 'selected' : '' }}>Urusetia HEPA</option>
 
                             </select>
                         </div>

@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->timestamp('masaAkhir')->nullable();
             $table->string('lokasi');
             $table->string('kumpulan_sasaran');
-            $table->string('max_peserta');
+            $table->integer('max_peserta');
             $table->string('penganjur');
             $table->string('telephone');
             $table->string('gambar')->nullable();

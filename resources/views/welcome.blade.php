@@ -46,40 +46,39 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-          @if(Auth::check())
-      <li class="active"><a href="{{ url('/home') }}"><span class="glyphicon glyphicon-home"></span> Home </a></li>
-        <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-calendar"></span> Paparan <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="{{ url('papar') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Berita</a></li>
-                    <li><a href="{{ url('acara') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Acara</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="{{ url('berita') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Berita</a>
-            </li>
-            <li>
-                <a href="{{ url('event') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Acara</a>
-            </li>
-            <li><a href="{{ url('event') }}"><span class="glyphicon glyphicon-cog"></span> Tetapan Buletin</a></li>
-            <li><a href="{{ url('laporan') }}"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin</a></li>
-            <unread></unread>
-        @endif
-    </ul>
-        <ul class="nav navbar-nav">
-        <!-- Authentication Links -->
-        @if (Auth::guest())
+          <!— Left Side Of Navbar —>
+              <ul class="nav navbar-nav">
+                <li><a class="navbar-brand" href="{{ url('/') }}" >{{ config('app.name', 'eBuletin UKM') }}</a>
+              </li>
+
+          <!— Right Side Of Navbar —>
+          <ul class="nav navbar-nav navbar-right">
+
+          @if(Auth::guest())
             <li>
                 <a href="{{ route('login') }}"><span class="glyphicon glyphicon-lock"></span> Log Masuk</a>
             </li>
             <li>
                 <a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Daftar Masuk</a>
             </li>
-        @else
-            <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-check"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
+
+            <!— Authentication Links —>
+
+            @elseif (Auth::user()->userRole == 'pembaca')
+            
+              <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-calendar"></span> Paparan <span class="caret"></span></a>
                 <ul class="dropdown-menu">
+                    <li><a href="{{ url('papar') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Berita</a></li>
+                    <li><a href="{{ url('acara') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Acara</a></li>
+                </ul>
+              </li>
+
+              <nav class="nav navbar-nav navbar-left">
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-check"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
                     <li><a href="{{ url('profile') }}"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -91,12 +90,48 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </form>
                     </li>
                 </ul>
-            </li>
-        @endif
-     </ul>
-    </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+              </li>
+            </nav>
+
+            @elseif (Auth::user()->userRole= 'pengarang')
+
+              <li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-calendar"></span> Paparan <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ url('papar') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Berita</a></li>
+                    <li><a href="{{ url('acara') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Acara</a></li>
+                </ul>
+              </li>
+
+              <li>
+                  <a href="{{ url('berita') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Berita</a>
+              </li>
+              <li>
+                  <a href="{{ url('event') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Acara</a>
+              </li>
+              <li><a href="{{ url('tetapan') }}"><span class="glyphicon glyphicon-cog"></span> Tetapan Buletin</a></li>
+              <li><a href="{{ url('laporan') }}"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin</a></li>
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-check"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ url('profile') }}"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
+                    <li>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Log Keluar
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+                </ul>
+              </li>
+            @endif
+          </ul>  
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
   <!-- start search-->
   
         <div class="search-box">
@@ -161,53 +196,59 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
       <div class=" grid-middle">
       <div class=" grid-mid">
       <label></label>
+      <?php $i = 0 ?>
+
+      @foreach($beritas as $berita)
+
       <h3><a href="{{ url('papar') }}">Latest-News</a></h3>
       <p>Segala maklumat berita yang berlaku di dalam mahupun di luar UKM hanya di sini!</p>
       
         <div class="news-top">
         <div class=" col-md-6 latest-grid">
           <div class="col-md-9 news-in">
-            <h5><a href="single.html">Lorem ipsum dolor sit</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod .</p>
+            <h5><a href="{{ url('papar', $berita->id) }}">{{ $berita->tajuk }}</a></h5>
+            <p>{{ $berita->lokasi }}</p>
           </div>
           <div class="col-md-3 news">
-            <h4>20<span>June</span></h4>          
+            <h4>{{ $berita->created_at->format('d')}}<span>{{ $berita->created_at->format('F')}}</span></h4>          
           </div>
           <div class="clearfix"> </div>
         </div>
+
         <div class=" col-md-6 latest-grid">
           <div class="col-md-3 news">
-            <h4>16<span>June</span></h4>          
+            <h4>{{ $berita->created_at->format('d')}}<span>{{ $berita->created_at->format('F')}}</span></h4>          
           </div>
           <div class="col-md-9 news-in in-news">
-            <h5><a href="single.html">Lorem ipsum dolor sit</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-
+            <h5><a href="{{ url('papar', $berita->id) }}">{{ $berita->tajuk }}</a></h5>
+            <p>{{ $berita->lokasi }}</p>
           </div>
-          
+          @endforeach
           <div class="clearfix"> </div>
         </div>
       <div class="clearfix"> </div>
       </div>
+      @foreach($events as $event)
+
           <div class="news-top">
         <div class=" col-md-6 latest-grid">
           <div class="col-md-9 news-in">
-            <h5><a href="single.html">Lorem ipsum dolor sit</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+            <h5><a href="{{ url('acara', $event->id) }}">{{ $event->tajuk }}</a></h5>
+            <p>{{ $event->lokasi }}</p>
           </div>
           <div class="col-md-3 news">
-            <h4>11<span>June</span></h4>          
+            <h4>{{ $event->created_at->format('d')}}<span>{{ $event->created_at->format('F')}}</span></h4>          
           </div>
           <div class="clearfix"> </div>
         </div>
         <div class=" col-md-6 latest-grid">
           <div class="col-md-3 news">
-            <h4>09<span>June</span></h4>          
+            <h4>{{ $event->created_at->format('d')}}<span>{{ $event->created_at->format('F')}}</span></h4>          
           </div>
           <div class="col-md-9 news-in in-news">
-            <h5><a href="single.html">Lorem ipsum dolor sit</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
-
+            <h5><a href="{{ url('acara', $event->id) }}">{{ $event->tajuk }}</a></h5>
+            <p>{{ $event->lokasi }}</p>
+          @endforeach
           </div>
           
           <div class="clearfix"> </div>

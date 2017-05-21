@@ -109,14 +109,15 @@
                     <div class="form-group">
                         <strong>Kumpulan Sasaran:</strong>
                             {{ Form::select('kumpulan_sasaran',
-                               ['Pelajar UKM' => 'Pelajar UKM', 'Staff UKM' => 'Staff UKM', 'Warga UKM' => 'Warga UKM', 'Warga Kolej Zaba' => 'Warga Kolej Zaba', 'Warga FTSM' => 'Warga FTSM', 'Warga KTSN' => 'Warga KTSN'], null, ['class' => 'form-control']) }}
+                                ['Pelajar Pra Siswazah' => 'Pelajar Pra Siswazah', 'Pelajar Pasca Siswazah' => 'Pelajar Pasca Siswazah', 'Staff UKM' => 'Staff UKM', 'Warga UKM' => 'Warga UKM', 'Warga Kolej Zaba' => 'Warga Kolej Zaba', 'Warga FTSM' => 'Warga FTSM', 'Warga KTSN' => 'Warga KTSN'], null, ['class' => 'form-control']) }}
+
                     </div>
                 </div>
 
                 <div class="col-lg-10 col-centered">
                     <div class="form-group">
                         <strong>Maximum Peserta:</strong>
-                            {!! Form::text('max_peserta', null, array('placeholder' => 'Maximum Peserta','class' => 'form-control')) !!}
+                            {!! Form::number('max_peserta', null, array('placeholder' => '0','class' => 'form-control')) !!}
                     </div>
                 </div>
 

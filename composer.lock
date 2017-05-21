@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "01331cb2e315778b943f3e63e2ea29bb",
-    "content-hash": "4795808537b9cef65203339fcde0ddc9",
+    "hash": "6a75c28db55f058e13f3bb5f3fbca2da",
+    "content-hash": "2c5343fc48e6111703b0bc9c82c60e16",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -57,22 +57,21 @@
         },
         {
             "name": "consoletvs/charts",
-            "version": "3.0.13",
+            "version": "4.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConsoleTVs/Charts.git",
-                "reference": "866cf60466a5ae150e39814fbec6d0f5aef260cc"
+                "reference": "7b0538b90f8d0374a366ddfc4b9ebf25164c0b90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/866cf60466a5ae150e39814fbec6d0f5aef260cc",
-                "reference": "866cf60466a5ae150e39814fbec6d0f5aef260cc",
+                "url": "https://api.github.com/repos/ConsoleTVs/Charts/zipball/7b0538b90f8d0374a366ddfc4b9ebf25164c0b90",
+                "reference": "7b0538b90f8d0374a366ddfc4b9ebf25164c0b90",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "5.1.* || 5.2.* || 5.3.* || 5.4.*",
+                "illuminate/support": "5.*",
                 "jlawrence/eos": "3.*",
-                "laravelcollective/html": "^5.0",
                 "php": ">=5.6.4"
             },
             "type": "library",
@@ -92,7 +91,7 @@
                 }
             ],
             "description": "Create charts for laravel using diferent charts libraries",
-            "time": "2017-01-25 14:34:37"
+            "time": "2017-04-23 15:20:58"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

@@ -55,7 +55,7 @@
             <h4>eBuletin UKM </h4>
             <p style="margin-top: 0px;">
                 Bandar Baru Bangi <br/>
-                Malaysia<br/>
+                Selangor Malaysia<br/>
                 <br/>
                 T +33 555 444 333<br/><br/>
             </p>
@@ -89,7 +89,6 @@
             <th width="15%">Tajuk</th>
             <th width="8%">Masa</th>
             <th width="8%">Lokasi</th>
-            <th width="8%">Tempoh Acara</th>
             <th width="10%">Kumpulan Sasaran</th>
             <th width="10%">Penganjur</th>
             <th width="10%">Contact No</th>
@@ -103,7 +102,6 @@
                         <td>{{ $event->tajuk }}</td>
                         <td>{{ $event->created_at->format('g:i A, d F Y') }}</td>
                         <td>{{ $event->lokasi }}</td>
-                        <td>{{ $event->tempoh }}</td>
                         <td>{{ $event->kumpulan_sasaran }}</td>
                         <td>{{ $event->penganjur }}</td>
                         <td>{{ $event->telephone }}</td>

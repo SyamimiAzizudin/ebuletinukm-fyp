@@ -55,6 +55,7 @@
             <h4>eBuletin UKM </h4>
             <p style="margin-top: 0px;">
                 Bandar Baru Bangi <br/>
+                Selangor</br>
                 Malaysia<br/>
                 <br/>
                 T +33 555 444 333<br/><br/>
@@ -97,7 +98,7 @@
                 @forelse($beritas as $berita)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $berita->created_at->format('F d, Y') }}</td>
+                        <td>{{ $berita->created_at->format('d F, Y') }}</td>
                         <td>{{ $berita->tajuk }}</td>
                         <td>{{ $berita->lokasi }}</td>
                         <td>{{ $berita->kumpulan_sasaran }}</td>

@@ -112,8 +112,8 @@
             </li>
         @endif
      </ul>  
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
+    </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
     </nav>
     <!-- start search-->
     
