@@ -29,21 +29,21 @@
                 <div class="col-lg-10 col-centered">
                     <div class="form-group">
                         <strong>Nombor Matrik:</strong>
-                        <td>{{Auth::user()->no_matrik}}</td>
+                        <td>{{auth()->user()->no_matrik}}</td>
                     </div>
                 </div>
 
                 <div class="col-lg-10 col-centered">
                      <div class="form-group">
                         <strong>Nama:</strong>
-                            <td>{{Auth::user()->username}}</td>
+                            <td>{{auth()->user()->username}}</td>
                     </div>
                 </div>
 
                 <div class="col-lg-10 col-centered">
                      <div class="form-group">
                         <strong>Email:</strong>
-                            <td>{{Auth::user()->email}}</td>
+                            <td>{{auth()->user()->email}}</td>
                     </div>
                 </div>
             </div>
@@ -70,8 +70,7 @@
                 <div class="col-lg-10 col-centered">
                     <div class="form-group">
                         <strong>Kategori Hebahan:</strong>
-                            <select class="form-control" name="kategori_berita">
-                                <option disabled selected="">Sila Pilih</option>
+                            <select class="form-control select2" name="kategori_berita[]" multiple>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
@@ -112,12 +111,11 @@
                         </div>
                 </div>
 
-          {!! Form::close() !!}    
+          {!! Form::close() !!}
             </div>
         </div>
-    </div> 
+    </div>
 </div>
 @endsection
 @section('script')
 @endsection
-

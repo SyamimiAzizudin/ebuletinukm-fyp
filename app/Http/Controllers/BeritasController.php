@@ -71,7 +71,7 @@ class BeritasController extends Controller
 
     public function home()
     {
-        
+
         $beritas = Berita::with('user')->where('is_published', true)->paginate(6);
         $events = Event::with('user')->where('is_published', true)->paginate(6);
 
@@ -111,8 +111,6 @@ class BeritasController extends Controller
             $request->gambar->move(public_path('images/'), $image);
         }
 
-        $category = Category::findOrFail($request->kategori_berita);
-
         $berita = new Berita;
         $berita->tajuk = $request->tajuk;
         $berita->huraian = $request->huraian;
@@ -122,7 +120,10 @@ class BeritasController extends Controller
         $berita->user_id = Auth::user()->id;
         $berita->save();
 
-        $berita->categories()->save($category);
+        foreach ($request->kategori_berita as $id) {
+            $category = Category::findOrFail($id);
+            $berita->categories()->save($category);
+        }
 
         return redirect()->action('BeritasController@store')->withMessage('Perincian berita telah berjaya dicipta.');
 
@@ -169,15 +170,12 @@ class BeritasController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-         $this->validate ($request, [
+        $this->validate ($request, [
             'tajuk' => 'required',
             'huraian' => 'required',
             'lokasi' => 'required',
             'kumpulan_sasaran' => 'required',
         ]);
-
-        $category = Category::findOrFail($request->kategori_program);
 
         $berita = Berita::findOrFail($id);
 
@@ -194,31 +192,32 @@ class BeritasController extends Controller
         $berita->kumpulan_sasaran = $request->kumpulan_sasaran;
         $berita->save();
 
-        if (!$category->id == $request->kategori_berita) 
-        {
-            $berita->categories()->save($category);
+        foreach ($request->kategori_program as $id) {
+            $category = Category::findOrFail($id);
+            if (! in_array($category->id, $berita->categories()->pluck('id')->toArray())) {
+                $berita->categories()->save($category);
+            }
         }
 
         return redirect()->action('BeritasController@index')->withMessage('Perincian berita telah berjaya dikemaskini.');
-
     }
 
     public function published($id)
     {
       $berita = Berita::findOrFail($id);
       $berita->is_published = $berita->is_published == true ? false : true ;
-      $berita->save();    
+      $berita->save();
       $timestamp = Carbon::now();
 
       $user = $berita->user;
       $matrik = $berita->user->no_matrik;
-      $nama_pembaca = $berita->user->username; 
+      $nama_pembaca = $berita->user->username;
       $tajuk = $berita->tajuk;
       $huraian = $berita->huraian;
       $lokasi = $berita->lokasi;
       $kumpulan_sasaran = $berita->kumpulan_sasaran;
 
-      $user->notify(new Hebahan($timestamp, $matrik, $nama_pembaca, $tajuk, $huraian, $lokasi, $kumpulan_sasaran ));
+    //   $user->notify(new Hebahan($timestamp, $matrik, $nama_pembaca, $tajuk, $huraian, $lokasi, $kumpulan_sasaran ));
       return back()->withMessage('Berita anda telah berjaya dihebahkan dan email kepada anda.');
     }
 
@@ -240,7 +239,7 @@ class BeritasController extends Controller
         return view('laporan.index', ['chart_berita' => $chart_berita], ['chart_acara' => $chart_acara]);
     }
 
-    public function showLaporanBerita() 
+    public function showLaporanBerita()
     {
       $beritas = Berita::all();
       $count = Berita::with('user')->count();
@@ -251,7 +250,7 @@ class BeritasController extends Controller
       return $pdf->stream('LaporanHebahanBerita.pdf');
     }
 
-    public function showLaporanAcara() 
+    public function showLaporanAcara()
     {
       $events = Event::all();
       $count = Event::with('user')->count();

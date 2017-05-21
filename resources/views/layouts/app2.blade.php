@@ -11,48 +11,20 @@
 
     <title>{{ config('app.name', 'eBuletin UKM') }}</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
     <!-- Include Required Prerequisites -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css" />
-     
-    <!-- Include Date Range Picker -->
-    <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+    {{--  <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
-
-    <!-- Styles -->
-   {{--  <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     <link rel="stylesheet" type="text/css" href="{{('/daterangepicker.css') }}" />
     <link rel='stylesheet' href="{{ ('/fullcalendar/fullcalendar.css') }}">
-    <script src="{{ ('/fullcalendar/lib/jquery.min.js') }}"></script>
-    <script src="{{('/fullcalendar/lib/moment.min.js') }}"></script>
-    <script src="{{('/fullcalendar/fullcalendar.js') }}"></script>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
-    <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
-
-
 <style>
 .thumbnail img {
   display: block;
@@ -127,7 +99,7 @@
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> 
+                                                     document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span>
                                             Log Keluar
                                         </a>
 
@@ -179,17 +151,18 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{ ('/moment.min.js') }}"></script>
-    <script type="text/javascript" src="{{ ('/daterangepicker.js') }}"></script>
-
+    <script src="{{ ('/moment.min.js') }}"></script>
+    <script src="{{ ('/daterangepicker.js') }}"></script>
+    <script src="{{('/fullcalendar/lib/moment.min.js') }}"></script>
+    <script src="{{('/fullcalendar/fullcalendar.js') }}"></script>
+    <script src="{{ asset('js/add-image.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
 
 
     <script type="text/javascript">
         $(function () {
             $('input[name="time"]').daterangepicker({
-            minDate: moment("<?php echo date('Y-m-d G');?>"),
+            minDate: moment("{{date('Y-m-d G')}}"),
             timePicker: true,
             timePicker24Hour: true,
             timePickerIncrement: 15,
@@ -199,25 +172,24 @@
                 separator:  ' - ',
             }
         });
-    });
-    </script>
 
-    <script>
-      $(document).on("click", "#confirm-modal", function(e) {
+        $('.select2').select2({
+            placeholder: 'Sila Pilih'
+        });
+    });
+
+    $(document).on("click", "#confirm-modal", function(e) {
         window.console&&console.log('foo');
         var url = $(this).attr("href");
-        window.console&&console.log(url);
         e.preventDefault();
 
         $('#destroy-form').attr('action', url);
         $('#destroy-modal').modal({ show: true });
-      });
+    });
     </script>
-        
-    <script src="{{ asset('js/add-image.js') }}"></script>
 
     @yield('scripts')
-   
+
 
 </body>
 </html>
