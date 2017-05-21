@@ -99,8 +99,8 @@
                                         Paparan Buletin <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <li><a href="{{ url('papar') }}">Paparan Berita</a></li>
-                                        <li><a href="{{ url('acara') }}">Paparan Acara</a></li>
+                                        <li><a href="{{ url('papar') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Berita</a></li>
+                                        <li><a href="{{ url('acara') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Acara</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="{{ url('berita') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Berita</a></li>

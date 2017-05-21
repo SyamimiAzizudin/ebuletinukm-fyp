@@ -20,7 +20,6 @@ class CreateEventsTable extends Migration
             $table->timestamp('masaMula');
             $table->timestamp('masaAkhir')->nullable();
             $table->string('lokasi');
-            $table->string('tempoh');
             $table->string('kumpulan_sasaran');
             $table->string('max_peserta');
             $table->string('penganjur');

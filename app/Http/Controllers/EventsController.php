@@ -74,7 +74,6 @@ class EventsController extends Controller
             'huraian' => 'required',
             'time' => 'required',
             'lokasi' => 'required',
-            'tempoh' => 'required',
             'kumpulan_sasaran' => 'required',
             'max_peserta' => 'required',
             'penganjur' => 'required',
@@ -85,7 +84,7 @@ class EventsController extends Controller
 
         if ($request->hasFile('gambar')) 
         {
-            $image = '/images/event_image_' . time() . '.' . $request->gambar->getClientOriginalExtension();
+            $image = '/images/gambar_acara_' . time() . '.' . $request->gambar->getClientOriginalExtension();
             $request->gambar->move(public_path('images/'), $image);
         }
 
@@ -97,7 +96,6 @@ class EventsController extends Controller
         $event->masaMula = $this->change_date_format($time[0]);
         $event->masaAkhir = $this->change_date_format($time[1]);
         $event->lokasi = $request->lokasi;
-        $event->tempoh = $request->tempoh;
         $event->kumpulan_sasaran = $request->kumpulan_sasaran;
         $event->max_peserta = $request->max_peserta;
         $event->penganjur = $request->penganjur;
@@ -111,7 +109,7 @@ class EventsController extends Controller
 
             $loop = count($request->images) - 1;
             foreach(range(0, $loop) as $index) {
-                $img = '/images/event_image_' . time() . (($index+1)*10) . '.' . $request->images[$index]->getClientOriginalExtension();
+                $img = '/images/gambar_acara_' . time() . (($index+1)*10) . '.' . $request->images[$index]->getClientOriginalExtension();
                 $request->images[$index]->move(public_path('images/'), $img);
 
                 $event_image = new MultipleGambar;
@@ -188,7 +186,6 @@ class EventsController extends Controller
             'huraian' => 'required',
             'time' => 'required',
             'lokasi' => 'required',
-            'tempoh' => 'required',
             'kumpulan_sasaran' => 'required',
             'max_peserta' => 'required',
             'penganjur' => 'required',
@@ -202,7 +199,7 @@ class EventsController extends Controller
 
         if ($request->hasFile('gambar')) 
         {
-            $image = '/images/event_image_' . time() . '.' . $request->gambar->getClientOriginalExtension();
+            $image = '/images/gambar_acara_' . time() . '.' . $request->gambar->getClientOriginalExtension();
             $request->gambar->move(public_path('images/'), $image);
             $event->gambar = $image;
         }
@@ -212,7 +209,6 @@ class EventsController extends Controller
         $event->masaMula = $this->change_date_format($time[0]);
         $event->masaAkhir = $this->change_date_format($time[1]);
         $event->lokasi = $request->lokasi;
-        $event->tempoh = $request->tempoh;
         $event->kumpulan_sasaran = $request->kumpulan_sasaran;
         $event->max_peserta = $request->max_peserta;
         $event->penganjur = $request->penganjur;
@@ -224,7 +220,7 @@ class EventsController extends Controller
 
             $loop = count($request->images) - 1;
             foreach(range(0, $loop) as $index) {
-                $img = '/images/event_image_' . time() . (($index+1)*10) . '.' . $request->images[$index]->getClientOriginalExtension();
+                $img = '/images/gambar_acara_' . time() . (($index+1)*10) . '.' . $request->images[$index]->getClientOriginalExtension();
                 $request->images[$index]->move(public_path('images/'), $img);
 
                 $event_image = new MultipleGambar;
@@ -247,6 +243,7 @@ class EventsController extends Controller
     {
         $event = Event::findOrFail($id);
         $event->is_published = $event->is_published == true ? false : true ;
+        $event->save();
         $timestamp = Carbon::now();
         $first_date = new DateTime($event->masaMula);
         $second_date = new DateTime($event->masaAkhir);
@@ -266,7 +263,7 @@ class EventsController extends Controller
         $kumpulan_sasaran = $event->kumpulan_sasaran;
 
         $user->notify(new NotifyEvent($timestamp, $matrik, $nama_pengarang, $tajuk, $huraian, $first_date, $second_date, $duration, $lokasi, $max_peserta, $penganjur, $telephone, $kumpulan_sasaran ));
-        return back()->withMessage('Perincian program telah berjaya diemail.');
+        return back()->withMessage('Perincian program telah berjaya dihebahkan dan email kepada anda.');
     }
 
     /**

@@ -65,7 +65,7 @@ class ProfilesController extends Controller
 
         if ($request->hasFile('gambar'))
         {
-            $image = '/images/' . time() . '.' . $request->gambar->getClientOriginalExtension();
+            $image = '/images/gambar_profil_' . time() . '.' . $request->gambar->getClientOriginalExtension();
             $request->gambar->move(public_path('images/'), $image);
         }
 

@@ -80,7 +80,7 @@ class NotifyEvent extends Notification
                     ->line("Tempoh Acara: {$this->duration}")
                     ->line("Lokasi: {$this->lokasi}")
                     ->line("Kumpulan Sasaran Acara: {$this->kumpulan_sasaran}")
-                    ->line("Jumlah Peserta: {$this->max_peserta}")
+                    ->line("Jumlah Peserta: {$this->max_peserta} orang")
                     ->line("Penganjur: {$this->penganjur}")
                     ->line("Contact No: {$this->telephone}")
                     ->action('Notification Action', url('/'))

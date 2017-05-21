@@ -1,5 +1,16 @@
 @extends('layouts.app2')
 @section('content')
+
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
+            <li><a href="{{ url('event') }}">Hebahan Acara</a></li>
+            <li class="active">Cipta Acara</li>
+        </ol>
+    </div>
+</div>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h1>Cipta Acara</h1>
@@ -70,7 +81,7 @@
                 <div class="col-lg-10 col-centered">
                     <div class="form-group"> 
                     @if($errors->has('time')) has-error @endif
-                        <label  for="time">Masa</label>
+                        <label  for="time">Tarikh dan Masa</label>
                         <div class="input-group">
 
                             <input type="text" class="form-control" name="time" placeholder="Pilih masa program" value="{{ old('time') }}">
@@ -86,27 +97,6 @@
                         @endif
                     </div>
                 </div>
-      
-                <div class="col-lg-10 col-centered">
-                    <div class="form-group">
-                        <strong>Tempoh Berlangsung:</strong>
-                            {!! Form::text('tempoh', null, array('placeholder' => 'Tempoh Program','class' => 'form-control')) !!}
-                    </div>
-                </div>
-            
-                {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Tarikh Diadakan:</strong>
-                            {!! Form::date('tarikh', null, array('class' => 'form-control')) !!}
-                    </div>
-                </div> --}}
-
-                {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Masa Berlangsung:</strong>
-                            {!! Form::time('masa', null, array('class' => 'form-control')) !!}
-                    </div>
-                </div> --}}
 
                 <div class="col-lg-10 col-centered">
                     <div class="form-group">
@@ -168,8 +158,8 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                 <div class="form-group">
-                    <a href="{{ action('EventsController@index') }}" class="btn btn-default">Batal</a>
-                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Cipta</button>
+                    <a href="{{ action('EventsController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Batal</a>
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Cipta</button>
                 </div>
             </div>
 

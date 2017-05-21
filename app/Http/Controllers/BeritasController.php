@@ -107,7 +107,7 @@ class BeritasController extends Controller
 
         if ($request->hasFile('gambar'))
         {
-            $image = '/images/berita_image_' . time() . '.' . $request->gambar->getClientOriginalExtension();
+            $image = '/images/gambar_berita_' . time() . '.' . $request->gambar->getClientOriginalExtension();
             $request->gambar->move(public_path('images/'), $image);
         }
 
@@ -183,7 +183,7 @@ class BeritasController extends Controller
 
         if ($request->hasFile('gambar'))
         {
-            $image = '/images/berita_image_' . time() . '.' . $request->gambar->getClientOriginalExtension();
+            $image = '/images/gambar_berita_' . time() . '.' . $request->gambar->getClientOriginalExtension();
             $request->gambar->move(public_path('images/'), $image);
             $berita->gambar = $image;
         }
@@ -219,7 +219,7 @@ class BeritasController extends Controller
       $kumpulan_sasaran = $berita->kumpulan_sasaran;
 
       $user->notify(new Hebahan($timestamp, $matrik, $nama_pembaca, $tajuk, $huraian, $lokasi, $kumpulan_sasaran ));
-      return back()->withMessage('Berita telah berjaya diemail.');
+      return back()->withMessage('Berita anda telah berjaya dihebahkan dan email kepada anda.');
     }
 
     public function janalaporan()

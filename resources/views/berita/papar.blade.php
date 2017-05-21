@@ -1,5 +1,4 @@
 @extends('layouts.app2')
-
 @section('content')
 
 <div class="row">
@@ -14,8 +13,8 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <form class="form-inline my-4 my-lg-5 pull-right" method="get" action="{{ url('papar') }}">
-            <input class="form-control" type="text" placeholder="Carian Buletin" name="search">
-            <button class="btn btn-outline-success pull-right" type="submit">Cari</button>
+            <input class="form-control mr-sm-2" type="text" placeholder="Carian Buletin" name="search"> 
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="glyphicon glyphicon-search"></span> Cari</button>
         </form>
         <h2>Buletin UKM</h2>
     </div>

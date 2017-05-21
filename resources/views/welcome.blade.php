@@ -48,22 +48,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
           @if(Auth::check())
-      <li class="active"><a href="{{ url('/home') }}">Home </a></li>
+      <li class="active"><a href="{{ url('/home') }}"><span class="glyphicon glyphicon-home"></span> Home </a></li>
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paparan <span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-calendar"></span> Paparan <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url('papar') }}">Paparan Berita</a></li>
-                    <li><a href="{{ url('acara') }}">Paparan Acara</a></li>
+                    <li><a href="{{ url('papar') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Berita</a></li>
+                    <li><a href="{{ url('acara') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Acara</a></li>
                 </ul>
             </li>
             <li>
-                <a href="{{ url('berita') }}">Hebahan Berita</a>
+                <a href="{{ url('berita') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Berita</a>
             </li>
             <li>
-                <a href="{{ url('event') }}">Hebahan Acara</a>
+                <a href="{{ url('event') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Acara</a>
             </li>
-            <li><a href="{{ url('event') }}">Tetapan Buletin</a></li>
-            <li><a href="{{ url('laporan') }}">Laporan Buletin</a></li>
+            <li><a href="{{ url('event') }}"><span class="glyphicon glyphicon-cog"></span> Tetapan Buletin</a></li>
+            <li><a href="{{ url('laporan') }}"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin</a></li>
             <unread></unread>
         @endif
     </ul>
@@ -71,19 +71,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!-- Authentication Links -->
         @if (Auth::guest())
             <li>
-                <a href="{{ route('login') }}">Log Masuk</a>
+                <a href="{{ route('login') }}"><span class="glyphicon glyphicon-lock"></span> Log Masuk</a>
             </li>
             <li>
-                <a href="{{ route('register') }}">Daftar Masuk</a>
+                <a href="{{ route('register') }}"><span class="glyphicon glyphicon-user"></span> Daftar Masuk</a>
             </li>
         @else
             <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ Auth::user()->username }} <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-check"></span> {{ Auth::user()->username }} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="{{ url('profile') }}"> Profil</a></li>
+                    <li><a href="{{ url('profile') }}"><span class="glyphicon glyphicon-user"></span> Profil</a></li>
                     <li>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();"> Log Keluar
+                                document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-log-out"></span> Log Keluar
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -234,43 +234,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="feature-grid">
           <div class="col-md-4 feature-grid">
-            <h5><a href="single.html">Consectetur adipisicing</a></h5>
+            <h5><a href="http://www.ukm.my/ptsl/">Perpustakaan Tun Sri Lanang (PTSL)</a></h5>
             <div class=" fe-grid">
               <i class="glyphicon glyphicon-map-marker"></i>
               <div class="feature-text">
-                <p>Tempor Street Lorem ipsum dolor,
-                TL 19034-88974, Country</p>
+                <p>Jalan Nik Ahmed Kamil, 43600 Bangi, Selangor, Malaysia</p>
               </div>
               <div class="clearfix"> </div>
             </div>
-            <a href="single.html"><img src="images/pc.jpg" class="img-responsive" alt=""></a>
-            <a href="single.html" class="read"> Read More</a>
+            <a href="http://www.ukm.my/ptsl/"><img src="images/pc.jpg" class="img-responsive" alt=""></a>
+            <a href="http://www.ukm.my/ptsl/" class="read"> Read More</a>
           </div>
           <div class="col-md-4 feature-grid">
-            <h5><a href="single.html">Consectetur adipisicing</a></h5>
+            <h5><a href="http://www.ukm.my/citra/">Pusat Citra Universiti</a></h5>
             <div class=" fe-grid">
               <i class="glyphicon glyphicon-map-marker"></i>
               <div class="feature-text">
-                <p>Tempor Street Lorem ipsum dolor,
-                TL 19034-88974, Country</p>
+                <p>Pusat Citra Universiti, UKM, 43600 Bangi, Selangor, Malaysia</p>
               </div>
               <div class="clearfix"> </div>
             </div>
-            <a href="single.html"><img src="images/pc1.jpg" class="img-responsive" alt=""></a>
-            <a href="single.html" class="read"> Read More</a>
+            <a href="http://www.ukm.my/citra/"><img src="images/pc1.jpg" class="img-responsive" alt=""></a>
+            <a href="http://www.ukm.my/citra/" class="read"> Read More</a>
           </div>
           <div class="col-md-4 feature-grid">
-            <h5><a href="single.html">Consectetur adipisicing</a></h5>
+            <h5><a href="http://www.ukm.my/pkp/">Bahagian Pengurusan Akademik (BPA)</a></h5>
             <div class=" fe-grid">
               <i class="glyphicon glyphicon-map-marker"></i>
               <div class="feature-text">
-                <p>Tempor Street Lorem ipsum dolor,
-                TL 19034-88974, Country</p>
+                <p>Pusat Pengurusan Akademik UKM, UKM, 43600 Bangi, Selangor, Malaysia</p>
               </div>
               <div class="clearfix"> </div>
             </div>
-            <a href="single.html"><img src="images/pc2.jpg" class="img-responsive" alt=""></a>
-            <a href="single.html" class="read"> Read More</a>
+            <a href="http://www.ukm.my/pkp/"><img src="images/pc2.jpg" class="img-responsive" alt=""></a>
+            <a href="http://www.ukm.my/pkp/" class="read"> Read More</a>
           </div>
           <div class="clearfix"> </div> 
         </div>

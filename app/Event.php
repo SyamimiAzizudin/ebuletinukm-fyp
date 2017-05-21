@@ -15,7 +15,6 @@ class Event extends Model
         'masaMula',
         'masaAkhir',
         'lokasi',
-        'tempoh',
         'kumpulan_sasaran',
         'max_peserta',
         'penganjur',

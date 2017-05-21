@@ -1,5 +1,16 @@
 @extends('layouts.app2')
 @section('content')
+
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
+            <li><a href="{{ url('profile') }}">Paparan Profil</a></li>
+            <li class="active">Kemaskini Profil {{ Auth::user()->username }} </li>
+        </ol>
+    </div>
+</div>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h2>Kemaskini Profil</h2>
@@ -12,8 +23,6 @@
 
                     {{ csrf_field() }}
                     {{ method_field('PATCH') }}
-
-                {{-- {!! Form::model($user, ['class' => 'form-horizontal', 'method' => 'PATCH','action' =>  ['ProfilesController@update', $user->profile->id], 'files' => true]) !!} --}}
 
                         <div class="form-group">
                             <label for="no_matrik" class="col-md-4 control-label">Nombor Matrik</label>
@@ -110,7 +119,7 @@
                             <div class="col-md-6">
                             <input type="file" name="gambar" id="fileUpload" class="hide">
                                 <label for="fileUpload" style="width: 500px">
-                                    <img class="image-placeholder" src="{{ old('gambar', $user->profile->gambar) }}" width="50%"/>
+                                    <img class="image-placeholder" src="{{ asset($user->profile->gambar) }}" width="50%"/>
                             </div>
                     </div>
 

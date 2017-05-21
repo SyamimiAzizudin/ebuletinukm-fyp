@@ -1,9 +1,21 @@
 @extends('layouts.app2')
 @section('content')
+
+<div class="row">
+    <div clss="col-lg-12">
+        <ol class="breadcrumb">
+            <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
+            <li><a href="{{ url('berita') }}">Hebahan Buletin</a></li>
+            <li class="active">Cipta Buletin</li>
+        </ol>
+    </div>
+</div>
+
 <div class="panel panel-default">
     <div class="panel-heading">
         <h1>Cipta Berita</h1>
     </div>
+
     <div class="panel-body">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -95,8 +107,8 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                         <div class="form-group">
-                            <a href="{{ action('BeritasController@index') }}" class="btn btn-default">Batal</a>
-                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Cipta</button>
+                            <a href="{{ action('BeritasController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Batal</a>
+                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Cipta</button>
                         </div>
                 </div>
 

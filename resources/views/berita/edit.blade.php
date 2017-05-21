@@ -109,8 +109,8 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 text-right">
                     <div class="form-group">
-                        <a href="{{ action('BeritasController@index') }}" class="btn btn-default">Batal</a>
-                        <button type="submit" class="btn btn-success">Kemaskini</button>
+                        <a href="{{ action('BeritasController@index') }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Batal</a>
+                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Kemaskini</button>
                     </div>
                 </div>
 
