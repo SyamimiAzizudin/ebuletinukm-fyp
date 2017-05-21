@@ -91,8 +91,7 @@ Route::group(['before' => 'pengarang|pembaca'], function() {
     /**
      * Tetapan Buletin
      */
-    Route::get('/tetapan/{name}', 'BeritasController@tetapan');
-    
+    Route::get('/tetapan', 'BeritasController@tetapan');
+
 
 });
-

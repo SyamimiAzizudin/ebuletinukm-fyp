@@ -72,10 +72,9 @@
                 <div class="col-lg-10 col-centered">
                     <div class="form-group">
                         <strong>Kategori Hebahan:</strong>
-                            <select class="form-control" name="kategori_program">
-                                <option disabled selected="">Sila Pilih</option>
+                            <select class="form-control select2" name="kategori_program[]" multiple>
                                 @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}" {{  $category->id == $berita->categories()->first()->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}" {{ in_array($category->id, $berita->categories()->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $category->name }}</option>
                                 @endforeach
                             </select>
                     </div>
@@ -123,5 +122,3 @@
 @endsection
 @section('script')
 @endsection
-
-

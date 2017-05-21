@@ -20,6 +20,9 @@ class Berita extends Model
         'gambar'
     ];
 
+    /**
+     * 
+     */
     protected $casts = [
         'is_published' => 'boolean'
     ];

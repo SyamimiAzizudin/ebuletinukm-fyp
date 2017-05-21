@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class MultipleGambar extends Model
 {
     protected $fillable = [
-	    'event_id', 
+	    'event_id',
 	    'image_path'
     ];
 
@@ -19,14 +19,19 @@ class MultipleGambar extends Model
 	    'event_id'
     ];
 
+    /**
+     *
+     */
     public function event()
     {
     	return $this->belongsTo(Event::class, 'event_id', 'id');
     }
 
+    /**
+     *
+     */
     public function getImagePathAttribute($value)
     {
     	return asset($value);
     }
-
 }
