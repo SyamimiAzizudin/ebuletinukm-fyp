@@ -57,7 +57,7 @@
               <?php $i++ ?>
               @empty
               <tr>
-                <td colspan="6">Tiada program dihebahkan.</td>
+                <td colspan="7">Tiada program dihebahkan.</td>
               </tr>
               @endforelse
             </tbody>
