@@ -31,6 +31,9 @@ class EventsController extends Controller
 
     }
 
+    /**
+     *
+     */
     public function category ($id)
     {
         $events = Event::whereHas('categories', function ($query) use ($id) {
@@ -42,6 +45,9 @@ class EventsController extends Controller
         return view('event.papar', compact('categories', 'events'));
     }
 
+    /**
+     *
+     */
     public function papar()
     {
         $searchResults =Input::get('search');
@@ -82,13 +88,11 @@ class EventsController extends Controller
 
         $time = explode(" - ", $request->input('time'));
 
-        if ($request->hasFile('gambar')) 
+        if ($request->hasFile('gambar'))
         {
             $image = '/images/gambar_acara_' . time() . '.' . $request->gambar->getClientOriginalExtension();
             $request->gambar->move(public_path('images/'), $image);
         }
-
-        $category = Category::findOrFail($request->kategori_program);
 
         $event = new Event;
         $event->tajuk = $request->tajuk;
@@ -101,12 +105,11 @@ class EventsController extends Controller
         $event->penganjur = $request->penganjur;
         $event->telephone = $request->telephone;
         $event->gambar = $image;
-        $event->user_id = Auth::user()->id;
+        $event->user_id = auth()->user()->id;
         $event->save();
 
-        if ($request->hasFile('images')) 
+        if ($request->hasFile('images'))
         {
-
             $loop = count($request->images) - 1;
             foreach(range(0, $loop) as $index) {
                 $img = '/images/gambar_acara_' . time() . (($index+1)*10) . '.' . $request->images[$index]->getClientOriginalExtension();
@@ -119,10 +122,12 @@ class EventsController extends Controller
             }
         }
 
-        $event->categories()->save($category);
+        foreach ($request->kategori_program as $id) {
+            $category = Category::findOrFail($id);
+            $event->categories()->save($category);
+        }
 
         return redirect()->action('EventsController@store')->withMessage('Perincian program telah berjaya dicipta.');
-
     }
 
     /**
@@ -194,10 +199,7 @@ class EventsController extends Controller
 
         $time = explode(" - ", $request->input('time'));
         $event = Event::findOrFail($id);
-        $category = Category::findOrFail($request->kategori_program);
-
-
-        if ($request->hasFile('gambar')) 
+        if ($request->hasFile('gambar'))
         {
             $image = '/images/gambar_acara_' . time() . '.' . $request->gambar->getClientOriginalExtension();
             $request->gambar->move(public_path('images/'), $image);
@@ -215,9 +217,8 @@ class EventsController extends Controller
         $event->telephone = $request->telephone;
         $event->save();
 
-        if ($request->hasFile('images')) 
+        if ($request->hasFile('images'))
         {
-
             $loop = count($request->images) - 1;
             foreach(range(0, $loop) as $index) {
                 $img = '/images/gambar_acara_' . time() . (($index+1)*10) . '.' . $request->images[$index]->getClientOriginalExtension();
@@ -230,15 +231,17 @@ class EventsController extends Controller
             }
         }
 
-        if (!$category->id == $request->kategori_program) 
-        {
-            $event->categories()->save($category);
+        foreach ($request->kategori_program as $id) {
+            $category = Category::findOrFail($id);
+            if (! in_array($category->id, $event->categories()->pluck('id')->toArray())) {
+                $event->categories()->save($category);
+            }
         }
 
         return redirect()->action('EventsController@index')->withMessage('Perincian program telah berjaya dikemaskini.');
 
     }
-    
+
     public function published($id)
     {
         $event = Event::findOrFail($id);
@@ -252,7 +255,7 @@ class EventsController extends Controller
 
         $user = $event->user;
         $matrik = $event->user->no_matrik;
-        $nama_pengarang = $event->user->username; 
+        $nama_pengarang = $event->user->username;
         $tajuk = $event->tajuk;
         $huraian = $event->huraian;
         $duration = $event->duration;
@@ -291,13 +294,13 @@ class EventsController extends Controller
         $time = DateTime::createFromFormat('d/m/Y H:i:s', $date);
         return $time->format('Y-m-d H:i:s');
     }
-    
+
     public function change_date_format_fullcalendar($date)
     {
         $time = DateTime::createFromFormat('Y-m-d H:i:s', $date);
         return $time->format('d/m/Y H:i:s');
     }
-           
+
     public function format_interval(\DateInterval $interval)
     {
         $result = "";
@@ -307,7 +310,7 @@ class EventsController extends Controller
         if ($interval->h) { $result .= $interval->format("%h hour(s) "); }
         if ($interval->i) { $result .= $interval->format("%i minute(s) "); }
         if ($interval->s) { $result .= $interval->format("%s second(s) "); }
-        
+
         return $result;
     }
 

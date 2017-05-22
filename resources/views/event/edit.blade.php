@@ -70,17 +70,16 @@
             <div class="col-lg-10 col-centered">
                 <div class="form-group">
                     <strong>Kategori Program:</strong>
-                        <select class="form-control" name="kategori_program">
-                            <option disabled selected="">Sila Pilih</option>
+                        <select class="form-control select2" name="kategori_program[]" multiple>
                             @foreach ($categories as $category)
-                                <option value="{{ $category->id }}" {{  $category->id == $event->categories()->first()->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                <option value="{{ $category->id }}" {{  in_array($category->id, $event->categories()->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
                 </div>
             </div>
 
             <div class="col-lg-10 col-centered">
-                <div class="form-group"> 
+                <div class="form-group">
                 @if($errors->has('time')) has-error @endif
                     <label  for="time">Tarikh dan Masa</label>
                     <div class="input-group">
@@ -92,12 +91,12 @@
                     </div>
 
                     @if ($errors->has('time'))
-                        <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span> 
+                        <p class="help-block"><span class="glyphicon glyphicon-exclamation-sign"></span>
                         {{ $errors->first('time') }}
                         </p>
                     @endif
                 </div>
-            </div> 
+            </div>
 
             <div class="col-lg-10 col-centered">
                 <div class="form-group">
