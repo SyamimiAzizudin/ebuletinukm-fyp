@@ -57,7 +57,8 @@
                 Bandar Baru Bangi <br/>
                 Selangor Malaysia<br/>
                 <br/>
-                T +33 555 444 333<br/><br/>
+                T +03 8921 5555<br/>
+                E www.ukm.my<br/><br/>
             </p>
         </td>
     </tr>
@@ -87,7 +88,7 @@
         <tr>
             <th width="2%">Bil</th>
             <th width="15%">Tajuk</th>
-            <th width="8%">Masa</th>
+            <th width="8%">Masa Hebahan</th>
             <th width="8%">Lokasi</th>
             <th width="10%">Kumpulan Sasaran</th>
             <th width="10%">Penganjur</th>

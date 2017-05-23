@@ -3,7 +3,7 @@
 
 <div class="row">
     <div clss="col-lg-12">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb" style="background-color:#d6f5f5;">
             <li>You are here: <a href="{{ url('/') }}">Halaman Utama</a></li>
             <li class="active">Paparan Buletin</li>
         </ol>
@@ -11,10 +11,10 @@
 </div>
 
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading" style="background-color:#33cccc;" >
         <form class="form-inline my-4 my-lg-5 pull-right" method="get" action="{{ url('papar') }}">
             <input class="form-control mr-sm-2" type="text" placeholder="Carian Buletin" name="search"> 
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><span class="glyphicon glyphicon-search"></span> Cari</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="background-color:#d6f5f5;"><span class="glyphicon glyphicon-search"></span> Cari</button>
         </form>
         <h2>Buletin UKM</h2>
     </div>
@@ -37,14 +37,14 @@
             <div class="col-md-8">
 
                 <div class="table-responsive" >
-                    <table class="table table-striped">
-                        <thead>
+                    <table class="table table-striped" >
+                        <thead >
                             <tr>
                                 <th width="20%"></th>
                                 <th width="80%"></th>
                             </tr>
                         </thead>
-                        <tbody pull-{right}>
+                        <tbody pull-{right} >
                         <?php $i = 0 ?>
                         @forelse($beritas as $berita)
                         <tr>

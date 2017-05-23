@@ -65,11 +65,11 @@
             </li>
             <li><a href="{{ url('event') }}">Tetapan Buletin</a></li>
             <li><a href="{{ url('laporan') }}">Laporan Buletin</a></li>
-            <unread></unread>
+            
         @endif
-    </ul>
+
         <ul class="nav navbar-right">
-                        <!-- Authentication Links -->
+        <!-- Authentication Links -->
         @if (Auth::guest())
             <li>
                 <a href="{{ route('login') }}">Log Masuk</a>
@@ -96,6 +96,7 @@
             </li>
         @endif
         </ul>
+      </ul>
     </div>
       <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">

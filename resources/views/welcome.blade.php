@@ -48,7 +48,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <!— Left Side Of Navbar —>
               <ul class="nav navbar-nav">
-                <li><a class="navbar-brand" href="{{ url('/') }}" >{{ config('app.name', 'eBuletin UKM') }}</a>
+                <li><a class="navbar-brand" href="{{ url('/home') }}" >{{ config('app.name', 'eBuletin UKM') }}</a>
               </li>
 
           <!— Right Side Of Navbar —>

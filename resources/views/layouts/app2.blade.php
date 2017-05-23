@@ -42,9 +42,10 @@
 </head>
 <body>
     <div id="app" >
-        <nav class="navbar navbar-default navbar-static-top">
+
+        <nav class="navbar navbar-default navbar-static-top" style="background-color:#33cccc;">
             <div class="container">
-                <div class="navbar-header">
+                <div class="navbar-header" >
 
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -55,8 +56,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ url('/home') }}"><font color="black">
+                        {{ config('app.name', 'Laravel') }}</font>
                     </a>
                 </div>
 
@@ -67,18 +68,18 @@
 
                             {{-- @if ($user->userRole == 'pengarang') --}}
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-calendar"></span>
-                                        Paparan Buletin <span class="caret"></span>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="background-color:#33cccc;"><font color="black"><span class="glyphicon glyphicon-calendar"></span>
+                                        Paparan Buletin <span class="caret"></span></font>
                                     </a>
-                                    <ul class="dropdown-menu" role="menu">
+                                    <ul class="dropdown-menu" role="menu" style="background-color:#33cccc;">
                                         <li><a href="{{ url('papar') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Berita</a></li>
                                         <li><a href="{{ url('acara') }}"><span class="glyphicon glyphicon-bullhorn"></span> Paparan Acara</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ url('berita') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Berita</a></li>
-                                <li><a href="{{ url('event') }}"><span class="glyphicon glyphicon-edit"></span> Hebahan Acara</a></li>
-                                <li><a href="{{ url('tetapan') }}"><span class="glyphicon glyphicon-cog"></span> Tetapan Buletin</a></li>
-                                <li><a href="{{ url('laporan') }}"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin</a></li>
+                                <li><a href="{{ url('berita') }}"><font color="black"><span class="glyphicon glyphicon-edit"></span> Hebahan Berita</a></li></font>
+                                <li><a href="{{ url('event') }}"><font color="black"><span class="glyphicon glyphicon-edit"></span> Hebahan Acara</a></li></font>
+                                <li><a href="{{ url('tetapan') }}"><font color="black"><span class="glyphicon glyphicon-cog"></span> Tetapan Buletin</a></li></font>
+                                <li><a href="{{ url('laporan') }}"><font color="black"><span class="glyphicon glyphicon-list-alt"></span> Laporan Buletin</a></li></font>
                         @endif
                     </ul>
 
@@ -90,11 +91,11 @@
                             <li><a href="{{ route('register') }}">Daftar Masuk</a></li>
                         @else
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-check"></span>
-                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="background-color:#33cccc;"><font color="black"><span class="glyphicon glyphicon-check"></span>
+                                    {{ Auth::user()->username }} <span class="caret"></span></font>
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
+                                <ul class="dropdown-menu" role="menu" style="background-color:#33cccc;">
                                      <li><a href="{{ url('profile') }}"><i class="fa fa-btn fa-user"></i><span class="glyphicon glyphicon-user"></span> Profil</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
@@ -113,6 +114,7 @@
                     </ul>
                 </div>
             </div>
+
         </nav>
 
         <div class="container">

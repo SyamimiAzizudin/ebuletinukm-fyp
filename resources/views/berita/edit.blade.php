@@ -3,7 +3,7 @@
 
 <div class="row">
     <div clss="col-lg-12">
-        <ol class="breadcrumb">
+        <ol class="breadcrumb" style="background-color:#d6f5f5;">
             <li>You are here: <a href="{{ url('/') }}">Laman Utama</a></li>
             <li><a href="{{ url('/berita') }}">Hebahan Berita</a></li>
             <li class="active">Kemaskini Berita</li>
@@ -12,7 +12,7 @@
 </div>
 
 <div class="panel panel-default">
-  <div class="panel-heading">
+  <div class="panel-heading" style="background-color:#33cccc;">
     <h1>Kemaskini Berita</h1>
   </div>
 
