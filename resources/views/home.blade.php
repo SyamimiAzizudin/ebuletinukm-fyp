@@ -59,11 +59,13 @@
             </li>
             <li>
                 <a href="{{ url('berita') }}">Hebahan Berita</a>
+                <a>Hebahan Berita</a>
+
             </li>
             <li>
                 <a href="{{ url('event') }}">Hebahan Acara</a>
             </li>
-            <li><a href="{{ url('event') }}">Tetapan Buletin</a></li>
+            {{-- <li><a href="{{ url('event') }}">Tetapan Buletin</a></li> --}}
             <li><a href="{{ url('laporan') }}">Laporan Buletin</a></li>
             
         @endif
